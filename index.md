@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: 张 小龙的博客主页
+tagline: 一个程序员的自我修养
 ---
 {% include JB/setup %}
 
