@@ -16,6 +16,7 @@ author :
   email : xlzhang1988@gmail.com
   github : zhangxiaolong88
   twitter : zhangxl88
+  qq : 441858483
   feedburner : feedname
 
 # The production_url is only used when full-domain names are needed
@@ -83,7 +84,8 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : zhangxiaolong
+# jekyllbootstrap
     livefyre :
       site_id : 123
     intensedebate :

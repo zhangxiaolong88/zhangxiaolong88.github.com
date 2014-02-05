@@ -7,7 +7,7 @@ tagline: 一个程序员的自我修养
 
 <a href="/html5/2013/12/21/barrage-game">先来娱乐一下？</a>
 
-## 文章列表
+## 最新文章
 
 <ul class="posts">
   {% for post in site.posts %}
