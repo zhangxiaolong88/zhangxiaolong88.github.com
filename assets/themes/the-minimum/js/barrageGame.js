@@ -1,5 +1,11 @@
 ﻿$(function(){
-	$(window).scrollTop(220);
+	$.fn.center = function(){
+		var top = ($(window).height() - this.height())/2;
+		var left = ($(window).width() - this.width())/2;
+		var scrollTop = $(document).scrollTop();
+		var scrollLeft = $(document).scrollLeft();
+		return this.css( { position : 'absolute', 'top' : top + scrollTop, left : left + scrollLeft } ).show();
+	}
 
 	var myCanvas = $("#myCanvas")[0];
 	var ctx = myCanvas.getContext("2d");
@@ -278,7 +284,7 @@
 	
 	//start
 	$("#start").click(function(){
-		$("#barrage").addClass("barrage");
+		$("#barrage").addClass("barrage").center();
 
 		paint = start();
 		gt = setGameTime();

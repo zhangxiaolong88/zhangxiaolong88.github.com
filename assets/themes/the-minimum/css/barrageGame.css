@@ -1,38 +1,42 @@
-﻿.barrage {
-position: absolute;
-top:0;
-background: #ffffff;
-z-index: 10000;
+﻿#barrage {
+    margin:0 auto;
+    width: 502px;
 }
+.barrage {
+    position: absolute;
+    background: #ffffff;
+    z-index: 10000;
+}
+
 #myCanvas {
-border: 1px solid #BADA55;
+    border: 1px solid #BADA55;
 }
 #configDiv{
-position: absolute;
-border: 1px solid #000000;
-background: #cccccc;
-text-align: left;
-display: none;
+    position: absolute;
+    border: 1px solid #000000;
+    background: #cccccc;
+    text-align: left;
+    display: none;
 }
 #buttons {
-margin: 0 auto;
-text-align: left;
+    margin: 0 auto;
+    text-align: left;
 }
 #ownBody {
-clear: both;
+    clear: both;
 }
 .item {
-margin:10px 20px 10px 0px;
-float:left;
-display:inline;
+    margin:10px 20px 10px 0px;
+    float:left;
+    display:inline;
 }
 #ownSpeed{
-width:30px;
-text-align: right;
+    width:30px;
+    text-align: right;
 }
 #actionBtn {
-clear: both;
-height: 50px;
-line-height: 50px;
-text-align: center;
+    clear: both;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
 }
