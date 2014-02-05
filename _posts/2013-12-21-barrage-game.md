@@ -7,47 +7,6 @@ tags: [html5, javascript, canvas]
 ---
 {% include JB/setup %}
 
-<style>
-  .barrage {
-     position: absolute;
-     top:0;
-     background: #ffffff;
-     z-index: 10000;
-  }
-  #myCanvas {
-    border: 1px solid #BADA55;
-  }
-  #configDiv{
-    position: absolute;
-    border: 1px solid #000000;
-    background: #cccccc;
-    text-align: left;
-    display: none;
-  }
-  #buttons {
-    margin: 0 auto;
-    text-align: left;
-  }
-  #ownBody {
-    clear: both;
-  }
-  .item {
-    margin:10px 20px 10px 0px;
-    float:left;
-    display:inline;
-  }
-  #ownSpeed{
-    width:30px;
-    text-align: right;
-  }
-  #actionBtn {
-    clear: both;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-  }
-</style>
-
 <div id="barrage">
 
   <canvas id="myCanvas" width="500" height="500">
