@@ -7,6 +7,8 @@ tags: [html5, javascript, canvas]
 ---
 {% include JB/setup %}
 
+<!-- more -->
+
 <div id="barrage">
 
   <canvas id="myCanvas" width="500" height="500">
@@ -14,7 +16,7 @@ tags: [html5, javascript, canvas]
   </canvas>
 
   <section id="buttons">
-          <h3>您已经坚持了：<span id="gametime">0 s</span></h3>
+          <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
       <footer>
           <input type="button" class="button button-rounded button-flat-primary" value="开始" id="start" />
           <input type="button" class="button button-rounded button-flat-highlight" value="暂停" id="pause" />
@@ -26,7 +28,7 @@ tags: [html5, javascript, canvas]
   <div id="configDiv">
       <section id="config">
           <header>
-              <h1>游戏设置：</h1>
+              <h2>游戏设置：</h2>
           </header>
           <div id="ownBody">
               <div class="item">

@@ -7,111 +7,117 @@ tags: [css, html, float]
 ---
 {% include JB/setup %}
 
-### 例子1：浮动元素的特性
+#### 例子1：浮动元素的特性
+
 html:
-
-		<div class="left">left</div>
-		<div class="right">right</div>
-
+```
+<div class="left">left</div>
+<div class="right">right</div>
+```
 css:
+```
+.left {
+	float: left;
+	width: 100px;
+	background: red;
+}
+.right {
+	background:blue;
+}
+```
 
-		.left {
-			float: left;
-			width: 100px;
-			background: red;
-		}
-		.right {
-			background:blue;
-		}
+<!-- more -->
 
 1）如果right元素不设置宽度，则会跟在left之后且宽度自适应
+
 
 <img src="/assets/images/yuan-su-fu-dong/float_01.jpg" width="800px" />
 
 2）如果right元素设置宽度，则会换行(IE6.7不会)
 
 css:
-
-		.left {
-			float: left;
-			width: 100px; 
-			background: red;
-		}
-		.right {
-			width:100px; 
-			background:blue;
-		}
-
+```
+.left {
+	float: left;
+	width: 100px; 
+	background: red;
+}
+.right {
+	width:100px; 
+	background:blue;
+}
+```
 <img src="/assets/images/yuan-su-fu-dong/float_02.jpg" width="400px" />
 
-### 例子2：“float起源”
+#### 例子2：“float起源”
 
 html:
-
-		<div class="float">float</div>
-		<div class="content">我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字</div>
-
+```
+<div class="float">float</div>
+<div class="content">我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字</div>
+```
 css:
-
-		.float { 
-			float:left; 
-			width:100px;
-			height:100px; 
-			background:red;
-		}
-		.content { 
-			width:200px; 
-			height:200px; 
-			background:blue;
-		}
-
+```
+.float { 
+	float:left; 
+	width:100px;
+	height:100px; 
+	background:red;
+}
+.content { 
+	width:200px; 
+	height:200px; 
+	background:blue;
+}
+```
 <img src="/assets/images/yuan-su-fu-dong/float_03.jpg" width="300px" />
 
-### 例子3：“讨厌的浮动”
+#### 例子3：“讨厌的浮动”
 
 html:
-
-		<div class="outer">
-		    <div class="float">float</div>
-		</div>
-
+```
+<div class="outer">
+    <div class="float">float</div>
+</div>
+```
 css:
-
-		.outer { 
-			padding:20px; 
-			background:blue;
-		}
-		.float { 
-			float:left; 
-			width:100px; 
-			height:100px; 
-			background: red;
-		}
-
+```
+.outer { 
+	padding:20px; 
+	background:blue;
+}
+.float { 
+	float:left; 
+	width:100px; 
+	height:100px; 
+	background: red;
+}
+```
 <img src="/assets/images/yuan-su-fu-dong/float_04.jpg" width="800px" />
 
 传说中的高度塌陷
 
-### 清除浮动
+#### 清除浮动
 
 方法1：
-
-		.outer {
-			overflow: hidden; 
-			zoom:1; //ie6 trigger haslayout
-		}
-
+```
+.outer {
+	overflow: hidden; 
+	zoom:1; //ie6 trigger haslayout
+}
+```
 方法2：
 html:
-
-		<div class="outer">
-		    <div class="float">float</div>
-		    <div class="clear"></div>
-		</div>
+```
+<div class="outer">
+    <div class="float">float</div>
+    <div class="clear"></div>
+</div>
+```
 css:
-
-		.clear {
-			clear:both;
-		}
-
+```
+.clear {
+	clear:both;
+}
+```
 <img src="/assets/images/yuan-su-fu-dong/float_05.jpg" width="800px" />
