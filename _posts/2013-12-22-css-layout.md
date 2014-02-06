@@ -14,6 +14,7 @@ html:
 <div id="left">left</div>
 <div id="right">right</div>
 ```
+<!-- more -->
 css:
 ```
 #left { float:left; width:100px; }

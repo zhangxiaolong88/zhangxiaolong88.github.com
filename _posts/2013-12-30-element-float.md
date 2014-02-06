@@ -14,6 +14,7 @@ html:
 <div class="left">left</div>
 <div class="right">right</div>
 ```
+<!-- more -->
 css:
 ```
 .left {
@@ -25,8 +26,6 @@ css:
 	background:blue;
 }
 ```
-
-<!-- more -->
 
 1）如果right元素不设置宽度，则会跟在left之后且宽度自适应
 
