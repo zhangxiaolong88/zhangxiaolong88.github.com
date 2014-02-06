@@ -10,10 +10,10 @@ tags: [css, html, float]
 ### 例子1：浮动元素的特性
 
 html:
-```
-<div class="left">left</div>
-<div class="right">right</div>
-```
+
+		<div class="left">left</div>
+		<div class="right">right</div>
+
 <!-- more -->
 css:
 ```
