@@ -1,10 +1,12 @@
-zhangxiaolong Blog
+JavaChen Blog
 ======
 
 *********
 
-Ê¹ÓÃGithub+Jekyll+Markdown¡£
+ä½¿ç”¨Github+Jekyll+Markdownã€‚
 
 ### version 1.0
+
+
 
 
