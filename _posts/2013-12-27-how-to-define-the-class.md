@@ -7,7 +7,7 @@ tags: [javascript, class]
 ---
 {% include JB/setup %}
 
-#### 第一种 this and prototype
+### 第一种 this and prototype
 ```
 var Cat = function(){
     this.publicMethod1 = function(){
@@ -26,7 +26,7 @@ cat.publicMethod2(); //公有方法二
 
 一般的实现方法，比较麻烦！！！
 
-#### 第二种 Object.create()
+### 第二种 Object.create()
 
 为了解决"构造函数法"的缺点，更方便地生成对象，Javascript的国际标准ECMAScript第五版（目前通行的是第三版），提出了一个新的方法Object.create()。
 ```
@@ -53,7 +53,7 @@ cat.method1(); //成员方法
 ```
 没有私有属性和方法，实例之间也没有数据共享
 
-#### 第三种 极简主义
+### 第三种 极简主义
 ```
 var Obj = {
     publicVar: "公有属性",

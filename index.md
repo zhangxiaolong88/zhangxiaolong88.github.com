@@ -11,7 +11,7 @@ tagline: 爱生活，爱前端
   {% for post in site.posts %}
 	<article>
 		<header>
-			<h2 class="entry-title headline"><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a> &raquo; <span>{{ post.date | date_to_string }}</span></h2> 
+			<h5 class="entry-title headline"><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a> &raquo; <span>{{ post.date | date_to_string }}</span></h5> 
 		</header>
 		{% if post.content contains "<!-- more -->" %}
 		  {{ post.content | split:'<!-- more -->' |first }}

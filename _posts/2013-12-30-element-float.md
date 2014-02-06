@@ -7,7 +7,7 @@ tags: [css, html, float]
 ---
 {% include JB/setup %}
 
-#### 例子1：浮动元素的特性
+### 例子1：浮动元素的特性
 
 html:
 ```
@@ -49,7 +49,7 @@ css:
 ```
 <img src="/assets/images/yuan-su-fu-dong/float_02.jpg" width="400px" />
 
-#### 例子2：“float起源”
+### 例子2：“float起源”
 
 html:
 ```
@@ -72,7 +72,7 @@ css:
 ```
 <img src="/assets/images/yuan-su-fu-dong/float_03.jpg" width="300px" />
 
-#### 例子3：“讨厌的浮动”
+### 例子3：“讨厌的浮动”
 
 html:
 ```
@@ -97,7 +97,7 @@ css:
 
 传说中的高度塌陷
 
-#### 清除浮动
+### 清除浮动
 
 方法1：
 ```
