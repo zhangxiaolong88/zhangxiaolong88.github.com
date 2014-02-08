@@ -1,0 +1,51 @@
+﻿#barrage {
+    margin:0 auto;
+    width: 502px;
+}
+.barrage {
+    position: absolute;
+    background: #ffffff;
+    z-index: 10000;
+}
+
+#myCanvas {
+    border: 1px solid #BADA55;
+}
+#configDiv{
+    position: absolute;
+    border: 1px solid #000000;
+    background: #cccccc;
+    text-align: left;
+    display: none;
+}
+#buttons {
+    margin: 0 auto 20px;
+    text-align: center;
+}
+#ownBody {
+    clear: both;
+}
+.item {
+    margin:10px 20px 10px 0px;
+    float:left;
+    display:inline;
+}
+#ownSpeed{
+    width:30px;
+    text-align: right;
+}
+#actionBtn {
+    clear: both;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+#bgCloth {
+    background: #000000;
+    filter:alpha(opacity=80); /*IE滤镜，透明度50%*/
+    -moz-opacity:0.8; /*Firefox私有，透明度50%*/
+    opacity:0.8;/*其他，透明度50%*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}

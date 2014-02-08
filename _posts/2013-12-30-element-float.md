@@ -30,7 +30,7 @@ css:
 1）如果right元素不设置宽度，则会跟在left之后且宽度自适应
 
 
-<img src="/assets/images/yuan-su-fu-dong/float_01.jpg" width="800px" />
+<img src="/assets/images/yuan-su-fu-dong/float_01.jpg" width="600px" />
 
 2）如果right元素设置宽度，则会换行(IE6.7不会)
 
@@ -69,6 +69,7 @@ css:
 	background:blue;
 }
 ```
+
 <img src="/assets/images/yuan-su-fu-dong/float_03.jpg" width="300px" />
 
 ### 例子3：“讨厌的浮动”
@@ -92,7 +93,7 @@ css:
 	background: red;
 }
 ```
-<img src="/assets/images/yuan-su-fu-dong/float_04.jpg" width="800px" />
+<img src="/assets/images/yuan-su-fu-dong/float_04.jpg" width="600px" />
 
 传说中的高度塌陷
 
@@ -119,4 +120,4 @@ css:
 	clear:both;
 }
 ```
-<img src="/assets/images/yuan-su-fu-dong/float_05.jpg" width="800px" />
+<img src="/assets/images/yuan-su-fu-dong/float_05.jpg" width="600px" />

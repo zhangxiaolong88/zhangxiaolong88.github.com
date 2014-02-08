@@ -15,7 +15,7 @@ tags: [html5, javascript, canvas]
       你的浏览器不支持canvas，敢不敢换一个高级点的浏览器！！！
   </canvas>
 
-  <section id="buttons">
+  <div id="buttons">
           <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
       <footer>
           <input type="button" class="button button-rounded button-flat-primary" value="开始" id="start" />
@@ -23,7 +23,7 @@ tags: [html5, javascript, canvas]
           <input type="button" class="button button-rounded button-flat-caution" value="结束" id="end" />
           <input type="button" class="button button-rounded button-flat-royal" value="设置" id="cfg" />
       </footer>
-  </section>
+  </div>
 
   <div id="configDiv">
       <section id="config">
@@ -54,3 +54,4 @@ tags: [html5, javascript, canvas]
   </div>
 
 </div>
+

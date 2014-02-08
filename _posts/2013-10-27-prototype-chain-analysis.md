@@ -7,7 +7,7 @@ tags: [javascript, prototype, _proto_]
 ---
 {% include JB/setup %}
 
-<img src="/assets/images/yuan-xing-lian-jie-xi/chain.jpg" width="800px" />
+<img src="/assets/images/yuan-xing-lian-jie-xi/chain.jpg" width="650px" />
 
 <!-- more -->
 
