@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "DOM浮动整理"
+title: "DOM元素浮动整理"
 description: ""
 category: css
 tags: [css, html, float]

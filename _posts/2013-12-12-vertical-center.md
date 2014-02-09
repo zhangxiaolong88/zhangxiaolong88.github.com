@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "垂直居中的N种方法"
+title: "垂直居中常用方案"
 description: ""
 category: css
 tags: [css, html]
