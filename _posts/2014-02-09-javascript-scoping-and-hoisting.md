@@ -7,7 +7,10 @@ tags: [javascript]
 ---
 {% include JB/setup %}
 
-原文地址: 
+原文地址: [http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html)
+
+作者：Ben Cherry
+
 该文详细讲述了JavaScript Hoisting的概念，翻译如下：
 
 你知道下面这段JavaScript执行会弹出什么值吗？
