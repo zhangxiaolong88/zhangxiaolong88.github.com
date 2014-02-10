@@ -10,12 +10,15 @@ tags: [css, html, float]
 ### 例子1：浮动元素的特性
 
 html:
+
 ```
 <div class="left">left</div>
 <div class="right">right</div>
 ```
+
 <!-- more -->
 css:
+
 ```
 .left {
 	float: left;
@@ -35,6 +38,7 @@ css:
 2）如果right元素设置宽度，则会换行(IE6.7不会)
 
 css:
+
 ```
 .left {
 	float: left;
@@ -46,16 +50,20 @@ css:
 	background:blue;
 }
 ```
+
 <img src="/assets/images/yuan-su-fu-dong/float_02.jpg" width="400px" />
 
 ### 例子2：“float起源”
 
 html:
+
 ```
 <div class="float">float</div>
 <div class="content">我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字</div>
 ```
+
 css:
+
 ```
 .float { 
 	float:left; 
@@ -75,12 +83,15 @@ css:
 ### 例子3：“讨厌的浮动”
 
 html:
+
 ```
 <div class="outer">
     <div class="float">float</div>
 </div>
 ```
+
 css:
+
 ```
 .outer { 
 	padding:20px; 
@@ -93,6 +104,7 @@ css:
 	background: red;
 }
 ```
+
 <img src="/assets/images/yuan-su-fu-dong/float_04.jpg" width="600px" />
 
 传说中的高度塌陷
@@ -100,24 +112,30 @@ css:
 ### 清除浮动
 
 方法1：
+
 ```
 .outer {
 	overflow: hidden; 
 	zoom:1; //ie6 trigger haslayout
 }
 ```
+
 方法2：
 html:
+
 ```
 <div class="outer">
     <div class="float">float</div>
     <div class="clear"></div>
 </div>
 ```
+
 css:
+
 ```
 .clear {
 	clear:both;
 }
 ```
+
 <img src="/assets/images/yuan-su-fu-dong/float_05.jpg" width="600px" />

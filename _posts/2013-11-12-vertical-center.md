@@ -8,16 +8,24 @@ tags: [css, html]
 {% include JB/setup %}
 
 ### 前提：
+
 ```
 body {text-align: center;}
 div {border:1px solid #000;}
 ```
+
 ### 1. 单行文字
+html:
+
 ```
 <div class="box">现在我们要使这段文字垂直居中显示！</div>
 ```
+
 <!-- more -->
+
 box有固定高度：
+css:
+
 ```
 .box {
     width:500px;
@@ -25,15 +33,21 @@ box有固定高度：
     line-height:200px; //与高度相同就可以实现单行文字居中
 }
 ```
+
 box没有固定高度：
+css:
+
 ```
 .box {
     padding: 25px;
 }
 ```
+
 ### 2. 多行文字
 box有固定高度：
 #### 第一种方法 设置table属性
+html:
+
 ```
 <div class="outbox">
 <div class="box">
@@ -50,6 +64,9 @@ box有固定高度：
 </div>
 </div>
 ```
+
+css:
+
 ```
 .outbox {
     width:500px;
@@ -61,10 +78,13 @@ box有固定高度：
     vertical-align: middle;
 }
 ```
-优点： inbox的内容可以动态改变高度 <br>
-缺点：可惜这种方法IE无效！！！
+
+- 优点： inbox的内容可以动态改变高度 <br>
+- 缺点：可惜这种方法IE无效！！！
 
 #### 第二种方法 定位
+html:
+
 ```
 <div class="box">
 <div class="inbox">
@@ -80,6 +100,9 @@ box有固定高度：
 <!--img src="test.png" width="120" height="60" /-->
 </div>
 ```
+
+css:
+
 ```
 .box {
     height: 300px;
@@ -103,10 +126,13 @@ img { //同理：如果图片设置高度也可以用这种方法
     margin-left:-60px; //宽度的一半
 }
 ```
-优点：适用于所有浏览器不需要嵌套标签 <br>
-缺点：内容的高度要设置，不够灵活；没有足够空间时，inbox会消失
+
+- 优点：适用于所有浏览器不需要嵌套标签 <br>
+- 缺点：内容的高度要设置，不够灵活；没有足够空间时，inbox会消失
 
 #### 第三种方式 插入float元素
+html:
+
 ```
 <div class="box">
 <div id="floater"></div>
@@ -122,6 +148,9 @@ img { //同理：如果图片设置高度也可以用这种方法
 </div>
 </div>
 ```
+
+css:
+
 ```
 .box {
     height: 300px;
@@ -138,16 +167,13 @@ img { //同理：如果图片设置高度也可以用这种方法
     position:relative;
 }
 ```
-优点：
-适用于所有浏览器
-没有足够空间时(例如：窗口缩小) content 不会被截断，滚动条出现 <br>
-缺点：
-要增加一个额外的元素
 
-
+- 优点：适用于所有浏览器; 没有足够空间时(例如：窗口缩小) content 不会被截断，滚动条出现 
+- 缺点：要增加一个额外的元素
 
 ### 特殊情况，未知高度的内容居中：
 html:
+
 ```
 <div class="outer">
         <div class="inner">
@@ -155,7 +181,9 @@ html:
         </div>
 </div>
 ```
+
 css:
+
 ```
 .outer {
     border:1px solid #ccc;
