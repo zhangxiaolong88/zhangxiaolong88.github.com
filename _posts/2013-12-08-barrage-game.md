@@ -17,9 +17,6 @@ tags: [html5, javascript, canvas]
   <div id="buttons">
       <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
       <footer>
-          <a href="#" class="button button-rounded button-flat-primary" id="start" name="start">&nbsp;&nbsp;开始</a>
-          <a href="#" class="button button-rounded button-flat-caution" id="end">&nbsp;&nbsp;结束</a>
-          <a href="#" class="button button-rounded button-flat-royal" id="cfg">&nbsp;&nbsp;设置</a>
       </footer>
   </div>
 
