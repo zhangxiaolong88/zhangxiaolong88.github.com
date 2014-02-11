@@ -18,6 +18,11 @@
     margin: 0 auto 20px;
     text-align: center;
 }
+#buttons a {
+    color: #ffffff;
+    border-bottom: none;
+    padding: 0 15px;
+}
 #ownBody {
     clear: both;
 }

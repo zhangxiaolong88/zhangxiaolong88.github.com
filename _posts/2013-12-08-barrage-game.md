@@ -12,15 +12,16 @@ tags: [html5, javascript, canvas]
 <div id="barrage">
 
   <canvas id="myCanvas" width="500" height="500">
-      你的浏览器不支持canvas，敢不敢换一个高级点的浏览器！！！
+      你使用的浏览器不能支持<b>canvas以及相关功能</b>，使用落后的浏览器可能因为没有技术支持而导致存在安全隐患。
+      为了更好地用户体验和财产安全，请你考虑更换下列这些浏览器的最新版本，比如<b>Chrome</b>，<b>Safari</b>或者<b>Firefox</b>！
   </canvas>
 
   <div id="buttons">
       <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
       <footer>
-          <input type="button" class="button button-rounded button-flat-primary" value="开始" id="start" />
-          <input type="button" class="button button-rounded button-flat-caution" value="结束" id="end" />
-          <input type="button" class="button button-rounded button-flat-royal" value="设置" id="cfg" />
+          <a href="#" class="button button-rounded button-flat-primary" id="start" name="start">&nbsp;&nbsp;开始</a>
+          <a href="#" class="button button-rounded button-flat-caution" id="end">&nbsp;&nbsp;结束</a>
+          <a href="#" class="button button-rounded button-flat-royal" id="cfg">&nbsp;&nbsp;设置</a>
       </footer>
   </div>
 

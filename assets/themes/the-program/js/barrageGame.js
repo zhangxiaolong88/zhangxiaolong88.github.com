@@ -12,6 +12,10 @@
 		});
 	}
 
+	$("<i class='icon-play'></i>").prependTo($("#start"));
+	$("<i class='icon-stop'></i>").prependTo($("#end"));
+	$("<i class='icon-cog'></i>").prependTo($("#cfg"));
+
 	var myCanvas = $("#myCanvas")[0];
 	var ctx = myCanvas.getContext("2d");
 	
@@ -297,16 +301,18 @@
 	
 	//start
 	$("#start").click(function(){
-		if($(this).val() === "开始"){
+		if($(this).attr("name") === "start"){
+			$(this).attr("name","pause");
 			$(this).removeClass("button-flat-primary");
 			$(this).addClass("button-flat-highlight");
-			$(this).val("暂停");
+			$(this).text("暂停").prepend("<i class='icon-pause'></i>&nbsp;&nbsp;");
 			paint = start();
 			gt = setGameTime();
-		} else if($(this).val() === "暂停"){
+		} else if($(this).attr("name") === "pause"){
+			$(this).attr("name","start");
 			$(this).removeClass("button-flat-highlight");
 			$(this).addClass("button-flat-primary");
-			$(this).val("开始");
+			$(this).text("开始").prepend("<i class='icon-play'></i>&nbsp;&nbsp;");;
 			clearInterval(paint);
 			clearInterval(gt);
 			for(var i = 0; i < missiles.length; i++){
