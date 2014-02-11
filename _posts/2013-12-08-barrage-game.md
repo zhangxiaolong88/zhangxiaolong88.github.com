@@ -12,8 +12,6 @@ tags: [html5, javascript, canvas]
 <div id="barrage">
 
   <canvas id="myCanvas" width="500" height="500">
-      你使用的浏览器不能支持<b>canvas以及相关功能</b>，使用落后的浏览器可能因为没有技术支持而导致存在安全隐患。
-      为了更好地用户体验和财产安全，请你考虑更换下列这些浏览器的最新版本，比如<b>Chrome</b>，<b>Safari</b>或者<b>Firefox</b>！
   </canvas>
 
   <div id="buttons">
