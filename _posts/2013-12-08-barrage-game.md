@@ -16,19 +16,18 @@ tags: [html5, javascript, canvas]
   </canvas>
 
   <div id="buttons">
-          <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
+      <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
       <footer>
           <input type="button" class="button button-rounded button-flat-primary" value="开始" id="start" />
-          <input type="button" class="button button-rounded button-flat-highlight" value="暂停" id="pause" />
           <input type="button" class="button button-rounded button-flat-caution" value="结束" id="end" />
           <input type="button" class="button button-rounded button-flat-royal" value="设置" id="cfg" />
       </footer>
   </div>
 
-  <div id="configDiv">
+  <div id="configDiv" class="button-rounded button-flat-royal">
       <section id="config">
           <header>
-              <h2>游戏设置：</h2>
+              <h5>游戏设置：</h5>
           </header>
           <div id="ownBody">
               <div class="item">
@@ -46,9 +45,9 @@ tags: [html5, javascript, canvas]
               </div>
           </div>
           <footer id="actionBtn">
-              <input type="button" value="确定" id="confirm" />
-              <input type="button" value="重置" id="reset" />
-              <input type="button" value="取消" id="cancel" />
+              <input type="button" class="button button-rounded" value="确定" id="confirm" />
+              <input type="button" class="button button-rounded" value="重置" id="reset" />
+              <input type="button" class="button button-rounded" value="取消" id="cancel" />
           </footer>
       </section>
   </div>

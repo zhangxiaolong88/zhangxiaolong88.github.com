@@ -1,18 +1,18 @@
 ﻿#barrage {
     margin:0 auto;
     width: 502px;
-    background: #ffffff;
 }
 
 #myCanvas {
     border: 1px solid #BADA55;
 }
 #configDiv{
-    position: absolute;
-    border: 1px solid #000000;
-    background: #cccccc;
-    text-align: left;
     display: none;
+}
+#configDiv h5 {
+    margin-top: 18px;
+    color: #ffffff;
+    text-align: center;
 }
 #buttons {
     margin: 0 auto 20px;

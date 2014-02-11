@@ -125,13 +125,17 @@
 		var e = window.event? event : e; 
 		me.keyPressed(e);
 
-		e.preventDefault();
+		if(e.keyCode == 38 || e.keyCode == 40) { //up
+			e.preventDefault();
+		}
 	};
 	document.onkeyup = function(e){
 		var e = window.event? event : e;
 		me.keyReleased(e);
 
-		e.preventDefault();
+		if(e.keyCode == 38 || e.keyCode == 40) { //up
+			e.preventDefault();
+		}
 	};
 
 	//init 
@@ -285,28 +289,33 @@
 			gameTime += 1000;
 			$("#gametime").text(gameTime/1000 + " s");
 			if(gameTime == 30*1000){
-				$("#pause")[0].click();
+				$("#start")[0].click();
 				alert("Congratulations ,you finished the 30 seconds real man test!!!");
 			}
 		},1000);
 	}
 	
 	//start
-	$("#start").click(function(){		
-		paint = start();
-		gt = setGameTime();
-	});
-	
-	//pause
-	$("#pause").click(function(){
-		clearInterval(paint);
-		clearInterval(gt);
-		for(var i = 0; i < missiles.length; i++){
-			var line = missiles[i];
-			var st = line.startTimer;
-			var et = line.endTimer;
-			if(st) clearTimeout(st);
-			if(et) clearTimeout(et);
+	$("#start").click(function(){
+		if($(this).val() === "开始"){
+			$(this).removeClass("button-flat-primary");
+			$(this).addClass("button-flat-highlight");
+			$(this).val("暂停");
+			paint = start();
+			gt = setGameTime();
+		} else if($(this).val() === "暂停"){
+			$(this).removeClass("button-flat-highlight");
+			$(this).addClass("button-flat-primary");
+			$(this).val("开始");
+			clearInterval(paint);
+			clearInterval(gt);
+			for(var i = 0; i < missiles.length; i++){
+				var line = missiles[i];
+				var st = line.startTimer;
+				var et = line.endTimer;
+				if(st) clearTimeout(st);
+				if(et) clearTimeout(et);
+			}
 		}
 	});
 	
@@ -318,8 +327,10 @@
 	//config
 	$("#cfg").click(function(){
 		var $cfgDiv = $("#configDiv");
-		
 		$cfgDiv.center(10000);
+		$(window).scroll(function(){
+			$cfgDiv.center(10000);
+		});
 
 		if($cfgDiv.css("display") == "none") {
 			$cfgDiv.show("slow");
