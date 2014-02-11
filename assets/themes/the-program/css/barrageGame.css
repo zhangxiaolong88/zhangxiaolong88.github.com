@@ -1,11 +1,7 @@
 ﻿#barrage {
     margin:0 auto;
     width: 502px;
-}
-.barrage {
-    position: absolute;
     background: #ffffff;
-    z-index: 10000;
 }
 
 #myCanvas {

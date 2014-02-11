@@ -1,16 +1,15 @@
 ﻿$(function(){
-	$(".body .unit-body").css("min-height", $(window).height() - 52);
-	
-	$.fn.center = function(){
+	$.fn.center = function(i){
 		var top = ($(window).height() - this.height())/2;
 		var left = ($(window).width() - this.width())/2;
 		var scrollTop = $(document).scrollTop();
 		var scrollLeft = $(document).scrollLeft();
 		return this.css({ 
+			"z-index": i || 1000,
 			'position' : 'absolute',
 			'left' : left + scrollLeft,
 			'top' : top + scrollTop
-		}).show();
+		});
 	}
 
 	var myCanvas = $("#myCanvas")[0];
@@ -125,10 +124,14 @@
 	document.onkeydown = function(e){
 		var e = window.event? event : e; 
 		me.keyPressed(e);
+
+		e.preventDefault();
 	};
 	document.onkeyup = function(e){
 		var e = window.event? event : e;
 		me.keyReleased(e);
+
+		e.preventDefault();
 	};
 
 	//init 
@@ -289,17 +292,7 @@
 	}
 	
 	//start
-	$("#start").click(function(){
-		$("#barrage").addClass("barrage").center();
-		$("<div id='bgCloth'><div>").css({
-			"height": $(window).height() + 52,
-			"width": $(window).width()
-		}).appendTo($("body"));
-		
-		$(window).scroll(function(){
-			$("#barrage").center();
-		});
-
+	$("#start").click(function(){		
 		paint = start();
 		gt = setGameTime();
 	});
@@ -325,14 +318,9 @@
 	//config
 	$("#cfg").click(function(){
 		var $cfgDiv = $("#configDiv");
-		var left = ($("body").width() - $("#configDiv").width())/2;
-		var top = height - $("#configDiv").height();
 		
-		$cfgDiv.css({
-			"left": left,
-			"top": top
-		});
-		
+		$cfgDiv.center(10000);
+
 		if($cfgDiv.css("display") == "none") {
 			$cfgDiv.show("slow");
 		} else {
