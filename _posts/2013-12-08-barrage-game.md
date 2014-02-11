@@ -16,7 +16,7 @@ tags: [html5, javascript, canvas]
 
   <div id="buttons">
       <h4>您已经坚持了：<span id="gametime">0 s</span></h4>
-      <footer>
+      <footer>11
       </footer>
   </div>
 
