@@ -9,9 +9,9 @@ tags: [javascript]
 
 你是不是常常听到这些问题？
 
-- JavaScript有几种基本数据类型？
-- typeof一共有多少种结果？
-- Object,Function,String,Number,Array有没有什么关系，是什么关系？
+ JavaScript有几种基本数据类型？
+ typeof一共有多少种结果？
+ Object,Function,String,Number,Array有没有什么关系，是什么关系？
 
 你是不是觉得这些问题都是很基础？
 但是好像又是没有完全搞清楚的问题？
