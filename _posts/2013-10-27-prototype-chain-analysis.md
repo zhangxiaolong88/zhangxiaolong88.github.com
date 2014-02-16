@@ -46,13 +46,14 @@ c.__proto__.__proto__ == father.prototype;
 ```
 
 推导(1)：
+要达到(1)的继承效果，也可以如下方式：
 
 ```
 var f = new father(); 
-f = child.prototype; 
+child.prototype = f; 
 ```
 
-f 是 father的实例，所以
+又 f 是 father的实例，所以
 
 ```
 f.__proto__ = father.prototype;
