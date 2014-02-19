@@ -17,13 +17,14 @@ tags: [javascript]
 
 <!-- more -->
 
-其实，要说清楚**弱类型的语言**的数据类型一直都是相对复杂的问题，尽管ECMAScript（以下简称ES）规范中清楚的规定了JavaScript有多少种数据类型，但是与其他具有严格规范的语言不同，它具有一些特性，而在一些殊的情况下结果也让人难以理解，这些都让JavaScript初学者经常摔跟头，甚至一些有JavaScript开发经验的人也没有明白其中机制。
+其实，要说清楚**弱类型的语言**的数据类型一直都是相对复杂的问题，尽管ECMAScript（以下简称ES）规范中清楚的规定了JavaScript有多少种数据类型，但是与其他具有严格规范的语言不同，它具有一些特性，而在一些殊的情况下结果更是让人难以理解，这些都让JavaScript初学者经常摔跟头，甚至一些有JavaScript开发经验的人也没有明白其中机制。
 
 与许多其他语言类似，JavaScript中的数据类型主要分为两大类：
 - **基本数据类型**（也叫“原始数据类型”）：字符型(String)、数值型(Number)、布尔型(Boolean)、空(Null)、undefined(Undefined)；
 - **引用类型**（也叫“复合类型”）：对象(String对象、Number对象、Boolean对象)、函数(Function)、数组(Array)、JSON、正则表达式、DOM对象等非基本数据类型。
 
-当然，本文的重点不是要在这里介绍各种数据类型，本文的主要目的旨在说明那些年我们掉过的坑，以及说明（有些是猜测）这门语言这样设计的原因（或者说“失误”）。<br>
+当然，本文的重点不是要在这里介绍各种数据类型，本文的主要目的旨在说明那些年我们掉过的坑，以及说明（有些是猜测）这门语言这样设计的原因（或者说“失误”）。
+
 如果你想了解ES规范，我会推荐你仔细阅读**[W3Cschool ECMAScript系列](http://www.w3school.com.cn/js/pro_js_primitivetypes.asp)**。
 
 JavaScript中有一个函数常用于判断数据类型：**typeof**。<br>
@@ -107,8 +108,7 @@ alert(NaN == NaN);  //输出 "false"
 ```
 
 这个问题我找了很多的解释都不够深入，后来我想到由于JS在设计时，很多地方沿用了Java的特点，其实Java中也有类似的问题（比如Double.NaN == Double.NaN return false）。<br>
-简单来说，由于NaN的解释是not a Number，所以它可以是任意值，所以不能保证两个NaN是相等的，NaN只是一个API中用来判断逻辑的字面量，并没有实际意义。
-出于这个原因，不推荐使用 NaN 值本身。但是函数 isNaN() 却很好用：
+简单来说，由于NaN的解释是not a Number，所以它可以是任意值，所以不能保证两个NaN是相等的，NaN只是一个API中用来判断逻辑的字面量，并没有实际意义。出于这个原因，不推荐使用 NaN 值本身。但是函数 isNaN() 却很好用：
 
 ```
 alert(isNaN("blue"));  //输出 "true"
@@ -187,29 +187,11 @@ console.log(Function instanceof Object);  //true
 console.log(Object instanceof Function);  //true
 ```
 
-这个结果会让初学者迷惑，下面，我们不得不首先说明这些关于JS继承中常常提到的概念：
-
-如果你已经了解了原型链的概念，你可以略过 *斜体* 部分。
+这个结果会让初学者迷惑，下面，我们不得不首先说明这个关于JS继承中常常提到的概念：原型链。
 
 如果你不了解[原型链](http://blog.zhangxiaolong.me/javascript/2013/10/27/prototype-chain-analysis/)，推荐你点击这个链接仔细阅读，因为这个概念将对理解下面的内容非常重要。
 
-- *prototype：为了让JS中有继承概念而设计的这一属性，是构造函数最重要的属性。prototype对象中的所有属性、方法(包括constructor、__proto__)，都会被实例继承。*
-- *constructor：有2个地方会出现这个属性：*
-*1）构造函数的prototype对象拥有此属性，指向构造函数本身；*
-*2）实例拥有此属性，指向它的构造函数。*
-- *__proto__：实例拥有此属性，指向构造函数的prototype对象。*
-
-*下面这段代码将用于印证上述理论：*
-
-```
-var s = new String("123");
-console.log(String.prototype);                         //String{}
-console.log(String.prototype.constructor === String);  //true
-console.log(s.constructor === String);                 //true
-console.log(s.__proto__ === String.prototype)          //true
-```
-
-通过上面几段（*斜体*以前）代码，你可以看出instanceof函数并没有这么简单，根据ES的定义，A instanceof B，是从对象（A）的原型链上查找是否存在构造函数（B）的原型，即：
+通过上面几段代码，你其实推断出 instanceof 函数并没有这么简单，根据ES的定义，A instanceof B，是从对象（A）的原型链上查找是否存在构造函数（B）的原型，即：
 
 从A.__proto__、A.__proto__.__proto__、A.__proto__.__proto__.__proto__......、Object.__proto__， 中查找有没有 B.prototype 这个对象。
 
