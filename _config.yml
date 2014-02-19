@@ -89,20 +89,30 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
+    provider : duoshuo 
     disqus :
-      short_name : zhangxiaolong
+      short_name : 
 # jekyllbootstrap
     livefyre :
-      site_id : 123
+      site_id : 
     intensedebate :
-      account : 123abc
+      account :
     facebook :
-      appid : 123
-      num_posts: 5
+      appid : 
+      num_posts: 
       width: 580
       colorscheme: light
-   
+    duoshuo :
+      name : zhangxiaolong
+      comments :
+        num: 5
+        avatar : 0
+        time: 0
+        title : 0
+        admin : 0
+        length : 14
+      visitors :
+        num : 15
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
   # Set 'provider' to false to turn analytics off globally.
