@@ -7,29 +7,31 @@ tags: [javascript]
 ---
 {% include JB/setup %}
 
-你有没有常常听到这些问题？<br>
+你是否常常听到这些问题？<br>
 - JavaScript有几种基本数据类型？
 - typeof一共有多少种结果？结果中为什么没有array？
 - Object,Function,String,Number,Array有没有什么关系，是什么关系？
 
-很基础的问题，好像又很难说清楚。<br>
-如果你要做一次培训，教会别人这些问题，你有信心吗？
+很基础的问题，却又很难说清楚。<br>
+如果你需要做一次JavaScript数据类型的培训，你有信心吗？
 
 <!-- more -->
 
-JavaScript的数据类型一直都是容易概念模糊的问题，尽管ECMAScript（以下简称ES）规范中清楚的规定了有多少种数据类型，但是与其他具有严格规范的语言不同（比如弱类型），这导致了它具有一些特性，在一些殊的情况下结果也让人难以理解，这些都让JavaScript初学者经常摔跟头，甚至一些有JavaScript开发经验的人也没有明白其中机制。
+其实，要说清楚**弱类型的语言**的数据类型一直都是相对复杂的问题，尽管ECMAScript（以下简称ES）规范中清楚的规定了JavaScript有多少种数据类型，但是与其他具有严格规范的语言不同，它具有一些特性，而在一些殊的情况下结果也让人难以理解，这些都让JavaScript初学者经常摔跟头，甚至一些有JavaScript开发经验的人也没有明白其中机制。
 
 与许多其他语言类似，JavaScript中的数据类型主要分为两大类：
 - **基本数据类型**（也叫“原始数据类型”）：字符型(String)、数值型(Number)、布尔型(Boolean)、空(Null)、undefined(Undefined)；
-- **引用类型**（也叫“复合类型”）：对象（String对象、Number对象、Boolean对象）、函数(Function)、数组(Array)、JSON、正则表达式、DOM对象等非基本数据类型。
+- **引用类型**（也叫“复合类型”）：对象(String对象、Number对象、Boolean对象)、函数(Function)、数组(Array)、JSON、正则表达式、DOM对象等非基本数据类型。
 
-当然，本文的重点不是要在这里介绍各种数据类型，如果你想了解ES规范，我推荐你仔细阅读**[W3Cschool ECMAScript系列](http://www.w3school.com.cn/js/pro_js_primitivetypes.asp)**。<br>
-本文的主要目的旨在说明那些年我们掉过的坑，以及它这样设计的原因（或者说“失误”）。
+当然，本文的重点不是要在这里介绍各种数据类型，本文的主要目的旨在说明那些年我们掉过的坑，以及说明（有些是猜测）这门语言这样设计的原因（或者说“失误”）。<br>
+如果你想了解ES规范，我会推荐你仔细阅读**[W3Cschool ECMAScript系列](http://www.w3school.com.cn/js/pro_js_primitivetypes.asp)**。
 
-JavaScript中有一个函数用于判断数据类型：**typeof**。<br>
+JavaScript中有一个函数常用于判断数据类型：**typeof**。<br>
 尽管这门语言的创造者想让大家使用此函数来判断数据类型，然而这个函数的表现给开发者特别是初学者造成了很多的误解，看下面的几个例子：
 
 ### 基本数据类型
+
+一般情况：
 
 ```
 typeof(123);   //"number"
@@ -49,13 +51,13 @@ typeof(null); //"object"
 ```
 
 也许你早就知道这个结果，但是 typeof 函数为什么要这样处理呢？
-这实际上是最初实现的一个错误，然后 ECMAScript 也沿用了，后来人们为了解释这一矛盾提出：null 是对象的占位符。
+这实际上是最初实现的一个错误，然后 ES 也沿用了，后来人们为了解释这一矛盾提出：null 是对象的占位符。
 
 #### Undefinded类型
 
 Undefined 类型也只有一个值：undefined。
 
-undefined 是声明变量时未初始化的默认值，undefined 的类型就是 Undefinded，关于 undefined 还有一个奇怪的现象：
+undefined 是声明变量时未初始化的默认值，undefined 的类型就是 Undefinded，关于 undefined 还有一些奇怪的现象：
 
 ```
 var a;
@@ -69,7 +71,7 @@ console.log(a == c); //false
 
 由此可以看出，值 undefined 并不同于未定义的值。但是 typeof并没有区分它们，都返回 undefined。
 
-而且 undefined 的值是可以改变的。
+下面这个情况就更诡异了，现在大家已经习惯把 undefined 当做关键字，但是在一些古老的浏览器中 undefined 的值是可以改变的。
 这段代码在IE6、7、8中执行结果是这样的：
 
 ```
@@ -104,6 +106,8 @@ console.log(null == undefined); //true
 alert(NaN == NaN);  //输出 "false"
 ```
 
+这个问题我找了很多的解释都不够深入，后来我想到由于JS在设计时，很多地方沿用了Java的特点，其实Java中也有类似的问题（比如Double.NaN == Double.NaN return false）。<br>
+简单来说，由于NaN的解释是not a Number，所以它可以是任意值，所以不能保证两个NaN是相等的，NaN只是一个API中用来判断逻辑的字面量，并没有实际意义。
 出于这个原因，不推荐使用 NaN 值本身。但是函数 isNaN() 却很好用：
 
 ```
@@ -162,7 +166,10 @@ typeof(new Function("f",""));  //"function"
 
 下面我们将循序渐进的分析：
 
-我们再来看JS中另一个与数据类型有关的函数：**instanceof**，执行下面这段代码：
+我们再来看JS中另一个与数据类型有关的函数：**instanceof**，我们常用来 instanceof 判断他们是不是实例与构造函数的关系，比如：<br>
+A instanceof B，用来查看A是不是B的实例，也可以说判断B是不是A的构造函数。
+
+执行下面这段代码：
 
 ```
 function F(){};
@@ -173,25 +180,24 @@ console.log(f instanceof Object);   //true
 console.log(f instanceof Function); //false
 ```
 
-我们常用来 instanceof 判断他们是不是实例与构造函数的关系，比如：<br>
-A instanceof B，用来查看A是不是B的实例，也可以说判断B是不是A的构造函数。
+这说明F是函数的实例，也是对象的实例，那么事实就是函数就是对象、对象就是函数这么简单吗？
 
 ```
 console.log(Function instanceof Object);  //true  
 console.log(Object instanceof Function);  //true
 ```
 
-这个结果会让初学者迷惑，下面，我们不得不首先摆出，这些关于JS继承中常常提到的概念：
+这个结果会让初学者迷惑，下面，我们不得不首先说明这些关于JS继承中常常提到的概念：
 
 如果你已经了解了原型链的概念，你可以略过 *斜体* 部分。
+
+如果你不了解[原型链](http://blog.zhangxiaolong.me/javascript/2013/10/27/prototype-chain-analysis/)，推荐你点击这个链接仔细阅读，因为这个概念将对理解下面的内容非常重要。
 
 - *prototype：为了让JS中有继承概念而设计的这一属性，是构造函数最重要的属性。prototype对象中的所有属性、方法(包括constructor、__proto__)，都会被实例继承。*
 - *constructor：有2个地方会出现这个属性：*
 *1）构造函数的prototype对象拥有此属性，指向构造函数本身；*
 *2）实例拥有此属性，指向它的构造函数。*
 - *__proto__：实例拥有此属性，指向构造函数的prototype对象。*
-
-*如果你不了解[原型链](http://blog.zhangxiaolong.me/javascript/2013/10/27/prototype-chain-analysis/)，推荐你点击这个链接仔细阅读，因为这个概念将对理解下面的内容非常重要。*
 
 *下面这段代码将用于印证上述理论：*
 
@@ -203,17 +209,17 @@ console.log(s.constructor === String);                 //true
 console.log(s.__proto__ === String.prototype)          //true
 ```
 
-通过上面几段代码，你可以看出instanceof函数并没有这么简单，根据ES的定义，instanceof 是从对象（A）的原型链上查找是否存在构造函数（B）的原型，即：
+通过上面几段（*斜体*以前）代码，你可以看出instanceof函数并没有这么简单，根据ES的定义，A instanceof B，是从对象（A）的原型链上查找是否存在构造函数（B）的原型，即：
 
-从A.__proto__、A.__proto__.__proto__、A.__proto__.__proto__.__proto__...... 中查找有没有 B.prototype 这个对象。
+从A.__proto__、A.__proto__.__proto__、A.__proto__.__proto__.__proto__......、Object.__proto__， 中查找有没有 B.prototype 这个对象。
 
 下面有一张图来能够更全面的描述JS中这些构造函数的关系：<br>
 
 <img src="/assets/images/data-type/chain.jpg" width="650px" />
 
-透过这张图，我们不难得出这样一个结论：任何对象的原型链最后都能追溯到 Object.prototype。 这也就是我们为什么说 JavaScript 中所有的对象都继承自 Object 的原因了。
+透过这张图，我们不难得出这样一个结论：任何对象的原型链最后都能追溯到 Object.prototype。 所以说 JavaScript 中所有的对象都继承自 Object 。
 
-所有的构造函数都是 Function 的实例，包括 Function 本身：
+而所有的构造函数都是 Function 的实例，包括 Function 本身：
 
 ```
 function F(){};
@@ -244,8 +250,3 @@ console.log(Function instanceof Object);// true
 ```
 
 #### 结论：在 JavaScript 语言中，一切的一切都是对象，它们全部继承自 Object。或者说所有对象的原型链的根节点都是 Object.prototype
-
-
-
-
-
