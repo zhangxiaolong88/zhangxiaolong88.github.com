@@ -2,6 +2,7 @@
 layout: index
 title: 张 小龙的博客
 tagline: 爱生活，爱前端
+keywords: html html5 css css3 javascript internet jekyll github
 ---
 {% include JB/setup %}
 
