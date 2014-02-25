@@ -16,7 +16,7 @@ pygments: true
 #title : Jekyll Bootstrap
 title : 张 小龙的博客
 tagline: 一个程序员的自我修养
-keywords: 
+keywords: zhang、123范德萨发送到
 description: zhangxiaolong's blog
 author :
   name : 张小龙
@@ -136,7 +136,7 @@ JB :
   #
   sharing :
     provider : false
-    
+
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
   #
@@ -147,4 +147,4 @@ JB :
   # and include your custom code. Your custom file must be defined at:
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
-  
+
