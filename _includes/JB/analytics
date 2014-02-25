@@ -10,7 +10,7 @@
 {% when "piwik" %}
   {% include JB/analytics-providers/piwik %}
 {% when "custom" %}
-  {% include custom/analytics %}
+   {% include custom/analytics-providers/custom %}
 {% endcase %}
 
 {% endif %}
