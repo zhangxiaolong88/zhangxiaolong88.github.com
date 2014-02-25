@@ -1,6 +1,7 @@
 ---
 layout: game
 title: "弹幕游戏"
+keywords: canvas game JavaScript html5 css3
 description: "还没写完，找时间写完，先凑合这样吧..."
 category: html5
 tags: [html5, javascript, canvas]

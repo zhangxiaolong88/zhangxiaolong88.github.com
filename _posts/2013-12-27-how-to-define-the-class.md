@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "JavaScript如何定义类"
+keywords: JavaScript Class Object
 description: "javascript当中如何优雅的解决没有类的方案"
 category: javascript
 tags: [javascript, class]

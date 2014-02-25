@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "垂直居中常用方案"
+keywords: vertical center
 description: ""
 category: css
 tags: [css, html]

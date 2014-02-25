@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "JavaScript数据类型"
+keywords: JavaScript datatype prototype __proto__ constructor Object Function String Number Boolean Undefined Null
 description: ""
 category: javascript
 tags: [javascript]

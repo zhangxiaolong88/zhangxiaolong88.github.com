@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "原型链解析"
+keywords: JavaScript prototype __proto__
 description: ""
 category: javascript
 tags: [javascript, prototype, _proto_]
