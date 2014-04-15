@@ -1,0 +1,9 @@
+﻿.border, .border li, .border img {
+	margin: 0px;
+	padding: 0px;
+}
+.border li{
+	margin: 20px;
+	list-style: none;
+	display: inline-block;
+}
