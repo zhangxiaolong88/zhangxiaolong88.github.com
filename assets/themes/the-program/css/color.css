@@ -1,0 +1,7 @@
+﻿#colorShow {
+	position: relative;
+}
+#colorShow li {
+	list-style: none;
+	height: 1px;
+}
