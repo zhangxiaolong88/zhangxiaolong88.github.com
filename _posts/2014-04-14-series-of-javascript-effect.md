@@ -1,6 +1,6 @@
 ---
 layout: effect
-title: "每周一特效 之 一"
+title: "JavaScript特效: 图片边框加载"
 keywords: JavaScript effect
 description: "I wish I would update this series everyweek."
 category: javascript
