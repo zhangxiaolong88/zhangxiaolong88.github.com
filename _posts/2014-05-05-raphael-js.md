@@ -98,7 +98,7 @@ eve("login"); // 触发 f
 eve("login"); // 没有监听
 ```
 
-以上仅简单介绍Raphael API，更多详情，请访问 **[Raphael 官方网站](http://raphaeljs.com/)**
+以上仅简单介绍Raphael API，更多详情，请查看 **[Raphael 官方网站](http://raphaeljs.com/)**
 
 
 
