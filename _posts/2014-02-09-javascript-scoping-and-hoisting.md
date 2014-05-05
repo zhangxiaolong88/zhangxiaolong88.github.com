@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "JavaScript作用域和变量声明提升机制"
+title: "JavaScript变量声明提升机制"
 keywords: JavaScript Hoisting Scoping scope
 description: ""
 category: javascript
