@@ -18,6 +18,9 @@
 	<!-- color -->
 	<link href="{{ ASSET_PATH }}/css/color.css" rel="stylesheet">
 	<script src="{{ ASSET_PATH }}/js/color.js" type="text/javascript"></script>
+	<!-- raphael js pie chart -->
+	<script src="{{ ASSET_PATH }}/js/raphael.js" type="text/javascript"></script>
+	<script src="{{ ASSET_PATH }}/js/rapcharts.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function(){
 			/* border */
@@ -43,8 +46,153 @@
 					colorHTML += "</ul>";
 					$("#colorShow").html(colorHTML);
 				});
-				
 			}
+			/* pie charts */
+			var paper = Raphael("container", 600, 600, function() {
+				var R = this;
+				var el = R.rect(0, 0, 600, 600).attr({
+					stroke: "1px",
+					fill: "#dddddd",
+					r: 25
+				});
+				var rad = Math.PI / 180;
+
+				var colors = [
+						"#c158b2",
+						"#eeae3c",
+						"#638bcb",
+						"#adcd6d",
+						"#f5c6c5",
+						"#cccccc"
+					],
+					categories = ['MSIE', 'Firefox', 'Chrome', 'Safari', 'Opera'],
+					name = 'Browser brands',
+					data = [{
+						y: 55.11,
+						color: colors[0],
+						drilldown: {
+							name: 'MSIE versions',
+							categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0'],
+							data: [33.06, 10.85, 7.35, 2.81],
+							color: colors[0]
+						}
+					}, {
+						y: 21.63,
+						color: colors[1],
+						drilldown: {
+							name: 'Firefox versions',
+							categories: ['Firefox 2.0', 'Firefox 3.0', 'Firefox 3.5', 'Firefox 3.6', 'Firefox 4.0'],
+							data: [13.12, 5.43, 1.58, 0.83, 0.20],
+							color: colors[1]
+						}
+					}, {
+						y: 11.94,
+						color: colors[2],
+						drilldown: {
+							name: 'Chrome versions',
+							categories: ['Chrome 5.0', 'Chrome 6.0', 'Chrome 7.0', 'Chrome 8.0', 'Chrome 9.0',
+								'Chrome 10.0', 'Chrome 11.0', 'Chrome 12.0'
+							],
+							data: [9.91, 0.70, 0.36, 0.32, 0.22, 0.19, 0.12, 0.12],
+							color: colors[2]
+						}
+					}, {
+						y: 7.15,
+						color: colors[3],
+						drilldown: {
+							name: 'Safari versions',
+							categories: ['Safari 5.0', 'Safari 4.0', 'Safari Win 5.0', 'Safari 4.1', 'Safari/Maxthon',
+								'Safari 3.1', 'Safari 4.1'
+							],
+							data: [4.55, 1.42, 0.23, 0.21, 0.20, 0.19, 0.14],
+							color: colors[3]
+						}
+					}, {
+						y: 2.14,
+						color: colors[4],
+						drilldown: {
+							name: 'Opera versions',
+							categories: ['Opera 9.x', 'Opera 10.x', 'Opera 11.x'],
+							data: [1.65, 0.37, 0.12],
+							color: colors[4]
+						}
+					}];
+
+
+				// Build the data arrays
+				var browserData = [];
+				var versionsData = [];
+				for (var i = 0; i < data.length; i++) {
+
+					// add browser data
+					browserData.push({
+						id: categories[i],
+						label: categories[i],
+						y: data[i].y,
+						color: data[i].color,
+						subNumber: data[i].drilldown.data.length
+					});
+
+					// add version data
+					for (var j = 0; j < data[i].drilldown.data.length; j++) {
+						var colors = new ColorGrads({
+							StartColor: data[i].color,
+							EndColor: "#ffffff",
+							Step: data[i].drilldown.data.length + 1
+						}).Create();
+						versionsData.push({
+							id: data[i].drilldown.categories[j],
+							label: data[i].drilldown.categories[j],
+							y: data[i].drilldown.data[j],
+							color: "rgb(" + colors[j].join(",") + ")",
+							pid: categories[i]
+						});
+					}
+				}
+				R.rapcharts({
+					chart: {
+						type: "pie"
+					},
+					title: {
+						text: 'Browser market share, April, 2011'
+					},
+					plotOptions: {
+						pie: {
+							center: ['50%', '50%']
+						}
+					},
+					tooltip: {
+						enabled: true,
+						formatter: function() {
+							return this.label + '\n' + this.y + "%";
+						}
+					},
+					series: [{
+						name: 'Browsers',
+						data: browserData,
+						size: '25%',
+						gap: true,
+						dataLabels: {
+							formatter: function() {
+								return this.y > 5 ? this.y : null;
+							}
+						}
+					}, {
+						name: 'Versions',
+						data: versionsData,
+						size: '60%',
+						allowPointSelect: true,
+						nightingale: true,
+						dataLabels: {
+							formatter: function() {
+								return this.y > 1 ? this.label + '\n' + this.y + '%' : null;
+							},
+							color: '#948a54'
+						}
+					}]
+				});
+			});
+			/* */
 		});
 	</script>
 </head>
