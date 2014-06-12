@@ -3,16 +3,28 @@
 	var height = R.height;
 	var width = R.width;
 	var series = params.series.reverse();
-	var type = params.chart.type;
-	var tooltip = params.tooltip;
+	var type = params.chart.type; //表格分类
+	var tooltip = params.tooltip; //鼠标覆盖数据展示的格式化公式
+
+	//标题
+	var title = params.title.text,
+		subtitle = params.subtitle.text;
+	R.text(width / 2, 20, title).attr({
+		fill: "#274b6d",
+		"font-size": 16
+	});
+	R.text(width / 2, 40, subtitle).attr({
+		fill: "#4d759e",
+		"font-size": 12
+	});
 	if (!type) {
 		console.error("please input chart type.");
 	} else if (type === "pie") {
 		//饼图
-		var centerAry = params.plotOptions.pie.center
+		var centerAry = params.plotOptions.pie.center; //中心点
 		if (centerAry.constructor === Array) {
 			var cx = width * parseInt(centerAry[0]) / 100;
-			var cy = height * parseInt(centerAry[1]) / 100;
+			var cy = height * parseInt(centerAry[1]) / 100 + 50;
 			//多饼图
 			for (var i = 0; i < series.length; i++) {
 				var r = Math.min(width, height) * parseInt(series[i].size) / 200;
@@ -24,8 +36,8 @@
 					data = series[i].data,
 					dataLabels = series[i].dataLabels;
 				for (var j = 0; j < data.length; j++) {
-					values.push(data[j].y);
-					labels.push(data[j].label);
+					values.push(data[j].amount);
+					labels.push(data[j].label || data[j].name);
 					colors.push(data[j].color);
 					txtcolors.push(!!dataLabels.color ? dataLabels.color : data[j].color);
 					if (!!data[j].pid) {
@@ -40,15 +52,15 @@
 					if (n >= 10) {
 						return;
 					} else {
-						R.pieChart(10-n, cx, cy, r, values, labels, colors, txtcolors, pids, dataLabels, tooltip, ser.allowPointSelect, ser.nightingale);
 						clock = setTimeout(pieFun, 10+n*100);
 					}
 					console.log(n);
 					n++;
 				}
 				var clock = setTimeout(pieFun, 10);*/
+
 				R.pieChart(cx, cy, r, values, labels, colors, txtcolors, pids, dataLabels, tooltip, series[i].allowPointSelect, series[i].nightingale);
-				
+
 				if (series[i].gap === true) {
 					//带尖的圈
 					var gap = document.getElementById("gap");
@@ -93,8 +105,8 @@
 							"font-size": 12,
 							"font-weight": "bold"
 						};
-						txt_cx = cx + (r - txt_params["font-size"]) * Math.sin(popangle * rad);
-						txt_cy = cy + (r - txt_params["font-size"]) * Math.cos((popangle + 180) * rad);
+						txt_cx = cx + (r - txt_params["font-size"] + 6) * Math.sin(popangle * rad);
+						txt_cy = cy + (r - txt_params["font-size"] + 6) * Math.cos((popangle + 180) * rad);
 						txt = R.text(txt_cx, txt_cy, txt_label).attr(txt_params);
 
 						//带尖的圈 里面的文字 变换角度
@@ -115,19 +127,33 @@
 
 
 						//隐形的圆
-						var p = R.sector(cx, cy, r, angle, angle + angleplus, {
-							fill: obj.color,
-							cursor: "pointer",
-							opacity: 0
-						});
-						var tip, tip_cx, tip_cy, tip_label; //鼠标移上去显示的文字
-						var outer, outer_cx, outer_cy; //文字外框
+						var p;
+						if (values.length == 1) {
+							//如果只有一个就画圆
+							p = R.circle(cx, cy, r).attr({
+								fill: obj.color,
+								cursor: "pointer",
+								opacity: 0
+							});
+						} else {
+							//否则画扇形
+							p = R.sector(cx, cy, r, angle, angle + angleplus, {
+								fill: obj.color,
+								cursor: "pointer",
+								opacity: 0
+							});
+						}
+
+						//鼠标移上去显示的文字
+						var tip, tip_cx, tip_cy, tip_label;
+						//文字外框
+						var outer, outer_cx, outer_cy;
 						var outer_h = 60,
 							outer_w = 100;
 						(function(obj) {
 							p.mouseover(function(evt) {
 								//外框
-								outer = R.rect(evt.clientX, evt.clientY, outer_w, outer_h, 5).attr({
+								outer = R.rect(evt.layerX, evt.layerY, outer_w, outer_h, 5).attr({
 									fill: "#ffffff",
 									"stroke-width": 1,
 									"stroke": "#bbbbbb",
@@ -140,32 +166,30 @@
 									tip_label = tooltip.formatter.apply(obj);
 									tip_label = tip_label === null ? "" : tip_label;
 								}
-								tip = R.text(evt.clientX, evt.clientY, tip_label).attr({
+								tip = R.text(evt.layerX, evt.layerY, tip_label).attr({
 									fill: "#000000",
 									"stroke-width": 1,
 									"font-size": 12,
 									"font-weight": "bold"
 								});
 							}).mouseout(function() {
-
 								tip.remove();
 								outer.remove();
 							}).mousemove(function(evt) {
 								outer.attr({
-									"x": evt.clientX - outer_w - 20,
-									"y": evt.clientY - outer_h / 2
+									"x": evt.layerX - outer_w - 20,
+									"y": evt.layerY - outer_h / 2
 								});
 								tip.attr({
-									"x": evt.clientX - outer_w / 2 - 20,
-									"y": evt.clientY
+									"x": evt.layerX - outer_w / 2 - 20,
+									"y": evt.layerY
 								});
 							});
 						})(obj);
 
 						angle += angleplus;
 					}
-
-				}
+				} //end if gap
 			}
 		}
 	}
@@ -213,13 +237,12 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 					oldPid = obj.pid;
 				}
 				if (nightingale === true) {
-					pr = r * ((7 - index) / 6);
+					pr = r * ((11 - index) / 10);
 				}
 			} else {
 				//如果是普通饼图
 				tr = r;
 			}
-
 
 			var angleplus = 360 * obj.value / total,
 				popangle = angle + (angleplus / 2),
@@ -279,12 +302,26 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 			}
 
 			//画 扇形
-			var p = paper.sector(cx, cy, pr, angle, (angle + angleplus), {
-				fill: color,
-				stroke: "#ffffff",
-				"stroke-width": 1,
-				cursor: "pointer"
-			});
+			var p;
+			if (values.length == 1) {
+				//如果只有一个就画圆
+				p = paper.circle(cx, cy, r).attr({
+					fill: color,
+					stroke: "#ffffff",
+					"stroke-width": 1,
+					cursor: "pointer"
+				});
+			} else {
+				//否则画扇形
+				p = paper.sector(cx, cy, pr, angle, angle + angleplus, {
+					fill: color,
+					stroke: "#ffffff",
+					"stroke-width": 1,
+					cursor: "pointer"
+				});
+			}
+
+
 
 			//如果是普通的饼图
 			var txt2, txt2_cx, txt2_cy, txt2_label;
@@ -330,7 +367,7 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 				outer_w = 100;
 			p.mouseover(function(evt) {
 				//如果允许鼠标划过效果
-				if (allowSelect === true) {
+				if (allowSelect === true && values.length != 1) {
 					var ox = (pr / 10) * Math.sin(popangle * rad);
 					var oy = (pr / 10) * Math.cos((popangle + 180) * rad);
 					p.animate({
@@ -342,7 +379,7 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 				}
 
 				//外框
-				outer = paper.rect(evt.clientX, evt.clientY, outer_w, outer_h, 5).attr({
+				outer = paper.rect(evt.layerX, evt.layerY, outer_w, outer_h, 5).attr({
 					fill: "#ffffff",
 					"stroke-width": 1,
 					"stroke": "#bbbbbb",
@@ -355,7 +392,7 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 					tip_label = tooltip.formatter.apply(obj);
 					tip_label = tip_label === null ? "" : tip_label;
 				}
-				tip = paper.text(evt.clientX, evt.clientY, tip_label).attr({
+				tip = paper.text(evt.layerX, evt.layerY, tip_label).attr({
 					fill: "#000000",
 					"stroke-width": 1,
 					"font-size": 12,
@@ -363,7 +400,7 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 				});
 			}).mouseout(function() {
 				//如果允许鼠标划过效果
-				if (allowSelect === true) {
+				if (allowSelect === true && values.length != 1) {
 					p.stop().animate({
 						transform: ""
 					}, ms, "elastic");
@@ -375,12 +412,12 @@ Raphael.fn.pieChart = function(cx, cy, r, values, labels, colors, txtcolors, pid
 				outer.remove();
 			}).mousemove(function(evt) {
 				outer.attr({
-					"x": evt.clientX - outer_w - 20,
-					"y": evt.clientY - outer_h / 2
+					"x": evt.layerX - outer_w - 20,
+					"y": evt.layerY - outer_h / 2
 				});
 				tip.attr({
-					"x": evt.clientX - outer_w / 2 - 20,
-					"y": evt.clientY
+					"x": evt.layerX - outer_w / 2 - 20,
+					"y": evt.layerY
 				});
 			});
 
@@ -417,4 +454,4 @@ Raphael.fn.sector = function(cx, cy, r, startAngle, endAngle, params) {
 		y1 = cy + r * Math.cos((startAngle + 180) * rad),
 		y2 = cy + r * Math.cos((endAngle + 180) * rad);
 	return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 1, +(endAngle - startAngle > 180), 1, x2, y2, "z"]).attr(params);
-}
+};

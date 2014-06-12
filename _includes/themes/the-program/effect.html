@@ -128,7 +128,7 @@
 					browserData.push({
 						id: categories[i],
 						label: categories[i],
-						y: data[i].y,
+						amount: data[i].y,
 						color: data[i].color,
 						subNumber: data[i].drilldown.data.length
 					});
@@ -143,7 +143,7 @@
 						versionsData.push({
 							id: data[i].drilldown.categories[j],
 							label: data[i].drilldown.categories[j],
-							y: data[i].drilldown.data[j],
+							amount: data[i].drilldown.data[j],
 							color: "rgb(" + colors[j].join(",") + ")",
 							pid: categories[i]
 						});
@@ -155,6 +155,9 @@
 					},
 					title: {
 						text: 'Browser market share, April, 2011'
+					},
+					subtitle: {
+						text: "raphael charts"
 					},
 					plotOptions: {
 						pie: {
