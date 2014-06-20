@@ -48,13 +48,20 @@
 				});
 			}
 			/* pie charts */
-			var paper = Raphael("container", 600, 600, function() {
+			window.requestAnimFrame = (function() {
+				return window.requestAnimationFrame ||
+					window.webkitRequestAnimationFrame ||
+					window.mozRequestAnimationFrame ||
+					window.oRequestAnimationFrame ||
+					window.msRequestAnimationFrame ||
+					function( /* function */ callback, /* DOMElement */ element) {
+						window.setTimeout(callback, 1000 / 60);
+					};
+			})();
+			var h = document.body.clientWidth * 81 / 100 - 420 - 104;
+			var w = document.body.clientWidth * 81 / 100 - 420 - 104;
+			var paper = Raphael("container", w, h, function() {
 				var R = this;
-				var el = R.rect(0, 0, 600, 600).attr({
-					stroke: "1px",
-					fill: "#dddddd",
-					r: 25
-				});
 				var rad = Math.PI / 180;
 
 				var colors = [
