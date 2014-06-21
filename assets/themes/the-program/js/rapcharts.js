@@ -281,9 +281,6 @@ Raphael.fn.pieChart = function(n, cx, cy, r, values, labels, colors, txtcolors, 
 				if (nightingale === true) {
 					pr = r * ((11 - index) / 10);
 				}
-			} else {
-				//如果是外层饼图
-				tr = r;
 			}
 
 			var angleplus = 360 * obj.value / total,
