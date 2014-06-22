@@ -230,7 +230,7 @@ Raphael.fn.title = function(title, subtitle) {
 		"font-weight": "bold",
 		"font-family": "微软雅黑"
 	});
-	paper.text(650, 50, subtitle).attr({
+	paper.text(paper.width / 2 , 80, subtitle).attr({
 		"font-size": 12,
 		"font-weight": "bold",
 		"font-family": "微软雅黑"
