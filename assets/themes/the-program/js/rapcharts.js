@@ -21,19 +21,24 @@
 
 		//多饼图
 		var per = 0;
+		//每一帧所有元素
 		var chartItems = [];
+		var toolTips = [];
 		invoke = function() {
 			//每一帧 清除所有元素
-			(function(chartItems) {
-				console.log(chartItems);
-			})(chartItems);
 			if (!!chartItems) {
 				for (var i = 0; i < chartItems.length; i++) {
 					chartItems[i].remove();
 				}
 			}
+			if (!!toolTips) {
+				for (var i = 0; i < toolTips.length; i++) {
+					toolTips[i].remove();
+				}
+			}
 			//每一帧 重置集合
 			chartItems = [];
+			toolTips = [];
 			//动画速度
 			per += Math.ceil((100 - per) * .2);
 			//画内外饼图
@@ -56,7 +61,7 @@
 					}
 				}
 
-				var chart = paper.pieChart(per / 100, cx, cy, r * per / 100, values, labels, colors, txtcolors, pids, dataLabels, tooltip, series[i].allowPointSelect, series[i].nightingale);
+				var chart = paper.pieChart(per / 100, cx, cy, r * per / 100, values, labels, colors, txtcolors, pids, dataLabels, tooltip, series[i].allowPointSelect, series[i].nightingale, toolTips);
 
 				for (var ii = 0; ii < chart.length; ii++) {
 					chartItems.push(chart[ii]);
@@ -66,14 +71,14 @@
 					//带尖的圈
 					var gap = document.getElementById("gap");
 					var img = paper.image(gap.src, cx - r, cy - r, r * 2, r * 2);
-					chart.push(img);
+					chartItems.push(img);
 
 					//正中的空心圆
 					var hole = paper.circle(cx, cy, r / 4).attr({
 						stroke: "none",
 						fill: "#ffffff"
 					});
-					chart.push(hole);
+					chartItems.push(hole);
 
 					//带尖的圈
 					var angle = 0,
@@ -178,6 +183,9 @@
 										"font-weight": "bold",
 										"font-family": "微软雅黑"
 									});
+
+									if (!!tip) toolTips.push(tip);
+									if (!!outer) toolTips.push(outer);
 								}).mouseout(function() {
 									tip.remove();
 									outer.remove();
@@ -195,8 +203,8 @@
 
 							angle += angleplus;
 
-							chart.push(p);
-							chart.push(txt);
+							chartItems.push(p);
+							chartItems.push(txt);
 						}
 					}
 				} //end if gap
@@ -230,7 +238,7 @@ Raphael.fn.title = function(title, subtitle) {
 		"font-weight": "bold",
 		"font-family": "微软雅黑"
 	});
-	paper.text(paper.width / 2 , 80, subtitle).attr({
+	paper.text(paper.width / 2, 80, subtitle).attr({
 		"font-size": 12,
 		"font-weight": "bold",
 		"font-family": "微软雅黑"
@@ -241,7 +249,7 @@ Raphael.fn.title = function(title, subtitle) {
  * 饼图
  * 中心cx,cy 半径r 值values 显示文字labels 扇形颜色colors 文字颜色txtcolors 父节点pids 鼠标划过效果
  */
-Raphael.fn.pieChart = function(n, cx, cy, r, values, labels, colors, txtcolors, pids, dataLabels, tooltip, allowSelect, nightingale) {
+Raphael.fn.pieChart = function(n, cx, cy, r, values, labels, colors, txtcolors, pids, dataLabels, tooltip, allowSelect, nightingale, toolTips) {
 	var paper = this,
 		rad = Math.PI / 180,
 		chart = this.set(),
@@ -439,6 +447,9 @@ Raphael.fn.pieChart = function(n, cx, cy, r, values, labels, colors, txtcolors, 
 					"font-weight": "bold",
 					"font-family": "微软雅黑"
 				});
+
+				if (!!tip) toolTips.push(tip);
+				if (!!outer) toolTips.push(outer);
 			}).mouseout(function() {
 				//如果允许鼠标划过效果
 				if (allowSelect === true && values.length != 1) {
@@ -463,8 +474,7 @@ Raphael.fn.pieChart = function(n, cx, cy, r, values, labels, colors, txtcolors, 
 			});
 
 			angle += angleplus;
-			/*console.log(p);
-			console.log(txt);*/
+
 			if (!!p) chart.push(p);
 			if (!!txt) chart.push(txt);
 			if (!!txt2) chart.push(txt2);
