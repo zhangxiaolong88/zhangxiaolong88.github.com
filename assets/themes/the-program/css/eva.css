@@ -3,7 +3,10 @@ html, body {
     margin: 0;
     padding:0;
     font-family: '微软雅黑',Arial,sans-serif;
-    overflow: hidden;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 * {
@@ -14,18 +17,27 @@ html, body {
 
 a {
     cursor: pointer;
+    text-decoration: none;
 }
 
-/* wrapper */
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+/* wrapper z-index:1800~1900 */
 #wrapper {
+    position: relative;
     background-image: url("../../../images/eva/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: 1800;
+    overflow: hidden;
 }
 
 #cover {
     background: #000000;
-    opacity: 0.95;
+    opacity: 0.90;
+    overflow: hidden;
 }
 
 #glass {
@@ -41,17 +53,200 @@ a {
     position: absolute;
 }
 
-/*#wrapper #cover #glass #glass_inner {
-    width: 80px;
-    height: 80px;
-    background-color: #fbfbfb;
-    border: 4px solid #84cbc5;
-    border-radius: 100px;
-    box-shadow: 5px 5px 5px #bbbbbb;
-
+#topWall, #bottomWall {
+    z-index: 1900;
     position: absolute;
-    left: 6px;
-    top: 6px;
+    background-image: url("../../../images/eva/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+#topWall {
+    top: 0;
+    left: 0;
+}
+
+#bottomWall {
+    top: 50%;
+    left: 0;
+}
+
+/**
+ *site container z-index:1000~1200
+ */
+#siteWrapper {
+    display: none;
+    height: 99%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* header z-index:1200 */
+#header {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    z-index: 1200;
+}
+
+#headerWrapper {
+    display: table;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    padding: 25px 80px;
+}
+
+h1.site-title {
+    font-size: 13px;
+    width: 80%;
+    font-weight: 200;
+    display: table-cell;
+    text-align: right;
+}
+
+h1.site-title img {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+#menu {
+    display: table-cell;
+    text-align: right;
+    width: 5%;
+    color: #fff;
+    font-size: 24px;
+    line-height: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+/* section z-index:1100 */
+section#contentWrapper {
+    position: relative;
+    z-index: 1100;
+}
+
+/* parallaxImages z-index:1110 */
+#parallaxImages {
+    position: relative;
+    z-index: 1110;
+}
+
+.image-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.image-container img {
+    position: relative;
+    opacity: 0.95
+}
+
+/* parallax-item z-index:1150 */
+.parallax-item {
+    position: relative;
+    width: 100%;
+    z-index: 1150;
+}
+/* parallax-item 第一部分 */
+.item-over-image-wrapper {
+    width: 100%;
+}
+
+/* shinji parallax-item */
+#shinji .item-over-image-wrapper i#scrollTip {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 28px;
+    color: #fff;
+}
+
+/* parallax-item 第二部分 */
+.item-content {
+    position: relative;
+    background: #fff;
+    height: 500px;
+    /*padding: 0 100px;*/
+}
+
+.item-content .roleImg {
+    position: absolute;
+    height: 500px;
+    display: none;
+}
+
+.item-content .roleInfo {
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    display: none;
+}
+
+.item-content .roleInfo li {
+    list-style: none;
+    width: 300px;
+    height: 100px;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: left;
+}
+
+#shinji .item-content .roleInfo li {
+    color: #9932CC;
+}
+
+#rei .item-content .roleInfo li {
+    color: #87CEFA;
+}
+
+#asuka .item-content .roleInfo li {
+    color: #ea1221;
+}   
+
+#kaworu .item-content .roleInfo li {
+    color: #C0C0C0;
+}      
+
+#mari .item-content .roleInfo li {
+    color: #dc7fa3;
+}
+
+/* 蜂巢 z-index:1002 */
+#comb {
+    position: fixed;
+    /*background-color: #fff;*/
+    opacity: 0.6;
+    z-index: 1111;
+    overflow: hidden;
+}
+
+.hexagon {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3px;
+}
+
+/* footer */
+#footer {
+    position: relative;
+    width: 100%;
+    z-index: 1200;
     opacity: 0;
-}*/
+}
