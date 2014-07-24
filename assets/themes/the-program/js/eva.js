@@ -63,14 +63,16 @@
 		var paint = function() {
 			var p = requestAnimFrame(paint);
 			if (clicked === false) {
-				$("#glass").animate({
-					"top": point.y - $("#glass").height() / 2,
-					"left": point.x - $("#glass").width() / 2
-				}, 5);
-				$("#glass img").animate({
-					"top": -point.y + $("#glass").height() / 2 - glassBorder,
-					"left": -point.x + $("#glass").width() / 2 - glassBorder
-				}, 5);
+				setTimeout(function() {
+					$("#glass").css({
+						"top": point.y - $("#glass").height() / 2,
+						"left": point.x - $("#glass").width() / 2
+					});
+					$("#glass img").css({
+						"top": -point.y + $("#glass").height() / 2 - glassBorder,
+						"left": -point.x + $("#glass").width() / 2 - glassBorder
+					});
+				}, 50);
 			} else {
 				// 停止重绘
 				cancelAnimFrame(p);
@@ -172,10 +174,6 @@
 				"height": h * 2 / 3
 			});
 
-			/*$(".parallax-item").eq(4).css({
-				"height": h + 
-			});*/
-
 			// 滚动提示箭头
 			$("#scrollTip").css({
 				"top": (h - $("#header").height()) * 9 / 10,
@@ -192,199 +190,201 @@
 
 			// 监听下拉函数
 			$(document).scroll(function() {
-				var scrollTop = $(document).scrollTop(),
-					section = 500 + h * 2 / 3;
-				// reset
-				if (scrollTop == 0) {
-					$(".image-container").css({
-						"top": "-9000px",
-						"left": "0px"
-					}).eq(0).show().css({
-						"top": "0px"
-					});
+				setTimeout(function() {
+					var scrollTop = $(document).scrollTop(),
+						section = 500 + h * 2 / 3;
+					// reset
+					if (scrollTop == 0) {
+						$(".image-container").css({
+							"top": "-9000px",
+							"left": "0px"
+						}).eq(0).show().css({
+							"top": "0px"
+						});
 
-					$(".image-container").show().find("img").css({
-						"top": 0
-					});
-				}
-				// eva_1: shinji
-				var shinjiTop = $("#shinji").offset().top;
-				if (scrollTop > 0) {
-					// 初号机背景图片
-					$("#shinjiImg").css({
-						"top": -scrollTop
-					});
-					$("#shinjiImg img").css({
-						"top": scrollTop * 2 / 3 + "px"
-					});
-
-					// 碇真嗣的信息动画
-					var scrollTop_ = scrollTop > 0 && scrollTop < 500 ? scrollTop : 500;
-					$("#shinji .roleImg").show().css({
-						"left": (w * scrollTop_ / 500) / 2 - $("#shinji .roleImg").width(),
-						"opacity": scrollTop_ / 500
-					});
-					$("#shinji .roleInfo").show().css({
-						"right": (w * scrollTop_ / 500) / 2 - $("#shinji .roleInfo").width(),
-						"opacity": scrollTop_ / 500
-					});
-
-					// 蜂窝颜色变化
-					if (scrollTop > 0 && scrollTop < 500) {
-						var color = d3.scale.linear()
-							.domain([0, 20])
-							.range(["#FFFFFF", "#9932CC"])
-							.interpolate(d3.interpolateLab);
-						d3.selectAll(".hexagon").style("fill", function(d) {
-							return color(d.length);
+						$(".image-container").show().find("img").css({
+							"top": 0
 						});
 					}
-				}
-				// eva_2: rei
-				var reiTop = $("#rei").offset().top;
-				if (scrollTop > reiTop - h) {
-					// 零号机背景图片
-					$("#reiImg").css({
-						"top": reiTop - scrollTop
-					});
-					$("#reiImg img").css({
-						"top": (scrollTop - reiTop) * 2 / 3 + "px"
-					});
+					// eva_1: shinji
+					var shinjiTop = $("#shinji").offset().top;
+					if (scrollTop > 0) {
+						// 初号机背景图片
+						$("#shinjiImg").css({
+							"top": -scrollTop
+						});
+						$("#shinjiImg img").css({
+							"top": scrollTop * 2 / 3 + "px"
+						});
 
-					// 凌波丽的信息动画
-					var scrollTop_ = scrollTop > section && scrollTop < 500 + section ? scrollTop - section : 500;
-					$("#rei .roleImg").show().css({
-						"left": (w * scrollTop_ / 500) / 2 - $("#rei .roleImg").width(),
-						"opacity": scrollTop_ / 500
-					});
-					$("#rei .roleInfo").show().css({
-						"right": (w * scrollTop_ / 500) / 2 - $("#rei .roleInfo").width(),
-						"opacity": scrollTop_ / 500
-					});
+						// 碇真嗣的信息动画
+						var scrollTop_ = scrollTop > 0 && scrollTop < 500 ? scrollTop : 500;
+						$("#shinji .roleImg").show().css({
+							"left": (w * scrollTop_ / 500) / 2 - $("#shinji .roleImg").width(),
+							"opacity": scrollTop_ / 500
+						});
+						$("#shinji .roleInfo").show().css({
+							"right": (w * scrollTop_ / 500) / 2 - $("#shinji .roleInfo").width(),
+							"opacity": scrollTop_ / 500
+						});
 
-					// 蜂窝颜色变化
-					if (scrollTop > section && scrollTop < section + 500) {
-						var color = d3.scale.linear()
-							.domain([0, 20])
-							.range(["#FFFFFF", "#87CEFA"])
-							.interpolate(d3.interpolateLab);
-						d3.selectAll(".hexagon").style("fill", function(d) {
-							return color(d.length);
+						// 蜂窝颜色变化
+						if (scrollTop > 0 && scrollTop < 500) {
+							var color = d3.scale.linear()
+								.domain([0, 20])
+								.range(["#FFFFFF", "#9932CC"])
+								.interpolate(d3.interpolateLab);
+							d3.selectAll(".hexagon").style("fill", function(d) {
+								return color(d.length);
+							});
+						}
+					}
+					// eva_2: rei
+					var reiTop = $("#rei").offset().top;
+					if (scrollTop > reiTop - h) {
+						// 零号机背景图片
+						$("#reiImg").css({
+							"top": reiTop - scrollTop
+						});
+						$("#reiImg img").css({
+							"top": (scrollTop - reiTop) * 2 / 3 + "px"
+						});
+
+						// 凌波丽的信息动画
+						var scrollTop_ = scrollTop > section && scrollTop < 500 + section ? scrollTop - section : 500;
+						$("#rei .roleImg").show().css({
+							"left": (w * scrollTop_ / 500) / 2 - $("#rei .roleImg").width(),
+							"opacity": scrollTop_ / 500
+						});
+						$("#rei .roleInfo").show().css({
+							"right": (w * scrollTop_ / 500) / 2 - $("#rei .roleInfo").width(),
+							"opacity": scrollTop_ / 500
+						});
+
+						// 蜂窝颜色变化
+						if (scrollTop > section && scrollTop < section + 500) {
+							var color = d3.scale.linear()
+								.domain([0, 20])
+								.range(["#FFFFFF", "#87CEFA"])
+								.interpolate(d3.interpolateLab);
+							d3.selectAll(".hexagon").style("fill", function(d) {
+								return color(d.length);
+							});
+						}
+					} else {
+						$("#reiImg").css({
+							"top": "-9000px"
 						});
 					}
-				} else {
-					$("#reiImg").css({
-						"top": "-9000px"
-					});
-				}
-				// eva_3: 
-				var asukaTop = $("#asuka").offset().top;
-				if (scrollTop > asukaTop - h) {
-					$("#asukaImg").css({
-						"top": asukaTop - scrollTop
-					});
-					$("#asukaImg img").css({
-						"top": (scrollTop - asukaTop) * 2 / 3 + "px"
-					});
+					// eva_3: 
+					var asukaTop = $("#asuka").offset().top;
+					if (scrollTop > asukaTop - h) {
+						$("#asukaImg").css({
+							"top": asukaTop - scrollTop
+						});
+						$("#asukaImg img").css({
+							"top": (scrollTop - asukaTop) * 2 / 3 + "px"
+						});
 
-					// 明日香的信息动画
-					var scrollTop_ = scrollTop > section * 2 && scrollTop < 500 + section * 2 ? scrollTop - section * 2 : 500;
-					$("#asuka .roleImg").show().css({
-						"left": (w * scrollTop_ / 500) / 2 - $("#asuka .roleImg").width(),
-						"opacity": scrollTop_ / 500
-					});
-					$("#asuka .roleInfo").show().css({
-						"right": (w * scrollTop_ / 500) / 2 - $("#asuka .roleInfo").width(),
-						"opacity": scrollTop_ / 500
-					});
+						// 明日香的信息动画
+						var scrollTop_ = scrollTop > section * 2 && scrollTop < 500 + section * 2 ? scrollTop - section * 2 : 500;
+						$("#asuka .roleImg").show().css({
+							"left": (w * scrollTop_ / 500) / 2 - $("#asuka .roleImg").width(),
+							"opacity": scrollTop_ / 500
+						});
+						$("#asuka .roleInfo").show().css({
+							"right": (w * scrollTop_ / 500) / 2 - $("#asuka .roleInfo").width(),
+							"opacity": scrollTop_ / 500
+						});
 
-					// 蜂窝颜色变化
-					if (scrollTop > section * 2 && scrollTop < section * 2 + 500) {
-						var color = d3.scale.linear()
-							.domain([0, 20])
-							.range(["#FFFFFF", "#ea1221"])
-							.interpolate(d3.interpolateLab);
-						d3.selectAll(".hexagon").style("fill", function(d) {
-							return color(d.length);
+						// 蜂窝颜色变化
+						if (scrollTop > section * 2 && scrollTop < section * 2 + 500) {
+							var color = d3.scale.linear()
+								.domain([0, 20])
+								.range(["#FFFFFF", "#ea1221"])
+								.interpolate(d3.interpolateLab);
+							d3.selectAll(".hexagon").style("fill", function(d) {
+								return color(d.length);
+							});
+						}
+					} else {
+						$("#asukaImg").css({
+							"top": "-9000px"
 						});
 					}
-				} else {
-					$("#asukaImg").css({
-						"top": "-9000px"
-					});
-				}
-				// eva_4
-				var kaworuTop = $("#kaworu").offset().top;
-				if (scrollTop > kaworuTop - h) {
-					$("#kaworuImg").css({
-						"top": kaworuTop - scrollTop
-					});
-					$("#kaworuImg img").css({
-						"top": (scrollTop - kaworuTop) * 2 / 3 + "px"
-					});
+					// eva_4
+					var kaworuTop = $("#kaworu").offset().top;
+					if (scrollTop > kaworuTop - h) {
+						$("#kaworuImg").css({
+							"top": kaworuTop - scrollTop
+						});
+						$("#kaworuImg img").css({
+							"top": (scrollTop - kaworuTop) * 2 / 3 + "px"
+						});
 
-					// 渚熏的信息动画
-					var scrollTop_ = scrollTop > section * 3 && scrollTop < 500 + section * 3 ? scrollTop - section * 3 : 500;
-					$("#kaworu .roleImg").show().css({
-						"left": (w * scrollTop_ / 500) / 2 - $("#kaworu .roleImg").width(),
-						"opacity": scrollTop_ / 500
-					});
-					$("#kaworu .roleInfo").show().css({
-						"right": (w * scrollTop_ / 500) / 2 - $("#kaworu .roleInfo").width(),
-						"opacity": scrollTop_ / 500
-					});
+						// 渚熏的信息动画
+						var scrollTop_ = scrollTop > section * 3 && scrollTop < 500 + section * 3 ? scrollTop - section * 3 : 500;
+						$("#kaworu .roleImg").show().css({
+							"left": (w * scrollTop_ / 500) / 2 - $("#kaworu .roleImg").width(),
+							"opacity": scrollTop_ / 500
+						});
+						$("#kaworu .roleInfo").show().css({
+							"right": (w * scrollTop_ / 500) / 2 - $("#kaworu .roleInfo").width(),
+							"opacity": scrollTop_ / 500
+						});
 
-					// 蜂窝颜色变化
-					if (scrollTop > section * 3 && scrollTop < section * 3 + 500) {
-						var color = d3.scale.linear()
-							.domain([0, 20])
-							.range(["#FFFFFF", "#C0C0C0"])
-							.interpolate(d3.interpolateLab);
-						d3.selectAll(".hexagon").style("fill", function(d) {
-							return color(d.length);
+						// 蜂窝颜色变化
+						if (scrollTop > section * 3 && scrollTop < section * 3 + 500) {
+							var color = d3.scale.linear()
+								.domain([0, 20])
+								.range(["#FFFFFF", "#C0C0C0"])
+								.interpolate(d3.interpolateLab);
+							d3.selectAll(".hexagon").style("fill", function(d) {
+								return color(d.length);
+							});
+						}
+					} else {
+						$("#kaworuImg").css({
+							"top": "-9000px"
 						});
 					}
-				} else {
-					$("#kaworuImg").css({
-						"top": "-9000px"
-					});
-				}
-				// eva_5
-				var mariTop = $("#mari").offset().top;
-				if (scrollTop > mariTop - h) {
-					$("#mariImg").css({
-						"top": mariTop - scrollTop
-					});
-					$("#mariImg img").css({
-						top: (scrollTop - mariTop) * 2 / 3 + "px"
-					});
+					// eva_5
+					var mariTop = $("#mari").offset().top;
+					if (scrollTop > mariTop - h) {
+						$("#mariImg").css({
+							"top": mariTop - scrollTop
+						});
+						$("#mariImg img").css({
+							top: (scrollTop - mariTop) * 2 / 3 + "px"
+						});
 
-					// 真希波的信息动画
-					var scrollTop_ = scrollTop > section * 4 && scrollTop < 500 + section * 4 ? scrollTop - section * 4 : 500;
-					$("#mari .roleImg").show().css({
-						"left": (w * scrollTop_ / 500) / 2 - $("#mari .roleImg").width(),
-						"opacity": scrollTop_ / 500
-					});
-					$("#mari .roleInfo").show().css({
-						"right": (w * scrollTop_ / 500) / 2 - $("#mari .roleInfo").width(),
-						"opacity": scrollTop_ / 500
-					});
+						// 真希波的信息动画
+						var scrollTop_ = scrollTop > section * 4 && scrollTop < 500 + section * 4 ? scrollTop - section * 4 : 500;
+						$("#mari .roleImg").show().css({
+							"left": (w * scrollTop_ / 500) / 2 - $("#mari .roleImg").width(),
+							"opacity": scrollTop_ / 500
+						});
+						$("#mari .roleInfo").show().css({
+							"right": (w * scrollTop_ / 500) / 2 - $("#mari .roleInfo").width(),
+							"opacity": scrollTop_ / 500
+						});
 
-					// 蜂窝颜色变化
-					if (scrollTop > section * 4 && scrollTop < section * 4 + 500) {
-						var color = d3.scale.linear()
-							.domain([0, 20])
-							.range(["#FFFFFF", "#dc7fa3"])
-							.interpolate(d3.interpolateLab);
-						d3.selectAll(".hexagon").style("fill", function(d) {
-							return color(d.length);
+						// 蜂窝颜色变化
+						if (scrollTop > section * 4 && scrollTop < section * 4 + 500) {
+							var color = d3.scale.linear()
+								.domain([0, 20])
+								.range(["#FFFFFF", "#dc7fa3"])
+								.interpolate(d3.interpolateLab);
+							d3.selectAll(".hexagon").style("fill", function(d) {
+								return color(d.length);
+							});
+						}
+					} else {
+						$("#mariImg").css({
+							"top": "-9000px"
 						});
 					}
-				} else {
-					$("#mariImg").css({
-						"top": "-9000px"
-					});
-				}
+				}, 50);
 			});
 
 			// 设置底部高度
