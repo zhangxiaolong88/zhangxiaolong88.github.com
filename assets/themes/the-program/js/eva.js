@@ -266,7 +266,7 @@
 					if (scrollTop > section && scrollTop < section + 500) {
 						var color = d3.scale.linear()
 							.domain([0, 20])
-							.range(["#fff", "#87CEFA"])
+							.range(["#FFFFFF", "#87CEFA"])
 							.interpolate(d3.interpolateLab);
 						d3.selectAll(".hexagon").style("fill", function(d) {
 							return color(d.length);
@@ -302,7 +302,7 @@
 					if (scrollTop > section * 2 && scrollTop < section * 2 + 500) {
 						var color = d3.scale.linear()
 							.domain([0, 20])
-							.range(["#fff", "#ea1221"])
+							.range(["#FFFFFF", "#ea1221"])
 							.interpolate(d3.interpolateLab);
 						d3.selectAll(".hexagon").style("fill", function(d) {
 							return color(d.length);
@@ -338,7 +338,7 @@
 					if (scrollTop > section * 3 && scrollTop < section * 3 + 500) {
 						var color = d3.scale.linear()
 							.domain([0, 20])
-							.range(["#fff", "#C0C0C0"])
+							.range(["#FFFFFF", "#C0C0C0"])
 							.interpolate(d3.interpolateLab);
 						d3.selectAll(".hexagon").style("fill", function(d) {
 							return color(d.length);
@@ -374,7 +374,7 @@
 					if (scrollTop > section * 4 && scrollTop < section * 4 + 500) {
 						var color = d3.scale.linear()
 							.domain([0, 20])
-							.range(["#fff", "#dc7fa3"])
+							.range(["#FFFFFF", "#dc7fa3"])
 							.interpolate(d3.interpolateLab);
 						d3.selectAll(".hexagon").style("fill", function(d) {
 							return color(d.length);
