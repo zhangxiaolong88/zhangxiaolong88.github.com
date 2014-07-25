@@ -27,7 +27,7 @@ a:hover, a:focus {
 /* wrapper z-index:1800~1900 */
 #wrapper {
     position: relative;
-    background-image: url("../../../images/eva/bg.jpg");
+    /*background-image: url("../../../images/eva/bg.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1800;
@@ -61,7 +61,7 @@ a:hover, a:focus {
 #topWall, #bottomWall {
     z-index: 1900;
     position: absolute;
-    background-image: url("../../../images/eva/bg.jpg");
+    /*background-image: url("../../../images/eva/bg.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
 }
