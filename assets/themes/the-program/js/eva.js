@@ -121,8 +121,8 @@
 								"backgroundImage": "url('assets/images/eva/bg.jpg')"
 							});
 
+							// 加载图片阶段结束 初始化手电筒
 							initGlass();
-							paint();
 						}
 					})();
 
@@ -135,10 +135,11 @@
 
 		};
 
-		var init = function() {
+		// 入口
+		(function() {
 			initWrapper();
 			initImages();
-		}();
+		})();
 
 		// 初始化手电筒
 		var initGlass = function() {
@@ -160,6 +161,9 @@
 				$("#wrapper").unbind("mousemove");
 				clicked = true;
 			});
+
+			// 监听重绘函数
+			paint();
 		};
 
 		// 是否点击手电筒 标识
