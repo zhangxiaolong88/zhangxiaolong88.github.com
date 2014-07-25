@@ -61,10 +61,10 @@
 			isLoaded: false
 		}];
 
-		//var init = function() {
-		initWrapper();
-		initImages();
-		//};
+		var init = function() {
+			initWrapper();
+			initImages();
+		};
 
 		var initImages = function() {
 			// 图片预加载
@@ -133,6 +133,8 @@
 				point.y = e.pageY;
 			});
 		};
+
+		init();
 
 		// 初始化手电筒
 		var initGlass = function() {
