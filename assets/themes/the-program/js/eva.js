@@ -98,8 +98,8 @@
 
 
 		var init = function() {
-			initImages();
 			initWrapper();
+			initImages();
 			initGlass();
 			paint();
 		};
