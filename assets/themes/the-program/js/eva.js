@@ -93,7 +93,7 @@
 			img.onerror = function() {
 				console.log("加载图片失败" + v.url);
 			};
-			img.src = "http://localhost:8887/" + v.url;
+			img.src = v.url;
 		});
 
 
