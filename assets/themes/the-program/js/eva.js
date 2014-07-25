@@ -61,9 +61,28 @@
 			isLoaded: false
 		}];
 
-		var init = function() {
-			initWrapper();
-			initImages();
+
+
+		// 初始化 画布 
+		var initWrapper = function() {
+			$("#wrapper, #cover").css({
+				"width": w,
+				"height": h
+			});
+			$("#wrapper").css({
+				"backgroundPosition": "50% 0"
+			});
+			// 初始化进度条
+			$(".load-bar").css({
+				"top": h / 2 - $(".progress").height() / 2,
+				"left": w / 2 - $(".progress").width() / 2
+			});
+
+			// 手电筒 跟随 鼠标 滑动
+			$("#wrapper").mousemove(function(e) {
+				point.x = e.pageX;
+				point.y = e.pageY;
+			});
 		};
 
 		var initImages = function() {
@@ -98,6 +117,10 @@
 									"src": $this.attr("data-src")
 								});
 							});
+							$("#wrapper").css({
+								"backgroundImage": "url('images/bg.jpg')"
+							});
+
 							initGlass();
 							paint();
 						}
@@ -112,29 +135,10 @@
 
 		};
 
-		// 初始化 画布 
-		var initWrapper = function() {
-			$("#wrapper, #cover").css({
-				"width": w,
-				"height": h
-			});
-			$("#wrapper").css({
-				"backgroundPosition": "50% 0"
-			});
-			// 初始化进度条
-			$(".load-bar").css({
-				"top": h / 2 - $(".progress").height() / 2,
-				"left": w / 2 - $(".progress").width() / 2
-			});
-
-			// 手电筒 跟随 鼠标 滑动
-			$("#wrapper").mousemove(function(e) {
-				point.x = e.pageX;
-				point.y = e.pageY;
-			});
-		};
-
-		init();
+		var init = function() {
+			initWrapper();
+			initImages();
+		}();
 
 		// 初始化手电筒
 		var initGlass = function() {
@@ -217,7 +221,8 @@
 					// 初始化墙的大小
 					$("#topWall, #bottomWall").css({
 						"width": w,
-						"height": h / 2
+						"height": h / 2,
+						"backgroundImage": "url('images/bg.jpg')"
 					});
 					// 墙的位置
 					$("#bottomWall").css({
