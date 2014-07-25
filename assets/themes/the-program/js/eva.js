@@ -118,7 +118,7 @@
 								});
 							});
 							$("#wrapper").css({
-								"backgroundImage": "url('images/bg.jpg')"
+								"backgroundImage": "url('assets/images/eva/bg.jpg')"
 							});
 
 							initGlass();
