@@ -61,56 +61,55 @@
 			isLoaded: false
 		}];
 
-		// 图片预加载
-		$(imgs).each(function(i, v) {
-			var img = new Image();
-			img.onload = function() {
-				v.isLoaded = true;
+		//var init = function() {
+		initWrapper();
+		initImages();
+		//};
 
-				// 判断是否全部加载完成
-				(function() {
-					var isLoadedNo = 0;
-					$(imgs).each(function(i, v) {
-						if (v.isLoaded === true) {
-							isLoadedNo++;
+		var initImages = function() {
+			// 图片预加载
+			$(imgs).each(function(i, v) {
+				var img = new Image();
+				img.onload = function() {
+					v.isLoaded = true;
+
+					// 判断是否全部加载完成
+					(function() {
+						var isLoadedNo = 0;
+						$(imgs).each(function(i, v) {
+							if (v.isLoaded === true) {
+								isLoadedNo++;
+							}
+						});
+						imgsLoadPer = Math.floor(isLoadedNo * 100 / imgs.length);
+						$(".progress .progress-bar")
+							.attr("aria-valuenow", imgsLoadPer)
+							.css({
+								"width": imgsLoadPer + "%"
+							})
+							.text(imgsLoadPer + "%");
+						// 如果加载完毕
+						if (imgsLoadPer == 100) {
+							$(".progress").hide().remove();
+
+							$("img").each(function(i, v) {
+								var $this = $(this);
+								$this.attr({
+									"src": $this.attr("data-src")
+								});
+							});
+							initGlass();
+							paint();
 						}
-					});
-					imgsLoadPer = Math.floor(isLoadedNo * 100 / imgs.length);
-					$(".progress .progress-bar")
-						.attr("aria-valuenow", imgsLoadPer)
-						.css({
-							"width": imgsLoadPer + "%"
-						})
-						.text(imgsLoadPer + "%");
-					// 如果加载完毕
-					if (imgsLoadPer == 100) {
-						$(".progress").hide().remove();
-						init();
-					}
-				})();
+					})();
 
-			};
-			img.onerror = function() {
-				console.log("加载图片失败" + v.url);
-			};
-			img.src = v.url;
-		});
-
-
-		var init = function() {
-			initWrapper();
-			initImages();
-			initGlass();
-			paint();
-		};
-
-		var initImages = function(){
-			$("img").each(function(i,v){
-				var $this = $(this);
-				$this.attr({
-					"src": $this.attr("data-src")
-				});
+				};
+				img.onerror = function() {
+					console.log("加载图片失败" + v.url);
+				};
+				img.src = v.url;
 			});
+
 		};
 
 		// 初始化 画布 
