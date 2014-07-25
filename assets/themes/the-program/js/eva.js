@@ -226,7 +226,7 @@
 					$("#topWall, #bottomWall").css({
 						"width": w,
 						"height": h / 2,
-						"backgroundImage": "url('images/bg.jpg')"
+						"backgroundImage": "url('assets/images/eva/bg.jpg')"
 					});
 					// 墙的位置
 					$("#bottomWall").css({
