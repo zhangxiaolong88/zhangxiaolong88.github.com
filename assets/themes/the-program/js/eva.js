@@ -1,30 +1,17 @@
 ﻿(function($, undefined) {
 	$(function() {
+		// 全局变量
 		var w = $(window).width(),
 			h = $(window).height();
-		// 初始化 画布 
-		$("#wrapper, #cover").css({
-			"width": w,
-			"height": h
-		});
-		$("#wrapper").css({
-			"backgroundPosition": "50% 0"
-		});
 
-		// 边框宽度
+		// 背景图片比例
+		var BGIMAGE = {
+			width: 1920,
+			height: 1200
+		};
+
+		// 手电筒的边框宽度
 		var glassBorder = 6;
-		// 初始化手电筒 
-		$("#glass").css({
-			"width": w / 10,
-			"height": w / 10,
-			"border-radius": w * 2,
-			"border": glassBorder + "px solid #84cbc5"
-		});
-		// 初始化 手电筒中图
-		$("#glass img").css({
-			"width": w,
-			"height": w * 1600 / 2560
-		});
 
 		// 初始化 手电筒 位置
 		var point = {
@@ -32,29 +19,142 @@
 			y: h / 2
 		};
 
-		// 手电筒 跟随 鼠标 滑动
-		$("#wrapper").mousemove(function(e) {
-			point.x = e.pageX;
-			point.y = e.pageY;
+		// 加载百分比
+		var imgsLoadPer = 0;
+
+		//需要加载的图片
+		var imgs = [{
+			url: "assets/images/eva/bg.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/nerv.png",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/eva_1.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/eva_2.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/eva_3.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/eva_4.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/eva_5.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/Shinji.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/Rei.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/Asuka.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/Kaworu.jpg",
+			isLoaded: false
+		}, {
+			url: "assets/images/eva/Mari.jpg",
+			isLoaded: false
+		}];
+
+		// 图片预加载
+		$(imgs).each(function(i, v) {
+			var img = new Image();
+			img.onload = function() {
+				v.isLoaded = true;
+
+				// 判断是否全部加载完成
+				(function() {
+					var isLoadedNo = 0;
+					$(imgs).each(function(i, v) {
+						if (v.isLoaded === true) {
+							isLoadedNo++;
+						}
+					});
+					imgsLoadPer = Math.floor(isLoadedNo * 100 / imgs.length);
+					$(".progress .progress-bar")
+						.attr("aria-valuenow", imgsLoadPer)
+						.css({
+							"width": imgsLoadPer + "%"
+						})
+						.text(imgsLoadPer + "%");
+					// 如果加载完毕
+					if (imgsLoadPer == 100) {
+						$(".progress").hide().remove();
+						init();
+					}
+				})();
+
+			};
+			img.onerror = function() {
+				console.log("加载图片失败" + v.url);
+			};
+			img.src = "http://localhost:8887/" + v.url;
 		});
 
-		// requestAnimFrame兼容 用作动画
-		window.requestAnimFrame = (function() {
-			return window.requestAnimationFrame ||
-				window.webkitRequestAnimationFrame ||
-				window.mozRequestAnimationFrame ||
-				window.oRequestAnimationFrame ||
-				window.msRequestAnimationFrame ||
-				function( /* function */ callback, /* DOMElement */ element) {
-					window.setTimeout(callback, 1000 / 60);
-				};
-		})();
-		window.cancelAnimFrame = function(fn) {
-			if (window.cancelAnimationFrame) {
-				cancelAnimationFrame(fn);
-			} else {
-				clearTimeout(fn);
-			}
+
+		var init = function() {
+			initImages();
+			initWrapper();
+			initGlass();
+			paint();
+		};
+
+		var initImages = function(){
+			$("img").each(function(i,v){
+				var $this = $(this);
+				$this.attr({
+					"src": $this.attr("data-src")
+				});
+			});
+		};
+
+		// 初始化 画布 
+		var initWrapper = function() {
+			$("#wrapper, #cover").css({
+				"width": w,
+				"height": h
+			});
+			$("#wrapper").css({
+				"backgroundPosition": "50% 0"
+			});
+			// 初始化进度条
+			$(".load-bar").css({
+				"top": h / 2 - $(".progress").height() / 2,
+				"left": w / 2 - $(".progress").width() / 2
+			});
+
+			// 手电筒 跟随 鼠标 滑动
+			$("#wrapper").mousemove(function(e) {
+				point.x = e.pageX;
+				point.y = e.pageY;
+			});
+		};
+
+		// 初始化手电筒
+		var initGlass = function() {
+			$("<div id='glass'><img src='assets/images/eva/bg.jpg' /></div>").appendTo($("#cover"));
+			$("#glass").css({
+				"width": w / 10,
+				"height": w / 10,
+				"border-radius": w * 2,
+				"border": glassBorder + "px solid #84cbc5"
+			});
+			// 初始化 手电筒中图
+			$("#glass img").css({
+				"width": w,
+				"height": w * 1600 / 2560
+			});
+
+			// 点击手电筒后 开启墙动画
+			$("#glass").click(function() {
+				$("#wrapper").unbind("mousemove");
+				clicked = true;
+			});
 		};
 
 		// 是否点击手电筒 标识
@@ -80,6 +180,21 @@
 				// 初始化
 				$("#siteWrapper").show(function() {
 					siteInit();
+
+					// eva图片容器的位置初始化
+					$(".image-container").css({
+						"top": "-9000px",
+						"left": "0px"
+					}).eq(0).show().css({
+						"top": "0px"
+					});
+					// eva图片的位置初始化
+					$(".image-container").show().find("img").css({
+						"top": 0
+					});
+
+					// 监听滚动事件
+					listenScroll();
 				});
 
 				$(document).scrollTop(0);
@@ -128,41 +243,22 @@
 				});
 			}
 		};
-		paint();
 
-		// 点击手电筒后 开启墙动画
-		$("#glass").click(function() {
-			$("#wrapper").unbind("mousemove");
-			clicked = true;
-		});
+
 
 		// 核心函数
 		var siteInit = function() {
-			var BGIMAGE = {
-					width: 1920,
-					height: 1200
-				},
-				CTIMAGE = {
-					width: 1920,
-					height: 1080
-				};
-
 			// 背景图片部分：滚动效果
 			$(".image-container").css({
 				"width": w,
-				"height": h,
-				"top": "-9000px",
-				"left": "0px"
-			}).eq(0).show().css({
-				"top": "0px"
-			}).end().eq(4).css({
-				"height": h + $(window).height() - 500
+				"height": h
+			}).eq(4).css({
+				"height": h + h
 			});
 
 			$(".image-container").show().find("img").css({
 				"width": w,
-				"height": BGIMAGE.height * w / BGIMAGE.width,
-				"top": 0
+				"height": BGIMAGE.height * w / BGIMAGE.width
 			});
 
 			// 内容部分
@@ -188,6 +284,13 @@
 				}).text("").addClass("icon-angle-down");
 			});
 
+			// 设置底部高度
+			$("#footer").css({
+				"height": ($(window).height() - 500) / 2
+			});
+		};
+
+		var listenScroll = function() {
 			// 监听下拉函数
 			$(document).scroll(function() {
 				setTimeout(function() {
@@ -386,15 +489,13 @@
 					}
 				}, 50);
 			});
-
-			// 设置底部高度
-			$("#footer").css({
-				"height": ($(window).height() - 500) / 2
-			});
 		};
 
-		// 蜂巢初始化
+		// 蜂巢初加载
 		var combInit = function() {
+			if ($("#comb").length > 0) {
+				$("#comb").remove();
+			}
 			$("<div id='comb'></div>").prependTo($("#contentWrapper"));
 			$("#comb").css({
 				"width": w,
@@ -458,6 +559,44 @@
 			d3.select("#paper_").attr("transform", "rotate(90 " + w + "," + h + ")");
 		};
 
-
+		// 浏览器拉伸
+		$(window).resize(function() {
+			// 重算页面宽度、高度
+			w = $(window).width();
+			h = $(window).height();
+			if ($("#wrapper").length > 0) {
+				// 手电筒的画布样式重算
+				initWrapper();
+				// 手电筒初始位置重算
+				point = {
+					x: w / 2,
+					y: h / 2
+				};
+			} else {
+				// 滚动部分样式重算
+				siteInit();
+				// 蜂巢样式重算
+				combInit();
+			}
+		});
 	});
 })(jQuery, undefined);
+
+// requestAnimFrame兼容 用作动画
+window.requestAnimFrame = (function() {
+	return window.requestAnimationFrame ||
+		window.webkitRequestAnimationFrame ||
+		window.mozRequestAnimationFrame ||
+		window.oRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		function( /* function */ callback, /* DOMElement */ element) {
+			window.setTimeout(callback, 1000 / 60);
+		};
+})();
+window.cancelAnimFrame = function(fn) {
+	if (window.cancelAnimationFrame) {
+		cancelAnimationFrame(fn);
+	} else {
+		clearTimeout(fn);
+	}
+};

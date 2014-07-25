@@ -40,6 +40,11 @@ a:hover, a:focus {
     overflow: hidden;
 }
 
+.load-bar {
+    position: absolute;
+    width: 200px;
+}
+
 #glass {
     background-color: #fbfbfb;
     position: relative;
