@@ -61,8 +61,6 @@
 			isLoaded: false
 		}];
 
-
-
 		// 初始化 画布 
 		var initWrapper = function() {
 			$("#wrapper, #cover").css({
@@ -109,8 +107,10 @@
 							.text(imgsLoadPer + "%");
 						// 如果加载完毕
 						if (imgsLoadPer == 100) {
+							// 隐藏加载条
 							$(".progress").hide().remove();
 
+							// 显示缓存的图片
 							$("img").each(function(i, v) {
 								var $this = $(this);
 								$this.attr({
@@ -132,7 +132,6 @@
 				};
 				img.src = v.url;
 			});
-
 		};
 
 		// 入口
@@ -254,8 +253,6 @@
 			}
 		};
 
-
-
 		// 核心函数
 		var siteInit = function() {
 			// 背景图片部分：滚动效果
@@ -263,7 +260,7 @@
 				"width": w,
 				"height": h
 			}).eq(4).css({
-				"height": h + h
+				"height": h * 2
 			});
 
 			$(".image-container").show().find("img").css({
@@ -296,7 +293,7 @@
 
 			// 设置底部高度
 			$("#footer").css({
-				"height": ($(window).height() - 500) / 2
+				"height": (h - 500) / 2
 			});
 		};
 
@@ -306,7 +303,13 @@
 				setTimeout(function() {
 					var scrollTop = $(document).scrollTop(),
 						section = 500 + h * 2 / 3;
-					// reset
+					var shinjiTop = $("#shinji").offset().top,
+						reiTop = $("#rei").offset().top,
+						asukaTop = $("#asuka").offset().top,
+						kaworuTop = $("#kaworu").offset().top,
+						mariTop = $("#mari").offset().top;
+
+					// 充值背景图片及其容器的位置
 					if (scrollTop == 0) {
 						$(".image-container").css({
 							"top": "-9000px",
@@ -320,7 +323,6 @@
 						});
 					}
 					// eva_1: shinji
-					var shinjiTop = $("#shinji").offset().top;
 					if (scrollTop > 0) {
 						// 初号机背景图片
 						$("#shinjiImg").css({
@@ -330,30 +332,14 @@
 							"top": scrollTop * 2 / 3 + "px"
 						});
 
-						// 碇真嗣的信息动画
-						var scrollTop_ = scrollTop > 0 && scrollTop < 500 ? scrollTop : 500;
-						$("#shinji .roleImg").show().css({
-							"left": (w * scrollTop_ / 500) / 2 - $("#shinji .roleImg").width(),
-							"opacity": scrollTop_ / 500
-						});
-						$("#shinji .roleInfo").show().css({
-							"right": (w * scrollTop_ / 500) / 2 - $("#shinji .roleInfo").width(),
-							"opacity": scrollTop_ / 500
-						});
-
-						// 蜂窝颜色变化
-						if (scrollTop > 0 && scrollTop < 500) {
-							var color = d3.scale.linear()
-								.domain([0, 20])
-								.range(["#FFFFFF", "#9932CC"])
-								.interpolate(d3.interpolateLab);
-							d3.selectAll(".hexagon").style("fill", function(d) {
-								return color(d.length);
-							});
+						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
+						var scrollTop_ = scrollTop - section * 0;
+						roleInfoAction("#shinji", "#9932CC", Math.min(scrollTop_, 500));
+						if (scrollTop_ > 0 && scrollTop_ < 500) {
+							combAction("#9932CC");
 						}
 					}
 					// eva_2: rei
-					var reiTop = $("#rei").offset().top;
 					if (scrollTop > reiTop - h) {
 						// 零号机背景图片
 						$("#reiImg").css({
@@ -363,26 +349,11 @@
 							"top": (scrollTop - reiTop) * 2 / 3 + "px"
 						});
 
-						// 凌波丽的信息动画
-						var scrollTop_ = scrollTop > section && scrollTop < 500 + section ? scrollTop - section : 500;
-						$("#rei .roleImg").show().css({
-							"left": (w * scrollTop_ / 500) / 2 - $("#rei .roleImg").width(),
-							"opacity": scrollTop_ / 500
-						});
-						$("#rei .roleInfo").show().css({
-							"right": (w * scrollTop_ / 500) / 2 - $("#rei .roleInfo").width(),
-							"opacity": scrollTop_ / 500
-						});
-
-						// 蜂窝颜色变化
-						if (scrollTop > section && scrollTop < section + 500) {
-							var color = d3.scale.linear()
-								.domain([0, 20])
-								.range(["#FFFFFF", "#87CEFA"])
-								.interpolate(d3.interpolateLab);
-							d3.selectAll(".hexagon").style("fill", function(d) {
-								return color(d.length);
-							});
+						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
+						var scrollTop_ = scrollTop - section;
+						roleInfoAction("#rei", "#87CEFA", Math.min(scrollTop_, 500));
+						if (scrollTop_ > 0 && scrollTop_ < 500) {
+							combAction("#87CEFA");
 						}
 					} else {
 						$("#reiImg").css({
@@ -390,7 +361,6 @@
 						});
 					}
 					// eva_3: 
-					var asukaTop = $("#asuka").offset().top;
 					if (scrollTop > asukaTop - h) {
 						$("#asukaImg").css({
 							"top": asukaTop - scrollTop
@@ -399,26 +369,11 @@
 							"top": (scrollTop - asukaTop) * 2 / 3 + "px"
 						});
 
-						// 明日香的信息动画
-						var scrollTop_ = scrollTop > section * 2 && scrollTop < 500 + section * 2 ? scrollTop - section * 2 : 500;
-						$("#asuka .roleImg").show().css({
-							"left": (w * scrollTop_ / 500) / 2 - $("#asuka .roleImg").width(),
-							"opacity": scrollTop_ / 500
-						});
-						$("#asuka .roleInfo").show().css({
-							"right": (w * scrollTop_ / 500) / 2 - $("#asuka .roleInfo").width(),
-							"opacity": scrollTop_ / 500
-						});
-
-						// 蜂窝颜色变化
-						if (scrollTop > section * 2 && scrollTop < section * 2 + 500) {
-							var color = d3.scale.linear()
-								.domain([0, 20])
-								.range(["#FFFFFF", "#ea1221"])
-								.interpolate(d3.interpolateLab);
-							d3.selectAll(".hexagon").style("fill", function(d) {
-								return color(d.length);
-							});
+						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
+						var scrollTop_ = scrollTop - section * 2;
+						roleInfoAction("#asuka", "#ea1221", Math.min(scrollTop_, 500));
+						if (scrollTop_ > 0 && scrollTop_ < 500) {
+							combAction("#ea1221");
 						}
 					} else {
 						$("#asukaImg").css({
@@ -426,7 +381,6 @@
 						});
 					}
 					// eva_4
-					var kaworuTop = $("#kaworu").offset().top;
 					if (scrollTop > kaworuTop - h) {
 						$("#kaworuImg").css({
 							"top": kaworuTop - scrollTop
@@ -435,26 +389,11 @@
 							"top": (scrollTop - kaworuTop) * 2 / 3 + "px"
 						});
 
-						// 渚熏的信息动画
-						var scrollTop_ = scrollTop > section * 3 && scrollTop < 500 + section * 3 ? scrollTop - section * 3 : 500;
-						$("#kaworu .roleImg").show().css({
-							"left": (w * scrollTop_ / 500) / 2 - $("#kaworu .roleImg").width(),
-							"opacity": scrollTop_ / 500
-						});
-						$("#kaworu .roleInfo").show().css({
-							"right": (w * scrollTop_ / 500) / 2 - $("#kaworu .roleInfo").width(),
-							"opacity": scrollTop_ / 500
-						});
-
-						// 蜂窝颜色变化
-						if (scrollTop > section * 3 && scrollTop < section * 3 + 500) {
-							var color = d3.scale.linear()
-								.domain([0, 20])
-								.range(["#FFFFFF", "#C0C0C0"])
-								.interpolate(d3.interpolateLab);
-							d3.selectAll(".hexagon").style("fill", function(d) {
-								return color(d.length);
-							});
+						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
+						var scrollTop_ = scrollTop - section * 3;
+						roleInfoAction("#kaworu", "#C0C0C0", Math.min(scrollTop_, 500));
+						if (scrollTop_ > 0 && scrollTop_ < 500) {
+							combAction("#C0C0C0");
 						}
 					} else {
 						$("#kaworuImg").css({
@@ -462,7 +401,6 @@
 						});
 					}
 					// eva_5
-					var mariTop = $("#mari").offset().top;
 					if (scrollTop > mariTop - h) {
 						$("#mariImg").css({
 							"top": mariTop - scrollTop
@@ -471,26 +409,11 @@
 							top: (scrollTop - mariTop) * 2 / 3 + "px"
 						});
 
-						// 真希波的信息动画
-						var scrollTop_ = scrollTop > section * 4 && scrollTop < 500 + section * 4 ? scrollTop - section * 4 : 500;
-						$("#mari .roleImg").show().css({
-							"left": (w * scrollTop_ / 500) / 2 - $("#mari .roleImg").width(),
-							"opacity": scrollTop_ / 500
-						});
-						$("#mari .roleInfo").show().css({
-							"right": (w * scrollTop_ / 500) / 2 - $("#mari .roleInfo").width(),
-							"opacity": scrollTop_ / 500
-						});
-
-						// 蜂窝颜色变化
-						if (scrollTop > section * 4 && scrollTop < section * 4 + 500) {
-							var color = d3.scale.linear()
-								.domain([0, 20])
-								.range(["#FFFFFF", "#dc7fa3"])
-								.interpolate(d3.interpolateLab);
-							d3.selectAll(".hexagon").style("fill", function(d) {
-								return color(d.length);
-							});
+						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
+						var scrollTop_ = scrollTop - section * 4;
+						roleInfoAction("#mari", "#dc7fa3", Math.min(scrollTop_, 500));
+						if (scrollTop_ > 0 && scrollTop_ < 500) {
+							combAction("#dc7fa3");
 						}
 					} else {
 						$("#mariImg").css({
@@ -498,6 +421,36 @@
 						});
 					}
 				}, 50);
+			});
+		};
+
+		var roleInfoAction = function(id, color, st) {
+			var color = d3.scale.linear()
+				.domain([0, 20])
+				.range(["#FFFFFF", color])
+				.interpolate(d3.interpolateLab);
+			// 人物信息动画
+			$(id + " .roleImg").show().css({
+				"left": (w * st / 500) / 2 - $(id + " .roleImg").width(),
+				"opacity": st / 500
+			});
+			$(id + " .roleInfo").show().css({
+				"right": (w * st / 500) / 2 - $(id + " .roleInfo").width(),
+				"color": color(Math.floor(st * 20 / 500))
+			});
+		};
+
+		var combAction = function(color) {
+			// 蜂巢效果
+			combInit();
+
+			// 蜂窝颜色变化
+			var color = d3.scale.linear()
+				.domain([0, 20])
+				.range(["#FFFFFF", color])
+				.interpolate(d3.interpolateLab);
+			d3.selectAll(".hexagon").style("fill", function(d) {
+				return color(d.length);
 			});
 		};
 

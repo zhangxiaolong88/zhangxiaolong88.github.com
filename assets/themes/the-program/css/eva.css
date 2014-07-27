@@ -27,7 +27,6 @@ a:hover, a:focus {
 /* wrapper z-index:1800~1900 */
 #wrapper {
     position: relative;
-    /*background-image: url("../../../images/eva/bg.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1800;
@@ -61,7 +60,6 @@ a:hover, a:focus {
 #topWall, #bottomWall {
     z-index: 1900;
     position: absolute;
-    /*background-image: url("../../../images/eva/bg.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -211,26 +209,6 @@ section#contentWrapper {
     font-weight: bold;
     font-size: 28px;
     text-align: left;
-}
-
-#shinji .item-content .roleInfo li {
-    color: #9932CC;
-}
-
-#rei .item-content .roleInfo li {
-    color: #87CEFA;
-}
-
-#asuka .item-content .roleInfo li {
-    color: #ea1221;
-}   
-
-#kaworu .item-content .roleInfo li {
-    color: #C0C0C0;
-}      
-
-#mari .item-content .roleInfo li {
-    color: #dc7fa3;
 }
 
 /* 蜂巢 z-index:1002 */
