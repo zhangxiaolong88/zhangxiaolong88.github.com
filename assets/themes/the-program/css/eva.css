@@ -184,31 +184,130 @@ section#contentWrapper {
 .item-content {
     position: relative;
     background: #fff;
-    height: 500px;
-    /*padding: 0 100px;*/
 }
 
-.item-content .roleImg {
-    position: absolute;
-    height: 500px;
-    display: none;
+/* shinji */
+#shinji .item-content {
+    padding: 80px;
+}
+#shinji .item-content img {
+    height: 10%;
+    width: 30%;
+}
+#shinji .item-content h1 {
+    width: 30%;
+    margin: 20px auto;
 }
 
-.item-content .roleInfo {
-    position: absolute;
-    width: 300px;
-    height: 500px;
-    display: none;
+/* rei */
+#rei .item-content {
+    padding: 80px;
 }
-
-.item-content .roleInfo li {
-    list-style: none;
-    width: 300px;
+.imageSlide {
+    width: 80%;
+    margin: 0 auto 30px;
+    border: 10px solid #a9cfbf;
+}
+#rei .item-content .imageSlide .slide-text {
     height: 100px;
-    line-height: 100px;
-    font-weight: bold;
-    font-size: 28px;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px;
+    padding: 10px;
+    background: #a9cfbf;
+    color: #fff;
+    font-size: 24px;
+    line-height: 80px;
+    opacity: 0.8;
+}
+#rei .item-content h1.lines {
+    width: 80%;
+    margin: 10px auto;
     text-align: left;
+}
+#blog {
+    width: 80%;
+    display: block;
+    margin: 20px auto;
+    text-align: right;
+}
+#blog a {
+    color: #f47171;
+}
+
+#rei .item-content .gallery {
+    height: 160px;
+    width: 660px;
+    margin: 0px auto 20px;
+    overflow: hidden;
+}
+#rei .item-content .gallery ul li {
+    list-style: none;
+    height: 160px;
+    width: 220px;
+    float: left;
+}
+#rei .item-content .gallery img {
+    height: 160px;
+    margin: 0px 20px;
+}
+
+/* asuka */
+#asuka .item-content {
+    padding: 80px;
+}
+
+#asuka .item-content .imageSlide .slide-text {
+    text-align: left;
+    height: 200px;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    margin: 0px;
+    padding: 15px;
+    background: #a9cfbf;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    opacity: 0.8;
+}
+#asuka .item-content h1.lines {
+    width: 80%;
+    margin: 10px auto;
+    text-align: left;
+}
+
+/* kaworu */
+#kaworu .item-content {
+    padding: 80px;
+}
+#kaworu .item-content h1.Lyrics {
+    width: 66%;
+    margin: 10px auto;
+}
+#kaworu .item-content h3.lines {
+    width: 60%;
+    margin: 10px auto;
+    text-align: left;
+}
+#kaworu .item-content h3.linesGap {
+    width: 80%;
+    height: 30px;
+}
+#kaworu .item-content img {
+    width: 60%;
+    margin: 50px 0px;
+}
+
+/* mari */
+#mari .item-content {
+    padding: 80px;
+}
+#mari .item-content img {
+    width: 20%;
+    margin-top: 20px;
 }
 
 /* 蜂巢 z-index:1002 */
@@ -230,6 +329,13 @@ section#contentWrapper {
 #footer {
     position: relative;
     width: 100%;
+    height: 150px;
     z-index: 1200;
-    opacity: 0;
+    background: #333;
+    overflow: hidden;
+}
+#footer p {
+    line-height: 100px;
+    font-size: 14px;
+    color: #fff;
 }

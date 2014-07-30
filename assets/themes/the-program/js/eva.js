@@ -19,46 +19,61 @@
 			y: h / 2
 		};
 
-		// 加载百分比
-		var imgsLoadPer = 0;
-
 		//需要加载的图片
 		var imgs = [{
-			url: "assets/images/eva/bg.jpg",
-			isLoaded: false
+			url: "assets/images/eva/bg.jpg"
 		}, {
-			url: "assets/images/eva/nerv.png",
-			isLoaded: false
+			url: "assets/images/eva/nerv.png"
 		}, {
-			url: "assets/images/eva/eva_1.jpg",
-			isLoaded: false
+			url: "assets/images/eva/eva_1.jpg"
 		}, {
-			url: "assets/images/eva/eva_2.jpg",
-			isLoaded: false
+			url: "assets/images/eva/eva_2.jpg"
 		}, {
-			url: "assets/images/eva/eva_3.jpg",
-			isLoaded: false
+			url: "assets/images/eva/eva_3.jpg"
 		}, {
-			url: "assets/images/eva/eva_4.jpg",
-			isLoaded: false
+			url: "assets/images/eva/eva_4.jpg"
 		}, {
-			url: "assets/images/eva/eva_5.jpg",
-			isLoaded: false
+			url: "assets/images/eva/eva_5.jpg"
 		}, {
-			url: "assets/images/eva/Shinji.jpg",
-			isLoaded: false
+			url: "assets/images/eva/Shinji.jpg"
 		}, {
-			url: "assets/images/eva/Rei.jpg",
-			isLoaded: false
+			url: "assets/images/eva/Rei.jpg"
 		}, {
-			url: "assets/images/eva/Asuka.jpg",
-			isLoaded: false
+			url: "assets/images/eva/Asuka.jpg"
 		}, {
-			url: "assets/images/eva/Kaworu.jpg",
-			isLoaded: false
+			url: "assets/images/eva/Kaworu.jpg"
 		}, {
-			url: "assets/images/eva/Mari.jpg",
-			isLoaded: false
+			url: "assets/images/eva/Mari.jpg"
+		}, {
+			url: "assets/images/eva/eva.jpg"
+		}, {
+			url: "assets/images/eva/e.jpg"
+		}, {
+			url: "assets/images/eva/plate.jpg"
+		}, {
+			url: "assets/images/eva/role_1.jpg"
+		}, {
+			url: "assets/images/eva/role_2.jpg"
+		}, {
+			url: "assets/images/eva/role_3.jpg"
+		}, {
+			url: "assets/images/eva/Mari.jpg"
+		}, {
+			url: "assets/images/eva/sketch_1.jpg"
+		}, {
+			url: "assets/images/eva/sketch_2.jpg"
+		}, {
+			url: "assets/images/eva/sketch_3.jpg"
+		}, {
+			url: "assets/images/eva/slide_1.jpg"
+		}, {
+			url: "assets/images/eva/slide_2.jpg"
+		}, {
+			url: "assets/images/eva/slide_3.jpg"
+		}, {
+			url: "assets/images/eva/slide_4.jpg"
+		}, {
+			url: "assets/images/eva/slide_5.jpg"
 		}];
 
 		// 初始化 画布 
@@ -83,61 +98,65 @@
 			});
 		};
 
-		var initImages = function() {
-			// 图片预加载
-			$(imgs).each(function(i, v) {
-				var img = new Image();
-				img.onload = function() {
-					v.isLoaded = true;
+		// 预加载图片
+		var loadImages = function(imgs) {
+			if (typeof(index) === "undefined") {
+				index = 0;
+			} else {
+				index++;
+			}
+			var img = new Image();
+			img.onload = function() {
+				var per = Math.floor((index + 1) * 100 / imgs.length);
+				$(".progress .progress-bar")
+					.attr("aria-valuenow", per)
+					.css({
+						"width": per + "%"
+					})
+					.text(per + "%");
 
-					// 判断是否全部加载完成
-					(function() {
-						var isLoadedNo = 0;
-						$(imgs).each(function(i, v) {
-							if (v.isLoaded === true) {
-								isLoadedNo++;
-							}
-						});
-						imgsLoadPer = Math.floor(isLoadedNo * 100 / imgs.length);
-						$(".progress .progress-bar")
-							.attr("aria-valuenow", imgsLoadPer)
-							.css({
-								"width": imgsLoadPer + "%"
-							})
-							.text(imgsLoadPer + "%");
-						// 如果加载完毕
-						if (imgsLoadPer == 100) {
-							// 隐藏加载条
-							$(".progress").hide().remove();
-
-							// 显示缓存的图片
-							$("img").each(function(i, v) {
-								var $this = $(this);
-								$this.attr({
-									"src": $this.attr("data-src")
-								});
-							});
-							$("#wrapper").css({
-								"backgroundImage": "url('assets/images/eva/bg.jpg')"
-							});
-
-							// 加载图片阶段结束 初始化手电筒
-							initGlass();
-						}
-					})();
-
-				};
-				img.onerror = function() {
-					console.log("加载图片失败" + v.url);
-				};
-				img.src = v.url;
-			});
+				if (index == imgs.length - 1) {
+					initImages();
+				} else {
+					loadImages(imgs);
+				}
+			};
+			img.onerror = function() {
+				console.log(index + "error");
+				if (index == imgs.length - 1) {
+					initImages();
+				} else {
+					imgs.splice(index, 1);
+					loadImages(imgs);
+				}
+			};
+			img.src = imgs[index].url;
 		};
 
-		// 入口
+		// 显示图片
+		var initImages = function() {
+			// 隐藏加载条
+			$(".progress").hide().remove();
+
+			// 显示缓存的图片
+			$("img").each(function(i, v) {
+				var $this = $(this);
+				$this.attr({
+					"src": $this.attr("data-src")
+				});
+			});
+			$("#wrapper").css({
+				"backgroundImage": "url('assets/images/eva/bg.jpg')"
+			});
+
+			// 加载图片阶段结束 初始化手电筒
+			initGlass();
+		};
+
+		// 总入口
 		(function() {
 			initWrapper();
-			initImages();
+			loadImages(imgs);
 		})();
 
 		// 初始化手电筒
@@ -158,115 +177,128 @@
 			// 点击手电筒后 开启墙动画
 			$("#glass").click(function() {
 				$("#wrapper").unbind("mousemove");
-				clicked = true;
-			});
 
-			// 监听重绘函数
-			paint();
-		};
-
-		// 是否点击手电筒 标识
-		var clicked = false;
-		// 重绘函数
-		var paint = function() {
-			var p = requestAnimFrame(paint);
-			if (clicked === false) {
-				setTimeout(function() {
-					$("#glass").css({
-						"top": point.y - $("#glass").height() / 2,
-						"left": point.x - $("#glass").width() / 2
-					});
-					$("#glass img").css({
-						"top": -point.y + $("#glass").height() / 2 - glassBorder,
-						"left": -point.x + $("#glass").width() / 2 - glassBorder
-					});
-				}, 50);
-			} else {
 				// 停止重绘
 				cancelAnimFrame(p);
 
 				// 初始化
-				$("#siteWrapper").show(function() {
-					siteInit();
+				siteStart();
+			});
 
-					// eva图片容器的位置初始化
-					$(".image-container").css({
-						"top": "-9000px",
-						"left": "0px"
-					}).eq(0).show().css({
-						"top": "0px"
-					});
-					// eva图片的位置初始化
-					$(".image-container").show().find("img").css({
-						"top": 0
-					});
-
-					// 监听滚动事件
-					listenScroll();
-				});
-
-				$(document).scrollTop(0);
-
-				// 手电筒变大
-				$("#glass").animate({
-					"top": point.y - w,
-					"left": point.x - w,
-					"width": w * 2,
-					"height": w * 2,
-				}, 1000);
-				// 手电筒图像位置
-				$("#glass img").animate({
-					"top": -point.y + w - glassBorder,
-					"left": -point.x + w - glassBorder
-				}, 1000, function() {
-					// 墙左右打开的效果
-					$("<div id='topWall'></div><div id='bottomWall'></div>").appendTo($("body"));
-					// 初始化墙的大小
-					$("#topWall, #bottomWall").css({
-						"width": w,
-						"height": h / 2,
-						"backgroundImage": "url('assets/images/eva/bg.jpg')"
-					});
-					// 墙的位置
-					$("#bottomWall").css({
-						"backgroundPosition": "50% -" + (h / 2 + 1) + "px"
-					});
-
-					// 移除遮罩
-					$("#wrapper").hide().remove();
-
-					// 蜂巢效果
-					combInit();
-
-					// 墙动画
-					$("#topWall").animate({
-						"left": "-100%"
-					}, 800, function() {
-						$(this).hide().remove();
-					});
-					$("#bottomWall").animate({
-						"left": "100%"
-					}, 800, function() {
-						$(this).hide().remove();
-					});
-				});
-			}
+			// 监听鼠标
+			paint();
 		};
 
-		// 核心函数
-		var siteInit = function() {
+		// 重绘函数
+		var p;
+		var paint = function() {
+			var p = requestAnimFrame(paint);
+			setTimeout(function() {
+				$("#glass").css({
+					"top": point.y - $("#glass").height() / 2,
+					"left": point.x - $("#glass").width() / 2
+				});
+				$("#glass img").css({
+					"top": -point.y + $("#glass").height() / 2 - glassBorder,
+					"left": -point.x + $("#glass").width() / 2 - glassBorder
+				});
+			}, 50);
+		};
+
+		// 初始化
+		var siteStart = function() {
+			$("#siteWrapper").show(function() {
+				sizeInit();
+
+				// eva图片容器的位置初始化
+				$(".image-container").css({
+					"top": "-9000px",
+					"left": "0px"
+				}).eq(0).show().css({
+					"top": "0px"
+				});
+				// eva图片的位置初始化
+				$(".image-container").show().find("img").css({
+					"top": 0
+				});
+
+				// 监听滚动事件
+				listenScroll();
+			});
+
+			$(document).scrollTop(0);
+
+			// 手电筒变大
+			$("#glass").animate({
+				"top": point.y - w,
+				"left": point.x - w,
+				"width": w * 2,
+				"height": w * 2,
+			}, 1000);
+			// 手电筒图像位置
+			$("#glass img").animate({
+				"top": -point.y + w - glassBorder,
+				"left": -point.x + w - glassBorder
+			}, 1000, function() {
+				// 墙左右打开的效果
+				$("<div id='topWall'></div><div id='bottomWall'></div>").appendTo($("body"));
+				// 初始化墙的大小
+				$("#topWall, #bottomWall").css({
+					"width": w,
+					"height": h / 2,
+					"backgroundImage": "url('assets/images/eva/bg.jpg')"
+				});
+				// 墙的位置
+				$("#bottomWall").css({
+					"backgroundPosition": "50% -" + (h / 2 + 1) + "px"
+				});
+
+				// 移除遮罩
+				$("#wrapper").hide().remove();
+
+				// 蜂巢效果
+				combInit();
+
+				// 墙动画
+				$("#topWall").animate({
+					"left": "-100%"
+				}, 800, function() {
+					$(this).hide().remove();
+				});
+				$("#bottomWall").animate({
+					"left": "100%"
+				}, 800, function() {
+					$(this).hide().remove();
+				});
+			});
+
+			// 人类补全计划 启动
+			$("")
+		};
+
+		// 计算容器位置与大小
+		var sizeInit = function() {
 			// 背景图片部分：滚动效果
 			$(".image-container").css({
 				"width": w,
 				"height": h
-			}).eq(4).css({
-				"height": h * 2
 			});
 
-			$(".image-container").show().find("img").css({
-				"width": w,
-				"height": BGIMAGE.height * w / BGIMAGE.width
-			});
+			$(".image-container").show();
+
+			// 根据不同的比例 改变背景图片的大小
+			if (w / h < BGIMAGE.width / BGIMAGE.height) {
+				$(".image-container").find("img").css({
+					"width": BGIMAGE.width * h / BGIMAGE.height,
+					"height": h,
+					"left": w / 2 - BGIMAGE.width * h / (2 * BGIMAGE.height)
+				});
+			} else {
+				$(".image-container").find("img").css({
+					"width": w,
+					"height": BGIMAGE.height * w / BGIMAGE.width
+				});
+			}
 
 			// 内容部分
 			$(".item-over-image-wrapper").eq(0).css({
@@ -290,19 +322,23 @@
 					"font-size": 28
 				}).text("").addClass("icon-angle-down");
 			});
-
-			// 设置底部高度
-			$("#footer").css({
-				"height": (h - 500) / 2
-			});
+			
 		};
 
 		var listenScroll = function() {
 			// 监听下拉函数
 			$(document).scroll(function() {
 				setTimeout(function() {
-					var scrollTop = $(document).scrollTop(),
-						section = 500 + h * 2 / 3;
+					// 滑动高度
+					var scrollTop = $(document).scrollTop();
+					// 人物信息部分的高度
+					var sHeight = getSecHgt("shinji"),
+						rHeight = getSecHgt("rei"),
+						aHeight = getSecHgt("asuka"),
+						kHeight = getSecHgt("kaworu"),
+						mHeight = getSecHgt("mari");
+
+					// 每个部分距离页面顶部的高度
 					var shinjiTop = $("#shinji").offset().top,
 						reiTop = $("#rei").offset().top,
 						asukaTop = $("#asuka").offset().top,
@@ -317,7 +353,6 @@
 						}).eq(0).show().css({
 							"top": "0px"
 						});
-
 						$(".image-container").show().find("img").css({
 							"top": 0
 						});
@@ -333,9 +368,9 @@
 						});
 
 						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
-						var scrollTop_ = scrollTop - section * 0;
-						roleInfoAction("#shinji", "#9932CC", Math.min(scrollTop_, 500));
-						if (scrollTop_ > 0 && scrollTop_ < 500) {
+						var scrollTop_ = scrollTop;
+						// roleInfoAction("#shinji", "#9932CC", Math.min(scrollTop_, sHeight));
+						if (scrollTop_ > 0 && scrollTop_ < sHeight) {
 							combAction("#9932CC");
 						}
 					}
@@ -350,9 +385,9 @@
 						});
 
 						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
-						var scrollTop_ = scrollTop - section;
-						roleInfoAction("#rei", "#87CEFA", Math.min(scrollTop_, 500));
-						if (scrollTop_ > 0 && scrollTop_ < 500) {
+						var scrollTop_ = scrollTop - sHeight - h * 2 / 3;
+						// roleInfoAction("#rei", "#87CEFA", Math.min(scrollTop_, rHeight));
+						if (scrollTop_ > 0 && scrollTop_ < rHeight) {
 							combAction("#87CEFA");
 						}
 					} else {
@@ -370,9 +405,9 @@
 						});
 
 						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
-						var scrollTop_ = scrollTop - section * 2;
-						roleInfoAction("#asuka", "#ea1221", Math.min(scrollTop_, 500));
-						if (scrollTop_ > 0 && scrollTop_ < 500) {
+						var scrollTop_ = scrollTop - sHeight - rHeight - (h * 2 / 3) * 2;
+						// roleInfoAction("#asuka", "#ea1221", Math.min(scrollTop_, aHeight));
+						if (scrollTop_ > 0 && scrollTop_ < aHeight) {
 							combAction("#ea1221");
 						}
 					} else {
@@ -390,9 +425,9 @@
 						});
 
 						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
-						var scrollTop_ = scrollTop - section * 3;
-						roleInfoAction("#kaworu", "#C0C0C0", Math.min(scrollTop_, 500));
-						if (scrollTop_ > 0 && scrollTop_ < 500) {
+						var scrollTop_ = scrollTop - sHeight - rHeight - aHeight - (h * 2 / 3) * 3;
+						// roleInfoAction("#kaworu", "#C0C0C0", Math.min(scrollTop_, kHeight));
+						if (scrollTop_ > 0 && scrollTop_ < kHeight) {
 							combAction("#C0C0C0");
 						}
 					} else {
@@ -410,8 +445,8 @@
 						});
 
 						// 滚动到人物信息部分出现 持续到人物信息部分完全出现
-						var scrollTop_ = scrollTop - section * 4;
-						roleInfoAction("#mari", "#dc7fa3", Math.min(scrollTop_, 500));
+						var scrollTop_ = scrollTop - sHeight - rHeight - aHeight - kHeight - (h * 2 / 3) * 4;
+						// roleInfoAction("#mari", "#dc7fa3", Math.min(scrollTop_, mHeight));
 						if (scrollTop_ > 0 && scrollTop_ < 500) {
 							combAction("#dc7fa3");
 						}
@@ -422,6 +457,10 @@
 					}
 				}, 50);
 			});
+		};
+
+		var getSecHgt = function(id){
+			return $("#"+ id +" .item-content").height() + parseInt($("#"+ id +" .item-content").css("paddingTop")) + parseInt($("#"+ id +" .item-content").css("paddingBottom"));
 		};
 
 		var roleInfoAction = function(id, color, st) {
@@ -537,7 +576,7 @@
 				};
 			} else {
 				// 滚动部分样式重算
-				siteInit();
+				sizeInit();
 				// 蜂巢样式重算
 				combInit();
 			}
