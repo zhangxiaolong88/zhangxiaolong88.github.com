@@ -2,11 +2,14 @@ html, body {
     text-align: center;
     margin: 0;
     padding:0;
-    font-family: '微软雅黑',Arial,sans-serif;
 }
 
 body {
     overflow-x: hidden;
+}
+
+html, body, div, ul, li, h1, h2, h3, p, small, a, span {
+    font-family: '微软雅黑',Arial,sans-serif;
 }
 
 * {
