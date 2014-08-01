@@ -25,6 +25,29 @@ a {
 
 a:hover, a:focus {
     text-decoration: none;
+    outline: none;
+}
+
+
+#download {
+    position: absolute;
+    font-size: 24px;
+    color: #fff;
+}
+
+#download a.btn {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #ffffff;
+    display: inline-table;
+    font-size: 18px;
+    font-weight: normal;
+    outline: medium none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
 }
 
 /* wrapper z-index:1800~1900 */
@@ -37,18 +60,43 @@ a:hover, a:focus {
 }
 
 #cover {
-    background: #000000;
-    opacity: 0.90;
+    /*background: -moz-radial-gradient(#ace, #f96, #1E90FF);*/
+    /*background: -moz-linear-gradient(top, #8fa1ff, #3757fa);*/ 
+    /*background: -moz-linear-gradient(top, #88220a, #8b210a);*/
+    /*background: -moz-linear-gradient(top, #822109, #872209);*/
+    /*background: -webkit-gradient(linear, left top, right top, color-stop(0, #000), color-stop(0.5, #fff), color-stop(1, #000));*/
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff4f02), color-stop(1, #8f2c00));*/ /* Saf4+, Chrome */ 
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c6ff00', endColorstr='#538300', GradientType='0');*/ /* IE*/
+    /*background: #111;*/
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-color: #111;
+    opacity: 0.92;
     overflow: hidden;
 }
 
-.load-bar {
-    position: absolute;
+
+#load-bar {
+    position: relative;
     width: 200px;
 }
 
+#load-bar .glogo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    background-size: cover
+}
+
+#load-bar .glogopre {
+    opacity: 0.8;
+    width: 0px;
+}
+
 #glass {
-    background-color: #fbfbfb;
     position: relative;
     top: 40%;
     left: 45%;
@@ -307,16 +355,28 @@ section#contentWrapper {
 /* mari */
 #mari .item-content {
     padding: 80px;
+    background: #041d31;
+}
+#mari .item-content h1 small {
+    color: #fff;
 }
 #mari .item-content img {
     width: 20%;
-    margin-top: 20px;
+    margin-top: 50px;
 }
-
+#mari .item-content #planStart {
+    margin: 50px auto;
+    color: #fff;
+}
+#mari .item-content #planStartBtn a {
+    font-weight: bold;
+}
+#mari .item-content #planStartBtn a:hover,  #mari .item-content #planStartBtn a:focus{
+    color: #ffffff;
+}
 /* 蜂巢 z-index:1002 */
 #comb {
     position: fixed;
-    /*background-color: #fff;*/
     opacity: 0.6;
     z-index: 1111;
     overflow: hidden;

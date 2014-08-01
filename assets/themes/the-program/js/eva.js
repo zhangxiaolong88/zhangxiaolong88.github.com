@@ -23,8 +23,6 @@
 		var imgs = [{
 			url: "assets/images/eva/bg.jpg"
 		}, {
-			url: "assets/images/eva/nerv.png"
-		}, {
 			url: "assets/images/eva/eva_1.jpg"
 		}, {
 			url: "assets/images/eva/eva_2.jpg"
@@ -76,6 +74,35 @@
 			url: "assets/images/eva/slide_5.jpg"
 		}];
 
+		/**
+		 * @desc:获取浏览器信息
+		 * @returns {Array}
+		 * 【1】版本【2】版本号
+		 */
+		var checkUserAgent = function() {
+			var version = navigator.userAgent.toLowerCase();
+			var versionInfos = [];
+			var vIndex = 0;
+			if ((vIndex = version.indexOf("msie")) != -1) {
+				//alert("ie" + version.substring(vIndex + 5, version.indexOf(";", vIndex)));
+				versionInfos = ["ie", version.substring(vIndex + 5, version.indexOf(".", vIndex))];
+			} else if ((vIndex = version.indexOf("chrome")) != -1) {
+				//alert("chrome" + version.substring(vIndex + 7, version.indexOf(".", vIndex)));
+				versionInfos = ["chrome", version.substring(vIndex + 7, version.indexOf(".", vIndex))];
+			} else if ((vIndex = version.indexOf("firefox")) != -1) {
+				//alert("ff" + version.substring(vIndex + 8, version.indexOf(".", vIndex)));
+				versionInfos = ["ff", version.substring(vIndex + 8, version.indexOf(".", vIndex))];
+			} else if ((vIndex = version.indexOf("safari")) != -1) {
+				//alert("safari" + version.substring(vIndex + 7, version.indexOf(".", vIndex)));
+				versionInfos = ["safari", version.substring(vIndex + 7, version.indexOf(".", vIndex))];
+			} else if ((vIndex = version.indexOf("opera")) != -1) {
+				//alert("opera" + version.substring(vIndex + 6, version.indexOf(".", vIndex)));
+				versionInfos = ["opera", version.substring(vIndex + 6, version.indexOf(".", vIndex))];
+			}
+			versionInfos[1] = parseInt(versionInfos[1]);
+			return versionInfos;
+		}
+
 		// 初始化 画布 
 		var initWrapper = function() {
 			$("#wrapper, #cover").css({
@@ -85,10 +112,20 @@
 			$("#wrapper").css({
 				"backgroundPosition": "50% 0"
 			});
+			$("#cover").css({
+				"backgroundImage": "url('assets/images/eva/background.png')"
+			});
 			// 初始化进度条
-			$(".load-bar").css({
-				"top": h / 2 - $(".progress").height() / 2,
-				"left": w / 2 - $(".progress").width() / 2
+			$("#load-bar").css({
+				"width": w / 8,
+				"height": w / 8
+			}).css({
+				"top": h / 2 - $("#load-bar").height() / 2,
+				"left": w / 2 - $("#load-bar").width() / 2
+			});
+
+			$("#load-bar .glogo").css({
+    			"backgroundImage": "url('assets/images/eva/nerv_mini.png')"
 			});
 
 			// 手电筒 跟随 鼠标 滑动
@@ -107,22 +144,19 @@
 			}
 			var img = new Image();
 			img.onload = function() {
-				var per = Math.floor((index + 1) * 100 / imgs.length);
-				$(".progress .progress-bar")
-					.attr("aria-valuenow", per)
-					.css({
-						"width": per + "%"
-					})
-					.text(per + "%");
-
-				if (index == imgs.length - 1) {
-					initImages();
-				} else {
+				var per = (index + 1) / imgs.length;
+				$("#load-bar .glogopre").stop().animate({
+					"width": per * $("#load-bar").width()
+				}, "slow", function() {
+					if (index == imgs.length - 1) {
+						initImages();
+					}
+				})
+				if (index != imgs.length - 1) {
 					loadImages(imgs);
 				}
 			};
 			img.onerror = function() {
-				console.log(index + "error");
 				if (index == imgs.length - 1) {
 					initImages();
 				} else {
@@ -136,7 +170,7 @@
 		// 显示图片
 		var initImages = function() {
 			// 隐藏加载条
-			$(".progress").hide().remove();
+			$("#load-bar").hide().remove();
 
 			// 显示缓存的图片
 			$("img").each(function(i, v) {
@@ -154,10 +188,26 @@
 		};
 
 		// 总入口
-		(function() {
+		var browserInfo = checkUserAgent();
+		var brw = browserInfo[0],
+			ver = browserInfo[1];
+		if (brw == "ff" || brw == "chrome" || (brw == "ie" && ver >= 9)) {
 			initWrapper();
 			loadImages(imgs);
-		})();
+		} else {
+			$("#wrapper").remove();
+			var download = '<div id="download"><img src="assets/images/eva/chlogo.png">' +
+				'<br><br>您的浏览器需要升级了<br><br>' +
+				'<a target="_blank" href="http://www.google.com/chrome" class="btn">Download Google Chrome</a>' +
+				'</div>';
+			$("body").css({
+				"background": "#3a0256"
+			}).append(download);
+			$("#download").css({
+				"top": h / 2 - $("#download").height() / 2,
+				"left": w / 2 - $("#download").width() / 2
+			});
+		}
 
 		// 初始化手电筒
 		var initGlass = function() {
@@ -273,7 +323,7 @@
 			});
 
 			// 人类补全计划 启动
-			$("")
+			
 		};
 
 		// 计算容器位置与大小
@@ -322,7 +372,7 @@
 					"font-size": 28
 				}).text("").addClass("icon-angle-down");
 			});
-			
+
 		};
 
 		var listenScroll = function() {
@@ -459,8 +509,8 @@
 			});
 		};
 
-		var getSecHgt = function(id){
-			return $("#"+ id +" .item-content").height() + parseInt($("#"+ id +" .item-content").css("paddingTop")) + parseInt($("#"+ id +" .item-content").css("paddingBottom"));
+		var getSecHgt = function(id) {
+			return $("#" + id + " .item-content").height() + parseInt($("#" + id + " .item-content").css("paddingTop")) + parseInt($("#" + id + " .item-content").css("paddingBottom"));
 		};
 
 		var roleInfoAction = function(id, color, st) {
