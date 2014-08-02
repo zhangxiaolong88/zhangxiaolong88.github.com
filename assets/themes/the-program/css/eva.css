@@ -356,6 +356,7 @@ section#contentWrapper {
 #mari .item-content {
     padding: 80px;
     background: #041d31;
+    border-top: 3px solid #fff;
 }
 #mari .item-content h1 small {
     color: #fff;
