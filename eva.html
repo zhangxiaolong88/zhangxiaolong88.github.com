@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="assets/themes/the-program/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/themes/the-program/bootstrap/css/font-awesome.min.css" />
     <link rel="stylesheet" href="assets/themes/the-program/bootstrap/css/button.css" />
+    <link rel="stylesheet" href="assets/themes/the-program/css/player.css" />
     <link rel="stylesheet" href="assets/themes/the-program/css/eva.css" />
 </head>
 <body>
@@ -23,6 +24,24 @@
 		</div>
 	</div>
 	<div id="siteWrapper">
+		<div id="musicbox">
+			<div class="info">fly me to the moon</div>
+			<div class="loader">
+				<div class="load-progress" style="">
+					<div class="play-progress" style="width: 6px;">
+					</div>
+				</div>
+			</div>
+			<div class="controls">
+				<a href="#" class="prev"><span>Prev</span></a>
+				<a href="#" class="play"><span>Play</span></a>
+				<a href="#" class="pause"><span>Pause</span></a>
+				<a href="#" class="next"><span>Next</span></a>
+			</div>
+			<audio class="aud" src="assets/audio/eva/fly me to the moon.mp3">
+				<p>Oops, looks like your browser doesn't support HTML 5 audio.</p>
+			</audio>
+		</div>
 		<header id="header">
           <div id="headerWrapper">
             <h1 class="site-title">
@@ -224,7 +243,7 @@
 					</div>
 					<img src="assets/images/eva/blank.gif" data-src="assets/images/eva/rebuild.jpg" alt="...">
 					<h1 id="planStart">人类补全计划</h1>
-					<p><span class="button-wrap" id="planStartBtn"><a href="#" class="button button-circle button-caution">启 动</a></span></p>
+					<p><span class="button-wrap" id="planStartBtn"><a href="#" class="button button-circle button-caution">start</a></span></p>
 				</div>
 			</div>
 		</section>
@@ -236,6 +255,7 @@
 	<script src="assets/themes/the-program/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/themes/the-program/js/d3.v3.min.js"></script>
 	<script src="assets/themes/the-program/js/d3.hexbin.v0.min.js"></script>
+	<script src="assets/themes/the-program/js/player.js"></script>
 	<script src="assets/themes/the-program/js/eva.js"></script>
 </body>
 </html>

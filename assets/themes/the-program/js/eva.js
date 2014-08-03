@@ -20,6 +20,7 @@
 		};
 
 		//需要加载的图片
+		//需要加载的图片
 		var imgs = [{
 			url: "assets/images/eva/bg.jpg"
 		}, {
@@ -45,7 +46,7 @@
 		}, {
 			url: "assets/images/eva/eva.jpg"
 		}, {
-			url: "assets/images/eva/e.jpg"
+			url: "assets/images/eva/rebuild.jpg"
 		}, {
 			url: "assets/images/eva/plate.jpg"
 		}, {
@@ -54,8 +55,6 @@
 			url: "assets/images/eva/role_2.jpg"
 		}, {
 			url: "assets/images/eva/role_3.jpg"
-		}, {
-			url: "assets/images/eva/Mari.jpg"
 		}, {
 			url: "assets/images/eva/sketch_1.jpg"
 		}, {
@@ -112,20 +111,13 @@
 			$("#wrapper").css({
 				"backgroundPosition": "50% 0"
 			});
-			$("#cover").css({
-				"backgroundImage": "url('assets/images/eva/background.png')"
-			});
 			// 初始化进度条
 			$("#load-bar").css({
-				"width": w / 8,
-				"height": w / 8
+				"width": w / 6,
+				"height": w / 6
 			}).css({
 				"top": h / 2 - $("#load-bar").height() / 2,
 				"left": w / 2 - $("#load-bar").width() / 2
-			});
-
-			$("#load-bar .glogo").css({
-    			"backgroundImage": "url('assets/images/eva/nerv_mini.png')"
 			});
 
 			// 手电筒 跟随 鼠标 滑动
@@ -145,6 +137,13 @@
 			var img = new Image();
 			img.onload = function() {
 				var per = (index + 1) / imgs.length;
+				/*$(".progress .progress-bar")
+					.attr("aria-valuenow", per)
+					.css({
+						"width": per + "%"
+					})
+					.text(per + "%");*/
+
 				$("#load-bar .glogopre").stop().animate({
 					"width": per * $("#load-bar").width()
 				}, "slow", function() {
@@ -208,7 +207,7 @@
 				"left": w / 2 - $("#download").width() / 2
 			});
 		}
-
+		
 		// 初始化手电筒
 		var initGlass = function() {
 			$("<div id='glass'><img src='assets/images/eva/bg.jpg' /></div>").appendTo($("#cover"));

@@ -2,6 +2,7 @@ html, body {
     text-align: center;
     margin: 0;
     padding:0;
+    font-size: 100%;
 }
 
 body {
@@ -28,7 +29,7 @@ a:hover, a:focus {
     outline: none;
 }
 
-
+/* download chrome */
 #download {
     position: absolute;
     font-size: 24px;
@@ -68,13 +69,14 @@ a:hover, a:focus {
     /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ff4f02), color-stop(1, #8f2c00));*/ /* Saf4+, Chrome */ 
     /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c6ff00', endColorstr='#538300', GradientType='0');*/ /* IE*/
     /*background: #111;*/
+    /*background: -webkit-gradient(linear, left 200, left bottom, color-stop(1, #fff), color-stop(1, #041d31));*/
+    background: url("../../../images/eva/background.png");
     background-repeat: repeat;
     background-position: 0 0;
     background-color: #111;
     opacity: 0.92;
     overflow: hidden;
 }
-
 
 #load-bar {
     position: relative;
@@ -88,6 +90,7 @@ a:hover, a:focus {
     top: 0;
     left: 0;
     opacity: 0.3;
+    background: url("../../../images/eva/nerv_mini.png");
     background-size: cover
 }
 
@@ -137,12 +140,20 @@ a:hover, a:focus {
     z-index: 1000;
 }
 
+/* music section z-index: 1200 */
+#musicbox {
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
+    z-index: 1200;
+}
+
 /* header z-index:1200 */
 #header {
     position: relative;
     width: 100%;
     height: 150px;
-    z-index: 1200;
+    z-index: 1199;
 }
 
 #headerWrapper {
@@ -356,10 +367,13 @@ section#contentWrapper {
 #mari .item-content {
     padding: 80px;
     background: #041d31;
-    border-top: 3px solid #fff;
+    border-top: 8px solid #777;
 }
-#mari .item-content h1 small {
-    color: #fff;
+#mari .item-content .page-header {
+    border-bottom: 1px solid #777;
+}
+#mari .item-content .page-header h1 small {
+    color: #777;
 }
 #mari .item-content img {
     width: 20%;
@@ -367,14 +381,19 @@ section#contentWrapper {
 }
 #mari .item-content #planStart {
     margin: 50px auto;
-    color: #fff;
+    color: #777;
 }
 #mari .item-content #planStartBtn a {
+    font-size: 25px;
     font-weight: bold;
+    border-width: 1px;
+    letter-spacing: 2px;
+    font-family: Century Gothic;
 }
 #mari .item-content #planStartBtn a:hover,  #mari .item-content #planStartBtn a:focus{
     color: #ffffff;
 }
+
 /* 蜂巢 z-index:1002 */
 #comb {
     position: fixed;
@@ -394,9 +413,10 @@ section#contentWrapper {
     position: relative;
     width: 100%;
     height: 150px;
-    z-index: 1200;
-    background: #333;
+    z-index: 1199;
+    background: url("../../../images/eva/footer.png") repeat scroll left top #222;
     overflow: hidden;
+    border-top: 8px solid #333;
 }
 #footer p {
     line-height: 100px;

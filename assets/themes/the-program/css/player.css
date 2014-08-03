@@ -1,0 +1,69 @@
+/**
+ * 播放器 
+*/
+
+#musicbox {
+    -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+    background-color:#cc0000;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    color:#fff;
+    padding:10px;
+    font-family:helvetica, arial, verdana;
+    font-weight:bold;
+    width:300px;
+}
+
+div#musicbox * {
+    -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+#musicbox .loader {
+    border:1px solid #fff;
+    height:3px;
+    margin:10px 0px
+}
+#musicbox .load-progress {
+    width:0px;
+    background-color:#fff;
+    height:3px;
+}
+#musicbox .play-progress {
+    width:0px;
+    background-color:#9999cc;
+    height:3px;
+}
+#musicbox .controls {
+    text-align:center;
+}
+#musicbox .controls a {
+    display:inline-block;
+    width:33px;
+    height:33px;
+    margin:0px 14px;
+    overflow:hidden;
+    background-image:url('../../../images/eva/audio-controls.png');
+    background-repeat:no-repeat;
+}
+#musicbox .controls a:hover {
+    background-color:#ff9900;
+}
+#musicbox .controls a span {
+    display:none;
+}
+#musicbox .controls .prev {
+    background-position: -60px top;
+}
+#musicbox .controls a.next {
+    background-position: -90px top;
+}
+#musicbox .controls a.play {
+    background-position: left top;
+}
+#musicbox .controls a.pause {
+    background-position:-30px top;
+}
