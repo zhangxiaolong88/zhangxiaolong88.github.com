@@ -113,8 +113,8 @@
 			});
 			// 初始化进度条
 			$("#load-bar").css({
-				"width": w / 6,
-				"height": w / 6
+				"width": w / 8,
+				"height": w / 8
 			}).css({
 				"top": h / 2 - $("#load-bar").height() / 2,
 				"left": w / 2 - $("#load-bar").width() / 2
