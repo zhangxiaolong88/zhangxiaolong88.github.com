@@ -1,0 +1,57 @@
+---
+layout: index
+title: 张 小龙的博客
+tagline: 爱生活，爱前端
+keywords : html html5 css css3 javascript internet jekyll github
+---
+{% include JB/setup %}
+
+<a href="/html5/2013/12/21/barrage-game">先来娱乐一下？</a>
+
+<ul class="posts">
+  {% for post in paginator.posts %}
+	<article>
+		<header>
+			<h1 class="h2 entry-title headline"><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a> &raquo; <span>{{ post.date | date_to_string }}</span></h1> 
+		</header>
+		{% if post.content contains "<!-- more -->" %}
+		  {{ post.content | split:'<!-- more -->' |first }}
+		{% else %}
+		  {{ post.content }}
+		{% endif %} 
+
+		  <div class="status">
+			{% if post.content contains "<!-- more -->" %}
+			<a class="btn btn-default btn-sm pull-left" href="{{ BASE_PATH }}{{ post.url }}"><span class="readmore">more &raquo; </span></a>
+			{% endif %}
+			<div class="clearfix"></div>
+		  </div>
+	</article>
+	<hr/>
+  {% endfor %}
+</ul>
+
+
+<!-- Pagination links -->
+<div class="pull-right">
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+    <a class="btn btn-default btn-sm" href="/">Home</a>
+    <a class="btn btn-default btn-sm" href="/">&laquo; Prev</a>
+    {% else %}
+    <a class="btn btn-default btn-sm" href="/">Home</a>
+    <a class="btn btn-default btn-sm" href="/page{{paginator.previous_page}}/">&laquo; Prev</a>
+    {% endif %}
+  {% else %}
+    <span><a class="btn btn-default btn-sm disabled" href="/">Home</a></span>
+    <span><a class="btn btn-default btn-sm disabled">&laquo; Prev</a></span>
+  {% endif %}
+  <span><a class="btn btn-default btn-sm disabled">Page: {{paginator.page}} of {{paginator.total_pages}}</a></span>
+  {% if paginator.next_page %}
+    <a class="btn btn-default btn-sm" href="/page{{paginator.next_page}}/">Next &raquo;</a>
+    <a class="btn btn-default btn-sm" href="/page{{paginator.total_pages}}/">Last</a>
+  {% else if paginator.page == paginator.total_pages %}
+    <span><a class="btn btn-default btn-sm disabled">Next &raquo;</a></span>
+    <span><a class="btn btn-default btn-sm disabled">Last</a></span>
+  {% endif %}
+</div>
