@@ -77,6 +77,12 @@ No styleguide reference.
 a {
   color: #00e;
 }
+.pull-right a {
+  color: #ddd;
+}
+.pull-right .page-index {
+  float: right;
+}
 a:visited {
   color: #551a8b;
 }
