@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <title>去买药网</title>
+<meta name="viewport" content=" initial-scale=1.0,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <style>
+
 body {
-	background: url(assets/images/lixin/login_bg.jpg);
+	background: url(images/login_bg.jpg);
 	padding:0;
 	margin:0;
 	font-size:1em;
@@ -13,23 +17,38 @@ body {
 }
 #wapper {
 	text-align:center;
-	background:url(assets/images/lixin/icon.jpg)  center 60px no-repeat ;
+	background:url(images/icon.jpg)  center 70px no-repeat ;
+	background-size:100%;
 	margin:0 2%;
+	width:100%;
 }
 h3 {
-	line-height:25px;
 	margin-top:5%;
 }
 p {
 	color:#CCC;
-	margin-top:230px;
+	margin-top:60%;
 }
 footer {
     text-align: center;
-    bottom: 5px;
-    position: absolute;
-    width: 100%;
     font-size: 0.8em;
+	margin-top:40px;
+}
+@media screen and (min-width:720px){
+	body {
+		font-size:2em;
+}
+	img {
+		width:60%;
+	}
+}
+@media screen and (min-width:640px){
+	body {
+		font-size:2em;
+}
+	img {
+		width:60%;
+	}
 }
 </style>
 </head>
@@ -40,9 +59,10 @@ footer {
 <h3>欢迎下载去买药手机客户端<br>
 去买药，您身边的药店！</h3>
 <p></p>
-<seciton><a><img src="assets/images/lixin/Android.jpg"></a>
-<a><img src="assets/images/lixin/iPhone.jpg"></a>
+<seciton><a><img src="images/android.jpg"></a>
+<a><img src="images/iphone.jpg"></a>
 </seciton>
+<footer>&copy;好药师大药房连锁有限公司</footer>
 </div>
 
 </body>
