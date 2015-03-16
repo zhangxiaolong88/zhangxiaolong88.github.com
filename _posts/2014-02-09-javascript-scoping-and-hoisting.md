@@ -16,31 +16,31 @@ tags: [javascript]
 
 你知道下面这段JavaScript执行会弹出什么值吗？
 
-```
-var foo = 1;
-function bar() {
-	if (!foo) {
-		var foo = 10;
+
+	var foo = 1;
+	function bar() {
+		if (!foo) {
+			var foo = 10;
+		}
+		alert(foo);
 	}
-	alert(foo);
-}
-bar();
-```
+	bar();
+
 
 <!-- more -->
 
 答案是“10”，如果你对答案感到惊讶，下面这个例子可能真的会让你的大吃一惊！
 
-```
-var a = 1;
-function b() {
-	a = 10;
-	return;
-	function a() {}
-}
-b();
-alert(a);
-```
+
+	var a = 1;
+	function b() {
+		a = 10;
+		return;
+		function a() {}
+	}
+	b();
+	alert(a);
+
 
 当然，浏览器会弹出“1”，这是怎么回事呢？虽然这个结果让人看起来很奇怪，也让人赶到迷惑，这其实是JavaScript这门语言强大的表现特征。我不知道有没有一个标准的名字来描述这个特性，但我已经喜欢用“变量声明提升”（hoisting）一词来描述它，本文将试图，揭示这一机制，但是首先，我们有必要先来理解什么是JavaScript的作用域。
 
@@ -48,47 +48,47 @@ alert(a);
 
 对于JavaScript初学者来说，作用域是最容易迷惑的问题之一，实际上，不只是初学者，我见过很多有经验的JavaScript程序员也不能完全理解作用域。JavaScript的作用域之所以看起来如此混乱就是因为它看起来类似于C系列的语言风格，思考下面这段C语言代码：
 
-```
-#include <stdio.h>
-int main() {
-	int x = 1;
-	printf("%d, ", x); // 1
-	if (1) {
-		int x = 2;
-		printf("%d, ", x); // 2
+
+	#include <stdio.h>
+	int main() {
+		int x = 1;
+		printf("%d, ", x); // 1
+		if (1) {
+			int x = 2;
+			printf("%d, ", x); // 2
+		}
+		printf("%d\n", x); // 1
 	}
-	printf("%d\n", x); // 1
-}
-```
+
 
 该程序输出为1，2，1。这是因为C以及其他的C系列语言拥有**块级作用域（block-level scope）**，当执行进入一个块级，比如if语句，可以在该作用域内声明新的变量，而不影响外部作用域。但是在JavsScript中情况就不是这样了，请尝试在firebug中执行下面的代码：
 
-```
-var x = 1;
-console.log(x); // 1
-if (true) {
-	var x = 2;
+
+	var x = 1;
+	console.log(x); // 1
+	if (true) {
+		var x = 2;
+		console.log(x); // 2
+	}
 	console.log(x); // 2
-}
-console.log(x); // 2
-```
+
 
 firebug将显示1，2，2。这是因为JavaScript有**函数级作用域函数作用域（function-level scope）**。这和C系列语言是不同的。块级作用域，比如if语句，不会创建一个新的作用域，只有函数才会。
 
 对于许多使用C系列语言（比如C，C++，C#或者Java）的程序员来说，JavaScript语言的这种特性显然不在预期之中，也不受他们的欢迎。幸运的是，因为JavaScript的灵活性，产生了一个解决的方案。如果必须在一个函数中创建一个临时的作用域，请执行以下操作：
 
-```
-function foo() {
-	var x = 1;
-	if (x) {
-		(function () {
-			var x = 2;
-			// some other code
-		}());
+
+	function foo() {
+		var x = 1;
+		if (x) {
+			(function () {
+				var x = 2;
+				// some other code
+			}());
+		}
+		// x is still 1.
 	}
-	// x is still 1.
-}
-```
+
 
 这个方法实际上是相当灵活的，而且你可以在任何你需要创建临时作用域的地方使用这种方法，不只是语句块内。不过，我强烈建议你花点时间去真正的理解JavaScript作用域。这是相当有用的，也是我喜欢的语言特性之一。如果你理解了作用域，将会对你理解变量声明提升（hoisting）带来更多帮助。
 
@@ -103,58 +103,58 @@ function foo() {
 
 函数和变量声明经常会被隐式的提升到他们所在作用域的顶部，而函数参数和全局作用域的变量，已经在那里。这意味着像这样的代码：
 
-```
-function foo() {
-	bar();
-	var x = 1;
-}
-```
+
+	function foo() {
+		bar();
+		var x = 1;
+	}
+
 
 实际上被解释成这样：
 
-```
-function foo() {
-	var x;
-	bar();
-	x = 1;
-}
-```
+
+	function foo() {
+		var x;
+		bar();
+		x = 1;
+	}
+
 
 事实证明，包含声明的行将永远被执行，下面两种方式是等价的：
 
-```
-function foo() {
-	if (false) {
-		var x = 1;
+
+	function foo() {
+		if (false) {
+			var x = 1;
+		}
+		return;
+		var y = 1;
 	}
-	return;
-	var y = 1;
-}
-function foo() {
-	var x, y;
-	if (false) {
-		x = 1;
+	function foo() {
+		var x, y;
+		if (false) {
+			x = 1;
+		}
+		return;
+		y = 1;
 	}
-	return;
-	y = 1;
-}
-```
+
 
 请注意，该变量赋值的部分不会提升，只有变量名称的部分会提升，这种情况与函数声明不同，函数声明时，函数体也将一起提升。请记住，有两个正常的方式来声明函数，请思考下面的JavaScript:
 
-```
-function test() {
-	foo(); // TypeError "foo is not a function"
-	bar(); // "this will run!"
-	var foo = function () { // function expression assigned to local variable 'foo'
-		alert("this won't run!");
+
+	function test() {
+		foo(); // TypeError "foo is not a function"
+		bar(); // "this will run!"
+		var foo = function () { // function expression assigned to local variable 'foo'
+			alert("this won't run!");
+		}
+		function bar() { // function declaration, given the name 'bar'
+			alert("this will run!");
+		}
 	}
-	function bar() { // function declaration, given the name 'bar'
-		alert("this will run!");
-	}
-}
-test();
-```
+	test();
+
 
 在这种情况下，只有包含函数体的函数声明方式，才会连同函数体一起提升。在执行过程中，名称foo被提升，但是foo的函数体被留下了。
 
@@ -172,34 +172,34 @@ test();
 
 你可以在函数表达式给中给函数命名，用这样的语法来声明一个函数，不能完成一个函数声明，下面有一些代码来说明我的意思（注意看spam）：
 
-```
-foo(); // TypeError "foo is not a function"
-bar(); // valid
-baz(); // TypeError "baz is not a function"
-spam(); // ReferenceError "spam is not defined"
 
-var foo = function () {}; // anonymous function expression ('foo' gets hoisted)
-function bar() {}; // function declaration ('bar' and the function body get hoisted)
-var baz = function spam() {}; // named function expression (only 'baz' gets hoisted)
+	foo(); // TypeError "foo is not a function"
+	bar(); // valid
+	baz(); // TypeError "baz is not a function"
+	spam(); // ReferenceError "spam is not defined"
 
-foo(); // valid
-bar(); // valid
-baz(); // valid
-spam(); // ReferenceError "spam is not defined"
-```
+	var foo = function () {}; // anonymous function expression ('foo' gets hoisted)
+	function bar() {}; // function declaration ('bar' and the function body get hoisted)
+	var baz = function spam() {}; // named function expression (only 'baz' gets hoisted)
+
+	foo(); // valid
+	bar(); // valid
+	baz(); // valid
+	spam(); // ReferenceError "spam is not defined"
+
 
 ### 编程时应该如何来应对
 
 现在你应该理解了作用域和变量声明提升（hoisting），那么我们在编写JavaScript的时候应该怎么做呢？最重要的事情就是始终用var表达式来声明你的变量。我强烈的建议你每个作用域里面只写一次var来声明变量，而且是在作用域的最顶部。如果你强迫自己做到这一点，你将永远不会遇到任何与变量提升相关的混乱的问题。但是这样做也让我们很难跟踪那些在当前作用域中实际上已经声明的变量。我建议你使用JSLint和声明一次原则来进行实际操作，如果你这样做了，你的代码应该会看起来像这样：
 
-```
-/*jslint onevar: true [...] */
-function foo(a, b, c) {
-    var x = 1,
-    	bar,
-    	baz = "something";
-}
-```
+
+	/*jslint onevar: true [...] */
+	function foo(a, b, c) {
+	    var x = 1,
+	    	bar,
+	    	baz = "something";
+	}
+
 
 ### 规范怎么说
 

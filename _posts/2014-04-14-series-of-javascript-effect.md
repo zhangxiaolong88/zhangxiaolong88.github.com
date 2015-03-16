@@ -19,10 +19,10 @@ tags: [javascript, effect]
 	<li><img src="/assets/images/javascript-effect/IMG_0190.JPG" width="150" height="280" /></li>
 </ul>
 
-```
-$("img").border({
-	speed: "slow",
-	color: "pink",
-	width: 5
-});
-```
+
+	$("img").border({
+		speed: "slow",
+		color: "pink",
+		width: 5
+	});
+

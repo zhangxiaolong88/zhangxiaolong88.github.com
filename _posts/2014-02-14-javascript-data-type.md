@@ -35,12 +35,12 @@ JavaScript中有一个函数常用于判断数据类型：**typeof**。<br>
 
 一般情况：
 
-```
-typeof(123);   //"number"
-typeof("123"); //"string"
-typeof(true);  //"boolean"
-typeof(undefined); //"undefined"
-```
+
+	typeof(123);   //"number"
+	typeof("123"); //"string"
+	typeof(true);  //"boolean"
+	typeof(undefined); //"undefined"
+
 
 在基本数据类型中，有几个常见的陷阱，看下面几个例子：
 
@@ -48,9 +48,9 @@ typeof(undefined); //"undefined"
 
 Null类型只有一个值：null。
 
-```
-typeof(null); //"object"
-```
+
+	typeof(null); //"object"
+
 
 也许你早就知道这个结果，但是 typeof 函数为什么要这样处理呢？
 这实际上是最初实现的一个错误，然后 ES 也沿用了，后来人们为了解释这一矛盾提出：null 是对象的占位符。
@@ -61,41 +61,41 @@ Undefined 类型也只有一个值：undefined。
 
 undefined 是声明变量时未初始化的默认值，undefined 的类型就是 Undefinded，关于 undefined 还有一些奇怪的现象：
 
-```
-var a;
-var b;
-typeof(a); //"undefined"
-typeof(b); //"undefined"
-typeof(c); //"undefined"
-console.log(a == b); //true
-console.log(a == c); //false
-```
+
+	var a;
+	var b;
+	typeof(a); //"undefined"
+	typeof(b); //"undefined"
+	typeof(c); //"undefined"
+	console.log(a == b); //true
+	console.log(a == c); //false
+
 
 由此可以看出，值 undefined 并不同于未定义的值。但是 typeof并没有区分它们，都返回 undefined。
 
 下面这个情况就更诡异了，现在大家已经习惯把 undefined 当做关键字，但是在一些古老的浏览器中 undefined 的值是可以改变的。
 这段代码在IE6、7、8中执行结果是这样的：
 
-```
-undefined = 123；
-typeof(undefined); //123
-```
+
+	undefined = 123；
+	typeof(undefined); //123
+
 
 所以 jQuery 在某个版本之后，它的源代码是这样子的：
 
-```
-(function( window, undefined ) {
-...
-...
-...
-})( window );
-```
+
+	(function( window, undefined ) {
+	...
+	...
+	...
+	})( window );
+
 
 再看看这个不符常理的例子：
 
-```
-console.log(null == undefined); //true
-```
+
+	console.log(null == undefined); //true
+
 
 实际上，值 undefined 实际上是从值 null 派生来的，因此ES把他们定义为相等。<br>
 尽管这两个值相等，但他们的含义不同。undefined 是声明了变量但未对其初始化时赋予该变量的值，null 则用于表示尚未存在的 **对象**。
@@ -104,17 +104,17 @@ console.log(null == undefined); //true
 
 一个特殊值是 NaN，表示非数（Not a Number）。NaN 是个奇怪的特殊值。一般说来，这种情况发生在类型（String、Boolean 等）转换失败时。
 
-```
-alert(NaN == NaN);  //输出 "false"
-```
+
+	alert(NaN == NaN);  //输出 "false"
+
 
 这个问题我找了很多的解释都不够深入，后来我想到由于JS在设计时，很多地方沿用了Java的特点，其实Java中也有类似的问题（比如Double.NaN == Double.NaN return false）。<br>
 简单来说，由于NaN的解释是not a Number，所以它可以是任意值，所以不能保证两个NaN是相等的，NaN只是一个API中用来判断逻辑的字面量，并没有实际意义。出于这个原因，不推荐使用 NaN 值本身。但是函数 isNaN() 却很好用：
 
-```
-alert(isNaN("blue"));  //输出 "true"
-alert(isNaN("666"));   //输出 "false"
-```
+
+	alert(isNaN("blue"));  //输出 "true"
+	alert(isNaN("666"));   //输出 "false"
+
 
 ### 引用类型
 
@@ -124,42 +124,42 @@ ES并没有类的概念，但是ES定义了**对象**，逻辑上实现了其他
 
 JS中也使用new关键字来创建对象。
 
-```
-var s = new String("123");
-var n = new Number(123); 
-var b = new Boolean(true);
-typeof(s); //"object"
-typeof(n); //"object"
-typeof(b); //"object"
-```
+
+	var s = new String("123");
+	var n = new Number(123); 
+	var b = new Boolean(true);
+	typeof(s); //"object"
+	typeof(n); //"object"
+	typeof(b); //"object"
+
 
 这些都是对象，与基本类型有所不同：
 
-```
-var s = new String("123");
-console.log(s == "123");        //true
-console.log(s === "123");       //false
-console.log(s == String(123));  //true
-console.log(s === String(123)); //false
-```
+
+	var s = new String("123");
+	console.log(s == "123");        //true
+	console.log(s === "123");       //false
+	console.log(s == String(123));  //true
+	console.log(s === String(123)); //false
+
 
 可以看出，值相等，但是类型不同。
 
 下面这些类型也是对象，typeof没有对他们进行区分：
 
-```
-typeof([]);           //"object"
-typeof(new Array());  //"object"
-typeof({});           //"object"
-typeof(new Object()); //"object"
-```
+
+	typeof([]);           //"object"
+	typeof(new Array());  //"object"
+	typeof({});           //"object"
+	typeof(new Object()); //"object"
+
 
 还有一种特殊的对象，typeof 对它有一个特别的返回值：
 
-```
-typeof(function f(){});        //"function"
-typeof(new Function("f",""));  //"function"
-```
+
+	typeof(function f(){});        //"function"
+	typeof(new Function("f",""));  //"function"
+
 
 为什么typeof要单独区分object和function呢？
 
@@ -172,21 +172,21 @@ A instanceof B，用来查看A是不是B的实例，也可以说判断B是不是
 
 执行下面这段代码：
 
-```
-function F(){};
-console.log(F instanceof Object);   //true
-console.log(F instanceof Function); //true
-var f = new F();
-console.log(f instanceof Object);   //true
-console.log(f instanceof Function); //false
-```
+
+	function F(){};
+	console.log(F instanceof Object);   //true
+	console.log(F instanceof Function); //true
+	var f = new F();
+	console.log(f instanceof Object);   //true
+	console.log(f instanceof Function); //false
+
 
 这说明F是函数的实例，也是对象的实例，那么事实就是函数就是对象、对象就是函数这么简单吗？
 
-```
-console.log(Function instanceof Object);  //true  
-console.log(Object instanceof Function);  //true
-```
+
+	console.log(Function instanceof Object);  //true  
+	console.log(Object instanceof Function);  //true
+
 
 这个结果会让初学者迷惑，下面，我们不得不首先说明这个关于JS继承中常常提到的概念：原型链。
 
@@ -204,32 +204,32 @@ console.log(Object instanceof Function);  //true
 
 而所有的构造函数都是 Function 的实例，包括 Function 本身：
 
-```
-function F(){};
-console.log(F.constructor === Function);         //true
-console.log(String.constructor === Function);    //true
-console.log(Number.constructor === Function);    //true
-console.log(Boolean.constructor === Function);   //true
-console.log(Object.constructor === Function);    //true
-console.log(Function.constructor === Function);  //true
-```
+
+	function F(){};
+	console.log(F.constructor === Function);         //true
+	console.log(String.constructor === Function);    //true
+	console.log(Number.constructor === Function);    //true
+	console.log(Boolean.constructor === Function);   //true
+	console.log(Object.constructor === Function);    //true
+	console.log(Function.constructor === Function);  //true
+
 
 也就是说所有的构造函数都能通过原型链找到创建他们的 Function构造函数的构造原型 Function.protorype对象（包括 Function 自己），所以
 
-```
-function F(){};
-console.log(F instanceof Function);         //true
-console.log(String instanceof Function);    //true
-console.log(Number instanceof Function);    //true
-console.log(Boolean instanceof Function);   //true
-console.log(Object instanceof Function);    //true
-console.log(Function instanceof Function);  //true
-```
+
+	function F(){};
+	console.log(F instanceof Function);         //true
+	console.log(String instanceof Function);    //true
+	console.log(Number instanceof Function);    //true
+	console.log(Boolean instanceof Function);   //true
+	console.log(Object instanceof Function);    //true
+	console.log(Function instanceof Function);  //true
+
 
 与此同时，又因为 Function.prototype 是一个对象，所以他的构造函数是 Object. 从原型链机制的的角度来说，那就是说所有的函数都能通过原型链找到创建他们的 Object 构造函数的构造原型 Object.prototype对象，所以：
 
-```
-console.log(Function instanceof Object);// true
-```
+
+	console.log(Function instanceof Object);// true
+
 
 #### 结论：在 JavaScript 语言中，一切的一切都是对象，它们全部继承自 Object。或者说所有对象的原型链的根节点都是 Object.prototype

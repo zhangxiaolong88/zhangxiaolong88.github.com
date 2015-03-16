@@ -12,24 +12,24 @@ tags: [css, html, float]
 
 html:
 
-```
-<div class="left">left</div>
-<div class="right">right</div>
-```
+
+	<div class="left">left</div>
+	<div class="right">right</div>
+
 
 <!-- more -->
 css:
 
-```
-.left {
-	float: left;
-	width: 100px;
-	background: red;
-}
-.right {
-	background:blue;
-}
-```
+
+	.left {
+		float: left;
+		width: 100px;
+		background: red;
+	}
+	.right {
+		background:blue;
+	}
+
 
 1）如果right元素不设置宽度，则会跟在left之后且宽度自适应
 
@@ -40,17 +40,17 @@ css:
 
 css:
 
-```
-.left {
-	float: left;
-	width: 100px; 
-	background: red;
-}
-.right {
-	width:100px; 
-	background:blue;
-}
-```
+
+	.left {
+		float: left;
+		width: 100px; 
+		background: red;
+	}
+	.right {
+		width:100px; 
+		background:blue;
+	}
+
 
 <img src="/assets/images/yuan-su-fu-dong/float_02.jpg" width="400px" />
 
@@ -58,26 +58,26 @@ css:
 
 html:
 
-```
-<div class="float">float</div>
-<div class="content">我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字</div>
-```
+
+	<div class="float">float</div>
+	<div class="content">我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字我是围绕你的文字</div>
+
 
 css:
 
-```
-.float { 
-	float:left; 
-	width:100px;
-	height:100px; 
-	background:red;
-}
-.content { 
-	width:200px; 
-	height:200px; 
-	background:blue;
-}
-```
+
+	.float { 
+		float:left; 
+		width:100px;
+		height:100px; 
+		background:red;
+	}
+	.content { 
+		width:200px; 
+		height:200px; 
+		background:blue;
+	}
+
 
 <img src="/assets/images/yuan-su-fu-dong/float_03.jpg" width="300px" />
 
@@ -85,26 +85,26 @@ css:
 
 html:
 
-```
-<div class="outer">
-    <div class="float">float</div>
-</div>
-```
+
+	<div class="outer">
+	    <div class="float">float</div>
+	</div>
+
 
 css:
 
-```
-.outer { 
-	padding:20px; 
-	background:blue;
-}
-.float { 
-	float:left; 
-	width:100px; 
-	height:100px; 
-	background: red;
-}
-```
+
+	.outer { 
+		padding:20px; 
+		background:blue;
+	}
+	.float { 
+		float:left; 
+		width:100px; 
+		height:100px; 
+		background: red;
+	}
+
 
 <img src="/assets/images/yuan-su-fu-dong/float_04.jpg" width="600px" />
 
@@ -114,29 +114,29 @@ css:
 
 方法1：
 
-```
-.outer {
-	overflow: hidden; 
-	zoom:1; //ie6 trigger haslayout
-}
-```
+
+	.outer {
+		overflow: hidden; 
+		zoom:1; //ie6 trigger haslayout
+	}
+
 
 方法2：
 html:
 
-```
-<div class="outer">
-    <div class="float">float</div>
-    <div class="clear"></div>
-</div>
-```
+
+	<div class="outer">
+	    <div class="float">float</div>
+	    <div class="clear"></div>
+	</div>
+
 
 css:
 
-```
-.clear {
-	clear:both;
-}
-```
+
+	.clear {
+		clear:both;
+	}
+
 
 <img src="/assets/images/yuan-su-fu-dong/float_05.jpg" width="600px" />
