@@ -25,17 +25,17 @@
 				<nav class="nav-global">
 					<ul>
 						<li class="logo"><a href="/">{{ site.title }}</a></li>
-						<li class="tag"><a href="/about.html" target="_blank">关于我</a></li>
-						<li class="archive"><a href="/archive.html">文章</a></li>
-						<li class="category"><a href="/categories.html">分类</a></li>
-						<li class="tag"><a href="/tags.html">标签</a></li>
-						<li> </li>
+						<li class="tag"><a href="/about.html" target="_blank">about</a></li>
+						<li class="archive"><a href="/archive.html">archive</a></li>
+						<li class="category"><a href="/categories.html">categories</a></li>
+						<li class="tag"><a href="/tags.html">tags</a></li>
+						<li class="lab"><a href="/eva.html" target="_blank">laboratory</a></li>
 					</ul>
-					<ul class="nav-hots">
+					<ul>
 					  <li>
-					      <a href="/html5/2013/12/21/barrage-game" target="_blank">键盘小游戏，娱乐一下~</a>
+					      <a href="/html5/2013/12/21/barrage-game">键盘小游戏，娱乐一下~</a>
 					  </li><li>
-					      <a href="/eva.html" target="_blank">视差滚动实验</a>
+					      <a href="/eva.html">视差滚动实验</a>
 					  </li>
 					</ul>
 				</nav>
@@ -55,14 +55,14 @@
 		<div class="unit-foot">
 			<div class="unit-inner unit-foot-inner">
 				<div class="misc vcard">
-					<h4>分类</h4>
+					<h4>categories</h4>
 					<ul class="tag_box inline">
 					  {% assign categories_list = site.categories %}
 					  {% include JB/categories_list %}
 					</ul>
 				</div><!-- misc -->
 				<div class="misc vcard">
-					<h4>文章</h4>
+					<h4>archive</h4>
 					<ul class="posts">
 					  {% for post in site.posts %}
 					    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
@@ -70,7 +70,7 @@
 					</ul>
 				</div><!-- misc -->
 				<div class="misc vcard">
-					<h4>关于</h4>
+					<h4>about</h4>
 					<ul>
 						<li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
 						<li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>

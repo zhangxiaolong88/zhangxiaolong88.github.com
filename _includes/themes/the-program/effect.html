@@ -28,7 +28,7 @@
 				$("img").border({
 					speed: "slow",
 					color: "pink",
-					width: 5
+					width: 10
 				});
 			}
 			/* color */
@@ -48,160 +48,163 @@
 				});
 			}
 			/* pie charts */
-			window.requestAnimFrame = (function() {
-				return window.requestAnimationFrame ||
-					window.webkitRequestAnimationFrame ||
-					window.mozRequestAnimationFrame ||
-					window.oRequestAnimationFrame ||
-					window.msRequestAnimationFrame ||
-					function( /* function */ callback, /* DOMElement */ element) {
-						window.setTimeout(callback, 1000 / 60);
-					};
-			})();
-			var h = document.body.clientWidth * 81 / 100 - 420 - 104;
-			var w = document.body.clientWidth * 81 / 100 - 420 - 104;
-			var paper = Raphael("container", w, h, function() {
-				var R = this;
-				var rad = Math.PI / 180;
+			if($("#container").length != 0) {
+				window.requestAnimFrame = (function() {
+					return window.requestAnimationFrame ||
+						window.webkitRequestAnimationFrame ||
+						window.mozRequestAnimationFrame ||
+						window.oRequestAnimationFrame ||
+						window.msRequestAnimationFrame ||
+						function( /* function */ callback, /* DOMElement */ element) {
+							window.setTimeout(callback, 1000 / 60);
+						};
+				})();
+				var h = document.body.clientWidth * 81 / 100 - 420 - 104;
+				var w = document.body.clientWidth * 81 / 100 - 420 - 104;
+				var paper = Raphael("container", w, h, function() {
+					var R = this;
+					var rad = Math.PI / 180;
 
-				var colors = [
-						"#c158b2",
-						"#eeae3c",
-						"#638bcb",
-						"#adcd6d",
-						"#f5c6c5",
-						"#cccccc"
-					],
-					categories = ['MSIE', 'Firefox', 'Chrome', 'Safari', 'Opera'],
-					name = 'Browser brands',
-					data = [{
-						y: 51.95,
-						color: colors[0],
-						drilldown: {
-							name: 'MSIE versions',
-							categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0', 'MSIE 10.0', 'other'],
-							data: [8.72, 6.02, 4.56, 4.32, 4.17, 24.16],
-							color: colors[0]
-						}
-					}, {
-						y: 19.99,
-						color: colors[1],
-						drilldown: {
-							name: 'Firefox versions',
-							categories: ['Firefox 1.0', 'Firefox 2.0', 'Firefox 3.0', 'Firefox 3.5', 'Firefox 3.6', 'other'],
-							data: [9.24, 4.19, 1.65, 1.4, 0.80, 3.57],
-							color: colors[1]
-						}
-					}, {
-						y: 15.94,
-						color: colors[2],
-						drilldown: {
-							name: 'Chrome versions',
-							categories: ['Chrome 7.0', 'Chrome 8.0', 'Chrome 9.0',
-								'Chrome 10.0', 'Chrome 11.0', 'other'
-							],
-							data: [2.91, 1.70, 1.36, 0.32, 0.22, 9.12],
-							color: colors[2]
-						}
-					}, {
-						y: 14.15,
-						color: colors[3],
-						drilldown: {
-							name: 'Safari versions',
-							categories: ['Safari 5.0', 'Safari 4.0', 'Safari Win 5.0', 'Safari 4.1',
-								'Safari 3.1', 'other'
-							],
-							data: [4.55, 2.42, 1.23, 1.21, 0.20, 6.14],
-							color: colors[3]
-						}
-					}, {
-						y: 2.14,
-						color: colors[4],
-						drilldown: {
-							name: 'Opera versions',
-							categories: ['Opera 9.x', 'Opera 10.x', 'other'],
-							data: [1.65, 0.37, 0.12],
-							color: colors[4]
-						}
-					}];
-
-
-				// Build the data arrays
-				var browserData = [];
-				var versionsData = [];
-				for (var i = 0; i < data.length; i++) {
-
-					// add browser data
-					browserData.push({
-						id: categories[i],
-						label: categories[i],
-						amount: data[i].y,
-						color: data[i].color,
-						subNumber: data[i].drilldown.data.length
-					});
-
-					// add version data
-					for (var j = 0; j < data[i].drilldown.data.length; j++) {
-						var colors = new ColorGrads({
-							StartColor: data[i].color,
-							EndColor: "#ffffff",
-							Step: data[i].drilldown.data.length + 1
-						}).Create();
-						versionsData.push({
-							id: data[i].drilldown.categories[j],
-							label: data[i].drilldown.categories[j],
-							amount: data[i].drilldown.data[j],
-							color: "rgb(" + colors[j].join(",") + ")",
-							pid: categories[i]
-						});
-					}
-				}
-				R.rapcharts({
-					chart: {
-						type: "pie"
-					},
-					title: {
-						text: 'Browser market share, April, 2011'
-					},
-					subtitle: {
-						text: "raphael charts"
-					},
-					plotOptions: {
-						pie: {
-							center: ['50%', '50%']
-						}
-					},
-					tooltip: {
-						enabled: true,
-						formatter: function() {
-							return this.label + '\n' + this.y + "%";
-						}
-					},
-					series: [{
-						name: 'Browsers',
-						data: browserData,
-						size: '25%',
-						gap: true,
-						dataLabels: {
-							formatter: function() {
-								return this.y > 5 ? this.y + '%' : null;
+					var colors = [
+							"#c158b2",
+							"#eeae3c",
+							"#638bcb",
+							"#adcd6d",
+							"#f5c6c5",
+							"#cccccc"
+						],
+						categories = ['MSIE', 'Firefox', 'Chrome', 'Safari', 'Opera'],
+						name = 'Browser brands',
+						data = [{
+							y: 51.95,
+							color: colors[0],
+							drilldown: {
+								name: 'MSIE versions',
+								categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0', 'MSIE 10.0', 'other'],
+								data: [8.72, 6.02, 4.56, 4.32, 4.17, 24.16],
+								color: colors[0]
 							}
+						}, {
+							y: 19.99,
+							color: colors[1],
+							drilldown: {
+								name: 'Firefox versions',
+								categories: ['Firefox 1.0', 'Firefox 2.0', 'Firefox 3.0', 'Firefox 3.5', 'Firefox 3.6', 'other'],
+								data: [9.24, 4.19, 1.65, 1.4, 0.80, 3.57],
+								color: colors[1]
+							}
+						}, {
+							y: 15.94,
+							color: colors[2],
+							drilldown: {
+								name: 'Chrome versions',
+								categories: ['Chrome 7.0', 'Chrome 8.0', 'Chrome 9.0',
+									'Chrome 10.0', 'Chrome 11.0', 'other'
+								],
+								data: [2.91, 1.70, 1.36, 0.32, 0.22, 9.12],
+								color: colors[2]
+							}
+						}, {
+							y: 14.15,
+							color: colors[3],
+							drilldown: {
+								name: 'Safari versions',
+								categories: ['Safari 5.0', 'Safari 4.0', 'Safari Win 5.0', 'Safari 4.1',
+									'Safari 3.1', 'other'
+								],
+								data: [4.55, 2.42, 1.23, 1.21, 0.20, 6.14],
+								color: colors[3]
+							}
+						}, {
+							y: 2.14,
+							color: colors[4],
+							drilldown: {
+								name: 'Opera versions',
+								categories: ['Opera 9.x', 'Opera 10.x', 'other'],
+								data: [1.65, 0.37, 0.12],
+								color: colors[4]
+							}
+						}];
+
+
+					// Build the data arrays
+					var browserData = [];
+					var versionsData = [];
+					for (var i = 0; i < data.length; i++) {
+
+						// add browser data
+						browserData.push({
+							id: categories[i],
+							label: categories[i],
+							amount: data[i].y,
+							color: data[i].color,
+							subNumber: data[i].drilldown.data.length
+						});
+
+						// add version data
+						for (var j = 0; j < data[i].drilldown.data.length; j++) {
+							var colors = new ColorGrads({
+								StartColor: data[i].color,
+								EndColor: "#ffffff",
+								Step: data[i].drilldown.data.length + 1
+							}).Create();
+							versionsData.push({
+								id: data[i].drilldown.categories[j],
+								label: data[i].drilldown.categories[j],
+								amount: data[i].drilldown.data[j],
+								color: "rgb(" + colors[j].join(",") + ")",
+								pid: categories[i]
+							});
 						}
-					}, {
-						name: 'Versions',
-						data: versionsData,
-						size: '70%',
-						allowPointSelect: true,
-						nightingale: true,
-						dataLabels: {
+					}
+					R.rapcharts({
+						chart: {
+							type: "pie"
+						},
+						title: {
+							text: 'Browser market share, April, 2011'
+						},
+						subtitle: {
+							text: "raphael charts"
+						},
+						plotOptions: {
+							pie: {
+								center: ['50%', '50%']
+							}
+						},
+						tooltip: {
+							enabled: true,
 							formatter: function() {
-								return this.y > 2 ? this.label + '\n' + this.y + '%' : null;
-							},
-							color: '#948a54'
-						}
-					}]
+								return this.label + '\n' + this.y + "%";
+							}
+						},
+						series: [{
+							name: 'Browsers',
+							data: browserData,
+							size: '25%',
+							gap: true,
+							dataLabels: {
+								formatter: function() {
+									return this.y > 5 ? this.y + '%' : null;
+								}
+							}
+						}, {
+							name: 'Versions',
+							data: versionsData,
+							size: '70%',
+							allowPointSelect: true,
+							nightingale: true,
+							dataLabels: {
+								formatter: function() {
+									return this.y > 2 ? this.label + '\n' + this.y + '%' : null;
+								},
+								color: '#948a54'
+							}
+						}]
+					});
 				});
-			});
+			}
+			
 			/* */
 		});
 	</script>

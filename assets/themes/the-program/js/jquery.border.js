@@ -46,7 +46,6 @@
 
 			(function($img, $boxer){
 				$img.unbind("mouseover").mouseover(function(evt){
-					console.log("mouseover");
 					$boxer.find(".top_border").css({
 						"position": "absolute",
 						"top": 0,

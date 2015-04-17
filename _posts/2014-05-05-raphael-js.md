@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Raphael JS矢量图形工具库"
+title: "Raphael JS 矢量图形工具库"
 keywords: JavaScript Raphael SVG
 description: "Raphael JS."
 category: javascript
