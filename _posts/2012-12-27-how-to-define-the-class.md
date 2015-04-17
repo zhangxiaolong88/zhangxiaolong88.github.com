@@ -39,7 +39,7 @@ var Cat = {
         alert("成员方法1");
     }
 };
-var cat = Object.create(Cat );
+var cat = Object.create(Cat);
 cat.method1(); //成员方法1
 ```
 
