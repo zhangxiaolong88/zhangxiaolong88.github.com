@@ -29,40 +29,40 @@ CSSCompat：只包括content
 #### 2. 水平居中
 CSSCompat：
 
-
-	margin: 0 auto; //就可以水平居中
-
+```css
+margin: 0 auto; 
+```
 
 QuirksModel：
 
-
-	text-align:center;
-
+```css
+text-align:center;
+```
 
 #### 3. 百分比高度
 css:
 
-
-	body {text-align: center;}
-	div {border:1px solid #000;}
-	.box {
-	    height: 20%;
-	    width: 10%;
-	    margin:0 auto;
-	}
-	.inbox {
-	    width: 50%;
-	    height: 20%;
-	}
-
+```css
+body {text-align: center;}
+div {border:1px solid #000;}
+.box {
+    height: 20%;
+    width: 10%;
+    margin:0 auto;
+}
+.inbox {
+    width: 50%;
+    height: 20%;
+}
+```
 
 html:
 
-
-	<div class="box">
-	    <div class="inbox"></div>
-	</div>
-
+```html
+<div class="box">
+    <div class="inbox"></div>
+</div>
+```
 
 QuirksModel：可以设置百分比高度
 
@@ -82,6 +82,6 @@ QuirksModel：会继承
 
 ### javascript不同之处：
 
-
-	alert(document.compatMode); //可以查看当前浏览器使用什么模式
-
+```javascript
+alert(document.compatMode); //可以查看当前浏览器使用什么模式
+```
