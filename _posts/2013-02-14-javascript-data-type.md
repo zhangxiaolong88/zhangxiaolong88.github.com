@@ -157,7 +157,7 @@ typeof(new Object()); //"object"
 还有一种特殊的对象，typeof 对它有一个特别的返回值：
 
 ```javascript
-```javascripttypeof(new Function("f",""));  //"function"
+typeof(new Function("f",""));  //"function"
 ```
 
 为什么typeof要单独区分object和function呢？
