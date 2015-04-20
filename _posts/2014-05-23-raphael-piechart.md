@@ -1,6 +1,6 @@
 ---
 layout: effect
-title: "Raphael实践：南丁格尔双饼图"
+title: "Raphael JS实践：南丁格尔双饼图"
 keywords: JavaScript Raphael SVG pie chart
 description: "nightingale charts by Raphael JS."
 category: javascript
