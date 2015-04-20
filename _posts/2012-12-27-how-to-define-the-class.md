@@ -8,6 +8,12 @@ tags: [javascript, class]
 ---
 {% include JB/setup %}
 
+由于javascript是基于原型的语言，使得面向对象成为javascript与传统静态语言最大的不同之处，也是了解javascript的语言特性的重要组成部分。  
+
+为了避免面条代码，javascript也出现了多种设计模式，今天所说的主题是基于工作中使用较多的工厂模式的而引起的相关发散思考。
+
+<!-- more -->
+
 ### 第一种 this and prototype
 
 ```javascript
@@ -24,13 +30,11 @@ cat.publicMethod1(); //公有方法一
 cat.publicMethod2(); //公有方法二
 ```
 
-<!-- more -->
-
-一般的实现方法，比较麻烦！！！
+一般的实现方法，基于原型。
 
 ### 第二种 Object.create()
 
-为了解决"构造函数法"的缺点，更方便地生成对象，Javascript的国际标准ECMAScript第五版（目前通行的是第三版），提出了一个新的方法Object.create()。
+为了解决"构造函数法"的缺点，更方便地生成对象，Javascript的国际标准ECMAScript第五版，提出了一个新的方法Object.create()。
 
 ```javascript
 var Cat = {
@@ -59,7 +63,7 @@ cat.method1(); //成员方法
 
 没有私有属性和方法，实例之间也没有数据共享
 
-### 第三种 极简主义
+### 第三种 一种新的思路
 
 ```javascript
 var Obj = {
@@ -98,4 +102,3 @@ var child = {
 };
 ```
 
-perfect!!!!

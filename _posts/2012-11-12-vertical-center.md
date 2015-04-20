@@ -8,6 +8,8 @@ tags: [css, html]
 ---
 {% include JB/setup %}
 
+<!-- more -->
+
 ### 前提：
 
 ```css
@@ -21,8 +23,6 @@ html:
 ```html
 <div class="box">现在我们要使这段文字垂直居中显示！</div>
 ```
-
-<!-- more -->
 
 box有固定高度：
 

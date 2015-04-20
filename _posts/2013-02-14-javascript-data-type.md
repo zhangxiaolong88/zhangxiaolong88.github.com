@@ -8,13 +8,15 @@ tags: [javascript]
 ---
 {% include JB/setup %}
 
-你是否常常听到这些问题？<br>
-- JavaScript有几种基本数据类型？
-- typeof一共有多少种结果？结果中为什么没有array？
-- Object,Function,String,Number,Array有没有什么关系，是什么关系？
+你是否常常听到这些问题？
 
-很基础的问题，却又很难说清楚。<br>
-如果你需要做一次JavaScript数据类型的培训，你有信心吗？
+* JavaScript有几种基本数据类型？
+
+* typeof一共有多少种结果？结果中为什么没有array？
+
+* Object,Function,String,Number,Array有没有什么关系，是什么关系？
+
+很基础的问题，却又很难说清楚。
 
 <!-- more -->
 

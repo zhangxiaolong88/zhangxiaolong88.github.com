@@ -8,6 +8,8 @@ tags: [css, html, float]
 ---
 {% include JB/setup %}
 
+<!-- more -->
+
 ### 例子1：浮动元素的特性
 
 html:
@@ -17,7 +19,6 @@ html:
 <div class="right">right</div>
 ```
 
-<!-- more -->
 css:
 
 ```css

@@ -8,6 +8,8 @@ tags: [css, html, layout]
 ---
 {% include JB/setup %}
 
+<!-- more -->
+
 ### 要求： 两栏布局，左边的固定宽度，右边的自适应宽度
 #### 第一种方式：
 html:
@@ -16,8 +18,6 @@ html:
 <div id="left">left</div>
 <div id="right">right</div>
 ```
-
-<!-- more -->
 
 css:
 

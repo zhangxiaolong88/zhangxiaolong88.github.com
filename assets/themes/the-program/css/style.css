@@ -77,10 +77,10 @@ No styleguide reference.
 a {
   color: #00e;
 }
-.pull-right a {
+.paginationLinks a {
   color: #ddd;
 }
-.pull-right .page-index {
+.paginationLinks .page-index {
   float: right;
 }
 a:visited {
@@ -184,6 +184,9 @@ ol {
 }
 dd {
   margin: 0 0 0 40px;
+}
+li {
+  line-height: 25px;
 }
 nav ul,
 nav ol {
