@@ -8,7 +8,7 @@ markdown: redcarpet
 redcarpet:
     extensions: ["fenced_code_blocks", "tables", "highlight", "strikethrough", "underline"]
 highlighter: pygments
-paginate: 5
+paginate: 10
 
 encoding: utf-8
 

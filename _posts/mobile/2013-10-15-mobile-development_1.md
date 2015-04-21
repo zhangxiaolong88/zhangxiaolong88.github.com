@@ -3,7 +3,7 @@ layout: post
 title: "移动端开发（一）"
 keywords: JavaScript mobile development
 description: "JavaScript mobile development"
-category: javascript
+category: mobile
 tags: [mobile]
 ---
 {% include JB/setup %}

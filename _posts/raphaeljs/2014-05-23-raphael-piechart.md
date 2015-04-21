@@ -3,7 +3,7 @@ layout: effect
 title: "Raphael JS 实践：南丁格尔双饼图"
 keywords: JavaScript Raphael SVG pie chart
 description: "nightingale charts by Raphael JS."
-category: javascript
+category: raphaeljs
 tags: [javascript, raphael, svg, charts]
 ---
 {% include JB/setup %}

@@ -3,7 +3,7 @@ layout: post
 title: "浏览器的标准模式和怪癖模式"
 keywords: browser css JavaScript
 description: ""
-category: browser
+category: css
 tags: [browser, css, javascript]
 ---
 {% include JB/setup %}

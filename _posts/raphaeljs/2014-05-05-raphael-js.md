@@ -3,7 +3,7 @@ layout: post
 title: "Raphael JS 矢量图形工具库"
 keywords: JavaScript Raphael SVG
 description: "Raphael JS."
-category: javascript
+category: raphaeljs
 tags: [javascript, raphael, svg]
 ---
 {% include JB/setup %}
