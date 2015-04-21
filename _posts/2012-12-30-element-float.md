@@ -8,6 +8,8 @@ tags: [css, html, float]
 ---
 {% include JB/setup %}
 
+浮动元素的有哪些特性？
+
 <!-- more -->
 
 ### 例子1：浮动元素的特性

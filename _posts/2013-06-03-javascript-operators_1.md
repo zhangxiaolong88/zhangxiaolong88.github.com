@@ -8,6 +8,10 @@ tags: [javascript]
 ---
 {% include JB/setup %}
 
+javascript运算中会出现哪些匪夷所思的现象。
+
+<!-- more -->
+
 javascript中的值分为两大类：原始值（primitive）和对象（object）。
 
 **下面的值是原始值:**
@@ -39,8 +43,6 @@ var d = /\s*/;         // 就是  new RegExp("\\s*")
 ```
 
 这次要说的运算符，常见的陷阱就在于原始值和对象的相互转换。
-
-<!-- more -->
 
 ###1. 隐式操作
 

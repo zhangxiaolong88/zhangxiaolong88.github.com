@@ -10,7 +10,7 @@ tags: [javascript]
 
 你是否常常听到这些问题？
 
-* JavaScript有几种基本数据类型？
+* JavaScript的数据类型主要分为哪几类？
 
 * typeof一共有多少种结果？结果中为什么没有array？
 

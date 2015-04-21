@@ -25,14 +25,9 @@
 		//init options
 		self.options = $.extend({}, $.Border.defaults, opts);
 
-		self.$el.each(function(i, v){
+		self.$el.each(function(i, v) {
 			var $img = $(v);
-			var boxer = "<div class='border_boxer'>" 
-				+ "<div class='top_border'></div>" 
-				+ "<div class='left_border'></div>" 
-				+ "<div class='bottom_border'></div>" 
-				+ "<div class='right_border'></div>"
-			+ "</div>";
+			var boxer = "<div class='border_boxer'>" + "<div class='top_border'></div>" + "<div class='left_border'></div>" + "<div class='bottom_border'></div>" + "<div class='right_border'></div>" + "</div>";
 			$img.parent().append($(boxer));
 			var $borderBoxer = $(v).parent().find(".border_boxer");
 			$borderBoxer.append($img);
@@ -44,8 +39,8 @@
 				"width": $img.width()
 			});
 
-			(function($img, $boxer){
-				$img.unbind("mouseover").mouseover(function(evt){
+			(function($img, $boxer) {
+				$img.unbind("mouseover").mouseover(function(evt) {
 					$boxer.find(".top_border").css({
 						"position": "absolute",
 						"top": 0,
@@ -66,7 +61,7 @@
 						"position": "absolute",
 						"bottom": 0,
 						"right": 0,
-						"width": "1%", 
+						"width": "1%",
 						"height": self.options.width,
 						"background-color": self.options.color
 					});
@@ -79,18 +74,24 @@
 						"background-color": self.options.color
 					}).delay(100).animate({
 						"height": "100%"
-					},{
+					}, {
 						duration: self.options.speed,
 						easing: "swing",
-						step: function(per, obj){
-							$boxer.find(".top_border").css({"width": per + "%"});
-							$boxer.find(".left_border").css({"height": per + "%"});
-							$boxer.find(".bottom_border").css({"width": per + "%"});
+						step: function(per, obj) {
+							$boxer.find(".top_border").css({
+								"width": per + "%"
+							});
+							$boxer.find(".left_border").css({
+								"height": per + "%"
+							});
+							$boxer.find(".bottom_border").css({
+								"width": per + "%"
+							});
 						}
 
 					});
 					evt.stopPropagation();
-				}).unbind("mouseout").mouseout(function(evt){
+				}).unbind("mouseout").mouseout(function(evt) {
 					$boxer.find(".top_border, .bottom_border").stop(true).css({
 						"width": 0
 					});
@@ -109,3 +110,15 @@
 	}
 
 })(jQuery, window);
+
+
+$(function() {
+	/* border */
+	if ($(".border").length != 0) {
+		$("img").border({
+			speed: "slow",
+			color: "pink",
+			width: 10
+		});
+	}
+});

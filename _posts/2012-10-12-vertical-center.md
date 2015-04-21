@@ -8,6 +8,8 @@ tags: [css, html]
 ---
 {% include JB/setup %}
 
+常见的居中方案整理。
+
 <!-- more -->
 
 ### 前提：

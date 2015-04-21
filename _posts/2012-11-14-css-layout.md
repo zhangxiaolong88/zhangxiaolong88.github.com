@@ -8,6 +8,8 @@ tags: [css, html, layout]
 ---
 {% include JB/setup %}
 
+常见的网页布局整理。
+
 <!-- more -->
 
 ### 要求： 两栏布局，左边的固定宽度，右边的自适应宽度

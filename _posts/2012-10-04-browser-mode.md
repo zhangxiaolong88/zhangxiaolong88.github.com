@@ -8,16 +8,17 @@ tags: [browser, css, javascript]
 ---
 {% include JB/setup %}
 
-浏览器有两种模式：QuirksModel(怪癖模式)、 CSSCompat(strict mode 标准模式)
-浏览器解析CSS用哪种模式取决于DTD声明：
-
-* 当浏览器采用HTML4.0以下的DOCTYPE声明时，浏览器采用QuirksModel，其他版本采用CSSCompat；*
-
-* 不写DOCTYPE，浏览器采用QuirksModel；浏览器不识别DOCTYPE，采用CSSCompat。*
+浏览器有两种模式：QuirksModel(怪癖模式)、 CSSCompat(strict mode 标准模式)  
 
 <!-- more -->
 
-### CSS不同之处（收集中）：
+浏览器解析CSS用哪种模式取决于DTD声明：  
+
+* 当浏览器采用HTML4.0以下的DOCTYPE声明时，浏览器采用QuirksModel，其他版本采用CSSCompat；*  
+
+* 不写DOCTYPE，浏览器采用QuirksModel；浏览器不识别DOCTYPE，采用CSSCompat。*  
+
+### CSS不同之处（收集中）：  
 #### 1. 盒子模型
 
 QuirksModel：盒子宽度包括padding和border

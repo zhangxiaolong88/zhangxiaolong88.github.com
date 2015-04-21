@@ -8,15 +8,17 @@ tags: [javascript, raphael, svg]
 ---
 {% include JB/setup %}
 
-最近公司要做各种自定义的统计图表，终于找到了Raphael JS这样一个优秀的矢量图形解决方案，它是一个低调的库，仔细研究后也发现它很强大。
+Raphael JS 简介。
+
+<!-- more -->
+
+最近工作中要做各种自定义的统计图表，最终选择了Raphael JS这样一个矢量图形解决方案，它是一个低调的库，仔细研究后会发现它的强大之处。
 
 Raphael Javascript 是一个 Javascript的矢量库。
 
 它可以处理SVG、VML格式的矢量图，它使用SVG W3C推荐标准和VML作为创建图形的基础，你可以用Javascript 操作Dom 很容易的创建出复杂的柱状图、走势图、曲线图等各种图表，可以画图，可以画出任意复杂度的图像，以及图表或图像裁剪和旋转等复杂操作。
 
 同时它是跨浏览器的，完全支持 Internet Explorer 6.0+、Firefox 3.0+、Chrome 3.0+、Safari 3.0+、Opera 9.5+。
-
-<!-- more -->
 
 简单介绍一下Raphael的用法：
 

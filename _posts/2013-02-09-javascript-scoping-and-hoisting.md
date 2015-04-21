@@ -12,7 +12,9 @@ tags: [javascript]
 
 作者：Ben Cherry
 
-该文详细讲述了JavaScript Hoisting的概念，翻译如下：
+该文详细讲述了JavaScript Hoisting的概念。
+
+<!-- more -->
 
 你知道下面这段JavaScript执行会弹出什么值吗？
 
@@ -26,8 +28,6 @@ function bar() {
 }
 bar();
 ```
-
-<!-- more -->
 
 答案是“10”，如果你对答案感到惊讶，下面这个例子可能真的会让你的大吃一惊！
 

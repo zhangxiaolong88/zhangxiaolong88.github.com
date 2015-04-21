@@ -1,27 +1,29 @@
 ---
 layout: post
-title: "原型链解析"
+title: "原型链解析（一）"
 keywords: JavaScript prototype __proto__
 description: ""
 category: javascript
-tags: [javascript, prototype, _proto_]
+tags: [javascript, prototype, __proto__]
 ---
 {% include JB/setup %}
 
-<img src="/assets/images/yuan-xing-lian-jie-xi/chain.jpg" width="650px" />
+原型链的解释以及推导过程。
 
 <!-- more -->
+
+<img src="/assets/images/yuan-xing-lian-jie-xi/chain.jpg" width="650px" />
 
 ### 原型链：
 
 ```javascript
-var father = function(){
-}
-father.prototype.say = function(){
+var father = function() {
+};
+father.prototype.say = function() {
     alert("Hello");
 }
-var child = function(){
-}
+var child = function() {
+};
 child.prototype = new father();
 
 var c = new child();
