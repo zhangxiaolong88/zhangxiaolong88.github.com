@@ -573,6 +573,7 @@ html {
   color: #2d2d2d;
 }
 #page {
+  overflow: hidden;
   background: url('/assets/themes/the-program/skin/100-90-5-monochrome.png');
   background-repeat: repeat;
   background-position: 0 0;
