@@ -102,10 +102,10 @@ var f = function () {};
 2. 以右侧函数名来执行函数
 3. 能成功吗？
 
-	```javascript
-	var f = function ab() {};
-	ab();
-	```
+```javascript
+var f = function ab() {};
+ab();
+```
 
 答案是否定的，因为上面的代码对f函数的定义是以**命名函数表达式(Named Function Expressions)**，而并非真正的函数声明，注意**该函数名只在该函数的作用域内有用**。
 下面这段代码充分说明了它的意义：
@@ -158,14 +158,3 @@ alert(typeof value);    //"number"
 
 上面列出的四种顺序也正是由高到底的优先级的顺序（**关于这点我有所保留，我测试的结果是参数和函数的优先级都会比语言内置的优先级高，你可以把形式参数取名为 `arguments`，或者定义一个函数名为 `arguments`，结果内置的 `argument` 说被覆盖了**），一旦一个变量名已经声明了，那么它就不可能被其他更低优先级的变量声明形式所覆盖。
 
-## 参考文章:
-
-1. [命名函数表达式探秘][1]
-2. [function-declarations-vs-function-expressions][2] （墙）
-3. [Javascript 作用域和变量提升][3]
-4. [Zakas 解答 Baranovskiy 的 JavaScript 小测试][4]
-
-[1]: http://justjavac.com/named-function-expressions-demystified.html
-[2]: http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/
-[3]: http://justjavac.iteye.com/blog/1886140
-[4]: http://hikejun.com/blog/2010/01/27/zakas%E8%A7%A3%E7%AD%94baranovskiy%E7%9A%84javascript%E5%B0%8F%E6%B5%8B%E8%AF%95/

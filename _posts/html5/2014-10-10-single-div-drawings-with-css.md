@@ -36,7 +36,7 @@ tags : [div, html5, css3]
 
 因为 CSS 有伪类，所以虽然只有一个 Div，但实际上我可以使用三个元素。因此，使用 `div`，`div:before`，`div:after`，我们可以这样：
 
-![伪元素][3]
+<img src="/assets/images/single-div-drawings-with-css/1.jpg" />
 
 {% highlight css %}
 div { background: red; }
@@ -46,13 +46,13 @@ div:after { background: blue; }
 
 容易想到，这三个元素可以并排成为三个叠在一起的层。因此，在我的脑海中，它看起来是下面这样的：
 
-![][4]
+<img src="/assets/images/single-div-drawings-with-css/2.jpg" />
 
 ### 形状
 
 使用 CSS 和单个元素，我们可以制作三种基础图形。使用 `width` 和 `height` 属性制作正方形/矩形，使用 `border-radius` 制作圆/椭圆，使用 `border` 制作三角形/梯形。
 
-![形状][5]
+<img src="/assets/images/single-div-drawings-with-css/3.jpg" />
 
 我们还可以使用 CSS 创建其他图形，不过大部分都可以简单组合这些基础图形来实现，这些简单的图形最容易制作，也最容易修改。
 
@@ -60,7 +60,7 @@ div:after { background: blue; }
 
 使用叠加的 `box-shadow`，我们可以创建多个相同的形状，这些形状可以拥有不一样的大小、颜色和模糊效果。我们可以在x或者y轴上移动这些图形，因此几乎可以绘制无限的图形。
 
-![多个相同的形状][6]
+<img src="/assets/images/single-div-drawings-with-css/4.jpg" />
 
 {% highlight css %}
   div {
@@ -76,7 +76,7 @@ div:after { background: blue; }
 
 渐变通过给定一个光源，可以被用来制造明暗和深浅效果，可以让简单扁平的图形看起来更真实。结合多个 `background-image`，我们可以使用很多层的渐变来实现更加复杂光影，甚至是更多的图形。
 
-![渐变][7]
+<img src="/assets/images/single-div-drawings-with-css/5.jpg" />
 
 {% highlight css %}
 div {
@@ -98,7 +98,7 @@ div:after {
 
 蜡笔由两个基础图形构成：矩形的笔身和三角形的笔尖。
 
-![蜡笔由两个基础图形构成：矩形的笔身和三角形的笔尖][8]
+<img src="/assets/images/single-div-drawings-with-css/6.jpg" />
 
 我必须实现下面这些点来捕获真实蜡笔的感觉：
 
@@ -109,7 +109,7 @@ div:after {
 
 首先，我使用 `div` 和 `background` 颜色制作蜡笔的身体部分，从顶部到底部渐变，并使用 `box-shadow` 暗示立体感：
 
-![][9]
+<img src="/assets/images/single-div-drawings-with-css/7.jpg" />
 
 {% highlight css %}
 div {
@@ -123,7 +123,7 @@ div {
 
 然后，我使用一个从左到右的 `linear-gradient` 制作纸包装。`alpha` 值为 `.6`，这样的之前的渐变可以透出来。
 
-![][10]
+<img src="/assets/images/single-div-drawings-with-css/8.jpg" />
 
 {% highlight css %}
 div {
@@ -137,7 +137,7 @@ div {
 
 接下来，我继续使用同样的方式，从左到右渐变，制作蜡笔上的条纹。
 
-![][11]
+<img src="/assets/images/single-div-drawings-with-css/9.jpg" />
 
 {% highlight css %}
 div {
@@ -163,7 +163,7 @@ div {
 
 纸包装上印刷的椭圆，使用一个 `radial-gradient` 轻松搞定！
 
-![][12]
+<img src="/assets/images/single-div-drawings-with-css/10.jpg" />
 
 {% highlight css %}
 div {
@@ -214,7 +214,7 @@ div {
 
 完成了 `div`，我们把注意力转移到 `:before` 伪类元素上，创建蜡笔的笔头。使用实心和透明的边框，我制作了一个三角形，把它和我之前绘制的 `div` 放到一起。
 
-![][13]
+<img src="/assets/images/single-div-drawings-with-css/11.jpg" />
 
 {% highlight css %}
 div:before {
@@ -227,7 +227,7 @@ div:before {
 
 比起蜡笔笔杆，笔头看起来有点平，我们可以使用 `:after` 伪类元素来修复这个问题。我添加一个从顶部到底部的 `linear-gradient`，制作了一个反光效果，贯穿整只蜡笔。
 
-![][14]
+<img src="/assets/images/single-div-drawings-with-css/12.jpg" />
 
 {% highlight css %}
 div:after {
@@ -241,7 +241,7 @@ div:after {
 
 这给那个扁平的三角形添加更多的层次感，更加真实。制作接近尾声，我给 `:after` 添加一些文字，定位，使得看起来像是印刷在蜡笔包装上的一样。
 
-![][15]
+<img src="/assets/images/single-div-drawings-with-css/13.jpg" />
 
 {% highlight css %}
 div:after {
@@ -264,11 +264,11 @@ div:after {
 
 这是照相机的主体部分，使用 `background-image` 和 `border-image` 制作的。
 
-![][16]
+<img src="/assets/images/single-div-drawings-with-css/14.jpg" />
 
 下面是一张 gif，展示 `:before` 伪类元素（黑色的那个矩形），以及使用它的 `box-shadow` 创建出来的很多照相机的细节部分。
 
-![][17]
+<img src="/assets/images/single-div-drawings-with-css/15.gif" />
 
 {% highlight css %}
 div:before {
@@ -295,7 +295,7 @@ div:before {
 
 类似的，下面是 `:after`（灰色的圆）以及使用它的 `box-shadow` 制作的几个细节部分。
 
-![][18]
+<img src="/assets/images/single-div-drawings-with-css/16.gif" />
 
 {% highlight css %}
 div:after {
@@ -346,7 +346,7 @@ div:after {
 
 因为三角形是使用 `border` 创建的，这极大地限制了我对它的利用。使用 `border-image` 给 `border` 添加 `gradient`，不能单独添加其中一边。无法给 `border` 创建出来的三角形添加 `box-shadow`，因为 `box-shadow` 是添加在盒模型上的。因此要创建多个三角形就会很困难。看起来就是下面这样：
 
-![][19]
+<img src="/assets/images/single-div-drawings-with-css/17.jpg" />
 
 {% highlight css %}
 div {
@@ -376,11 +376,11 @@ div:after {
 
 Tardis 就是一个很好的例子，显示或隐藏渐变，创建了一张细节极强的图片。下图显示的是绘制的中间过程，可以看到数个从顶部到底部的渐变，宽度填满整个容器。
 
-![][20]
+<img src="/assets/images/single-div-drawings-with-css/18.jpg" />
 
 使用从左到右和从右到左的 `gradient`，我可以遮住一部分渐变，同时把其他部分渐变显示出来。
 
-![][21]
+<img src="/assets/images/single-div-drawings-with-css/19.jpg" />
 
 最终的结果看上去包含了很多图形来构成 Tardis 的前面，但实际上它就是层叠的 `linear-gradient`。很多时候不得不伪造呀。
 

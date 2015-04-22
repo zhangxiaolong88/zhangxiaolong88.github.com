@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "移动端开发（二）"
+title: "移动端开发：图片资源优化"
 keywords: JavaScript mobile development
 description: "JavaScript mobile development"
 category: mobile

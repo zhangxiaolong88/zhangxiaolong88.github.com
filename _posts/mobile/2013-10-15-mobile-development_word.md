@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "移动端开发（一）"
+title: "移动端开发：名词和概念"
 keywords: JavaScript mobile development
 description: "JavaScript mobile development"
 category: mobile
