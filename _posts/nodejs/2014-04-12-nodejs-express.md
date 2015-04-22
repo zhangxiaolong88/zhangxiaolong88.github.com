@@ -8,8 +8,6 @@ tags: [javascript, nodejs]
 ---
 {% include JB/setup %}
 
-超大的数和超小的数，如何计算。
-
 express介绍。
 
 ## 简介

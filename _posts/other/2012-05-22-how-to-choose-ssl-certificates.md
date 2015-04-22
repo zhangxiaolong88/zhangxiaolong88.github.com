@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如何为https网站加入ssl证书
+title: https网站如何加入ssl
 keywords: https,ssl
 description: 要提高网站与客户端浏览器之间的安全性, 可以基于https协议对传输的数据进行加密. https协议采用公钥私钥加密算法进行加密, 服务器用私钥对网页进行加密后, 连同公钥一起发给浏览器.
 category : other

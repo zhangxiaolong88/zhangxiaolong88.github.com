@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如何调试移动端网页
+title: 移动端开发调试
 category : mobile
 tagline: "原创"
 tags : [mobile]
@@ -9,9 +9,9 @@ description: 本文将会介绍如何在真机上调试移动端的页面。
 ---
 {% include JB/setup %}
 
-本文将会介绍如何在真机上调试移动端的页面，和之前的《[如何在电脑上测试手机网站](http://yanhaijing.com/web/2014/02/21/how-to-test-mobile-websit-on-pc/)》的不同之处在于真机环境。
+本文将会介绍如何在真机上调试移动端的页面。
 
-本会介绍的方法如下：
+方法如下：
 
 - UC浏览器开发版
 - Chrome 远程调试

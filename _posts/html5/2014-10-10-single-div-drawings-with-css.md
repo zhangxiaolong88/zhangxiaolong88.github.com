@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 基于单个 div 的 CSS 绘图
+title: CSS3 绘图
 description: 基于单个 div 的 CSS 绘图
 keywords: html5,div, css3
 category : html5

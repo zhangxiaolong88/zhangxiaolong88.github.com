@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 利用函数的惰性载入提高 javascript 代码性能
+title: 惰性加载提高性能
 keywords: javascript
 category : javascript
 tags : [javascript]

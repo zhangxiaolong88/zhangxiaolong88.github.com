@@ -1,13 +1,12 @@
 ---
 layout: post
-title: JavaScript Puzzlers 解密（一）：为什么 ["1", "2", "3"].map(parseInt) 返回 [1, NaN, NaN]？
+title: JavaScript Puzzlers
 keywords: javascript, Puzzlers
 category : javascript
 tags : [javascript, Puzzlers]
 ---
 
 [JavaScript Puzzlers!](http://javascript-puzzlers.herokuapp.com/) 被称为 javascript 界的专业八级测验，感兴趣的 jser 可以去试试。
-我试了一下， 36 道题只做对了 19 道， 算下来正确率为 53%，还没有及格。
 
 第一题为 `["1", "2", "3"].map(parseInt)` 的返回值。
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 十三个代码注释的小技巧
+title: 代码注释 小技巧
 keywords: 代码, 注释, 技巧
 category : other
 tags : [代码, 注释, 技巧]

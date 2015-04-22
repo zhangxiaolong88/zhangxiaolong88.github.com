@@ -1,6 +1,6 @@
 ---
 layout: post
-title: markdown 快速入门
+title: markdown 语法
 keywords: jekyll, markdown
 category : jekyll
 tags : [jekyll, markdown]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 10 个你需要了解的最佳 javascript 开发实践
+title: javascript 的开发实践
 keywords: javascript
 category : javascript
 tags : [javascript]

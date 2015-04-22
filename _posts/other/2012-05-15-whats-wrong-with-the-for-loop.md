@@ -1,6 +1,6 @@
 ---
 layout: post
-title: for 循环为何可恨？
+title: for 循环 有什么问题？
 description: 不久前，出版过数十本编程书籍的大作家发表了对Java中闭包的价值的质疑。尤其是他问道“for 循环为何可恨？”
 keywords: for, 闭包
 category : other

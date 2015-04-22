@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用 jekyll 提高 Demo 开发效率
+title: 利用 jekyll 编写 Demo
 description: 在前端开发的前期，编写 Demo 的过程是最初的开始，但由于开发环境等问题，我们需要等待或者做一些多余的工作。通过 jekyll ，可以适当提高开发效率。
 keywords: jekyll, Demo, Web Development, head, foot, content
 category : jekyll

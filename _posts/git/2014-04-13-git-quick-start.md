@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Git教程 快速上手
+title:      Git教程
 keywords: git, github
 category : git
 tags : [github, git]

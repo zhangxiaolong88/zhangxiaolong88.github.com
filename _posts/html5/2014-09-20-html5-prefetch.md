@@ -1,12 +1,11 @@
 ---
 layout: post
-title: HTML5 Prefetch
+title: HTML5 预加载
 description: HTML5 Prefetch：prefetch 即预加载，在用户需要前我们就将所需的资源加载完毕。
 keywords: html5, prefetch
 category : html5
 tags : [html5, prefetch]
 ---
-
 
 原文：[HTML5 Prefetch](https://medium.com/@luisvieira_gmr/html5-prefetch-1e54f6dda15d)
 

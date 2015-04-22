@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 如何使用PhoneGap打包Web App
+title: 使用PhoneGap打包Web App
 category : mobile
 tagline: "原创"
 tags : [phonegap]

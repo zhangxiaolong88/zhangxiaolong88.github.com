@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 基于Grunt构建一个JavaScript库
+title: Grunt构建JavaScript库
 category : grunt
 tagline: "译"
 tags : [grunt]

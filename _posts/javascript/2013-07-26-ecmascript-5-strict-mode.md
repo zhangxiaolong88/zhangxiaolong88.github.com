@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ECMAScript 5的严格模式：strict mode介绍
+title: ECMAScript 5的strict mode
 keywords: javascript, ECMAScript
 category : javascript
 tags : [javascript, ECMAScript]

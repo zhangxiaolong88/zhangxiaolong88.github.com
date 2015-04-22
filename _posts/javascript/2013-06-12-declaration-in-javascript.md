@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 谈 javascript 变量声明
+title: javascript 的变量声明
 keywords: javascript
 category : javascript
 tags : [javascript]
