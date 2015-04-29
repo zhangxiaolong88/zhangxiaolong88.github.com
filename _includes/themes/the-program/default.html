@@ -25,6 +25,20 @@
 	<!-- raphael js pie chart -->
 	<script src="{{ ASSET_PATH }}/js/raphael.js" type="text/javascript"></script>
 	<script src="{{ ASSET_PATH }}/js/rapcharts.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".lightScreen").mousemove(function(e) {
+				var w = 2500,
+					h = 1527,
+					evt = e || event;
+				console.log($(this).pageX);
+				console.log(evt.pageX + "," + evt.pageY);
+				$(this).css({
+					"backgroundPosition": "50% 0"
+				});
+			});
+		});
+	</script>
 </head>
 <body>
 
