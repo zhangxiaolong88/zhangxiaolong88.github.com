@@ -28,13 +28,21 @@
 	<script type="text/javascript">
 		$(function() {
 			$(".lightScreen").mousemove(function(e) {
-				var w = 2500,
-					h = 1527,
+				var pw = 2500,
+					ph = 1527,
+					w = $(this).width(),
+					h = $(this).height(),
 					evt = e || event;
-				console.log($(this).pageX);
-				console.log(evt.pageX + "," + evt.pageY);
+
+					//ph = (w + 200) * ph / pw;
+					//pw = w + 200;
+
+				var x = evt.pageX - this.offsetLeft,
+					y = evt.pageY - this.offsetTop;
+				var x0 = pw / 2,
+					y0 = ph / 2;
 				$(this).css({
-					"backgroundPosition": "50% 0"
+					"backgroundPosition": (w/2 - x0 + (w/2 - x)/10) + "px " + (h/2 - y0 + (h/2 - y)/3) + "px"
 				});
 			});
 		});

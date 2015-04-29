@@ -440,6 +440,8 @@ h6 {
 .unit-head .entry-title .lightScreen {
   width: 100%;
   height: 200px;
+  background-repeat: no-repeat;
+  /*background-size: cover;*/
   background-position: center;
   background-image: url("/assets/images/index/lightscreen.jpg");
 }
