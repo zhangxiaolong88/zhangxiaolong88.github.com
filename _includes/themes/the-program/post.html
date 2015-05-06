@@ -13,21 +13,26 @@
 				<div class="entry-content">
 					{{ content }}
 					<div class="meta">
-						<p class="date-publish">
-							Published: 
+						<!-- <p class="date-publish">
+							更新时间: 
 							<date class="date-pub" title="{{ page.date | date_to_xmlschema }}" datetime="{{ page.date | date_to_xmlschema }}" pubdate>
-							<span class="month"><abbr>{{ page.date | date: '%B' }}</abbr></span>
-							<span class="day">{{ page.date | date: '%d' }}</span>
 							<span class="year">{{ page.date | date: '%Y' }}</span>
+							<span class="month">{{ page.date | date: '%m' }}</span>
+							<span class="day">{{ page.date | date: '%d' }}</span>
 							</date>
-						</p>
+						</p> -->
 						<ul class="list-category list-linear">
-							<li class="list-head">category: </li>
+							<li class="list-head">更新时间: 
+							{{ page.date | date: '%Y' }}-{{ page.date | date: '%m' }}-{{ page.date | date: '%d' }}
+							</li>
+						</ul>
+						<ul class="list-category list-linear">
+							<li class="list-head">分类: </li>
 							{% assign categories_list = page.categories %}
 							{% include JB/categories_list %}
 						</ul>
 						<ul class="list-tag list-linear">
-							<li class="list-head">tags: </li>
+							<li class="list-head">标签: </li>
 							{% assign tags_list = page.tags %}
 							{% include JB/tags_list %}
 						</ul>
@@ -36,8 +41,8 @@
 				<div class="misc-content">
 					<div class="social">
 						<ul class="list-linear">
-							<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{ site.author.twitter }}" data-lang="en">Tweet</a></div></li>
-							<li><div class="twitter-follow"><a href="https://twitter.com/{{ site.author.twitter }}" class="twitter-follow-button" data-show-count="false" data-lang="en"></a></div></li>
+							<!-- <li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{ site.author.twitter }}" data-lang="en">Tweet</a></div></li>
+							<li><div class="twitter-follow"><a href="https://twitter.com/{{ site.author.twitter }}" class="twitter-follow-button" data-show-count="false" data-lang="en"></a></div></li> -->
 						</ul>
 					</div>
 					<div class="comment">

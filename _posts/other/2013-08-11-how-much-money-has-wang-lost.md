@@ -3,7 +3,7 @@ layout: post
 title: 从「王师傅一共损失了多少钱」说开去
 keywords: 经济学, 趣题
 category : other
-tags : [经济学, 趣题]
+tags : [趣题]
 ---
 
 ## 题目
