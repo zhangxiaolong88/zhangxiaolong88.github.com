@@ -129,41 +129,61 @@
 
 		// 预加载图片
 		var loadImages = function(imgs) {
-			if (typeof(index) === "undefined") {
-				index = 0;
-			} else {
-				index++;
-			}
-			var img = new Image();
-			img.onload = function() {
-				var per = (index + 1) / imgs.length;
-				/*$(".progress .progress-bar")
-					.attr("aria-valuenow", per)
-					.css({
-						"width": per + "%"
-					})
-					.text(per + "%");*/
 
+			$.each(imgs, function(i, v) {
+				var img = new Image();
+				img.onload = function() {
+					t();
+				};
+				img.onerror = function() {
+					t();
+				};
+				img.src = v.url;
+			});
+
+			var t = function() {
+				if (typeof(index) === 'undefined') {
+					index = 0;
+				} else {
+					index++;
+				}
+				var per = (index + 1) / imgs.length;
 				$("#load-bar .glogopre").stop().animate({
 					"width": per * $("#load-bar").width()
 				}, "slow", function() {
 					if (index == imgs.length - 1) {
 						initImages();
 					}
-				})
-				if (index != imgs.length - 1) {
-					loadImages(imgs);
-				}
+				});
 			};
-			img.onerror = function() {
-				if (index == imgs.length - 1) {
-					initImages();
-				} else {
-					imgs.splice(index, 1);
-					loadImages(imgs);
-				}
-			};
-			img.src = imgs[index].url;
+			// if (typeof(index) === "undefined") {
+			// 	index = 0;
+			// } else {
+			// 	index++;
+			// }
+			// var img = new Image();
+			// img.onload = function() {
+			// 	var per = (index + 1) / imgs.length;
+			// 	$("#load-bar .glogopre").stop().animate({
+			// 		"width": per * $("#load-bar").width()
+			// 	}, "slow", function() {
+			// 		if (index == imgs.length - 1) {
+			// 			initImages();
+			// 		}
+			// 	})
+			// 	if (index != imgs.length - 1) {
+			// 		loadImages(imgs);
+			// 	}
+			// };
+			// img.onerror = function() {
+			// 	if (index == imgs.length - 1) {
+			// 		initImages();
+			// 	} else {
+			// 		imgs.splice(index, 1);
+			// 		loadImages(imgs);
+			// 	}
+			// };
+			// img.src = imgs[index].url;
 		};
 
 		// 显示图片
@@ -207,7 +227,7 @@
 				"left": w / 2 - $("#download").width() / 2
 			});
 		}
-		
+
 		// 初始化手电筒
 		var initGlass = function() {
 			$("<div id='glass'><img src='assets/images/eva/bg.jpg' /></div>").appendTo($("#cover"));
@@ -322,7 +342,7 @@
 			});
 
 			// 人类补全计划 启动
-			
+
 		};
 
 		// 计算容器位置与大小
